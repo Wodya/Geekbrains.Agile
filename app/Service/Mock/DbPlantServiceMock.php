@@ -11,7 +11,6 @@ use App\Service\IDbPlantService;
  */
 class DbPlantServiceMock implements IDbPlantService
 {
-
     public function getAllPlants(): array
     {
         $plant1 = new PlantShort();
@@ -36,7 +35,6 @@ class DbPlantServiceMock implements IDbPlantService
         $plant3->tags = "Солнцелюбивое, дикорастущее";
 
         return [$plant1, $plant2, $plant3];
-
     }
 
     public function getPlant(): PlantFull
@@ -48,5 +46,18 @@ class DbPlantServiceMock implements IDbPlantService
         $plant1->fullInfo = "Дикорастущее растение средней полосы. Произростает в каких-то широтах, на каких-то берегах";
         $plant1->photoSmallPath = "image1.jpg";
         $plant1->tags = ["Солнцелюбивое", "Дикорастущее"];
+    }
+
+    public function UpdatePlant(PlantFull $plant)
+    {
+        // TODO: Implement UpdatePlant() method.
+    }
+    public function InsertPlant(PlantFull $plant) : int
+    {
+        return 1;
+    }
+    public function DeletePlant(int $plantId)
+    {
+        // TODO: Implement DeletePlant() method.
     }
 }
