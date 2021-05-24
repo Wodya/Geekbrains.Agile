@@ -21,6 +21,7 @@ class PlantFull
      * @var string
      */
     public $fullInfo;
+//    как ухаживать, грунт, цветение, опасное или нет
     /**
      * @var string
      */

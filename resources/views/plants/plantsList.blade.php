@@ -1,72 +1,52 @@
 @extends('layouts.main')
 @section('content')
-    <h2>Каталог комнатных растений</h2>
-    <div class="row row-cols-1 row-cols-md-4 g-4">
-        @forelse ($plantsList as $plant)
-            <div class="col">
-                <div class="card">
-                    <img src="{{$plant->photoSmallPath}}" class="card-img-top" alt="{{$plant->name}}" width=100%
-                         height="180">
-                    <div class="card-body">
-                        <h5 class="card-title">{{$plant->name}}</h5>
-                        <p class="card-text">{{$plant->shortInfo}}</p>
-                        <a href="/plants/show" class="btn btn-primary">Подробнее</a>
-                        <p class="card-text">{{$plant->tags}}</p>
-                    </div>
+
+<div class="div-box">
+    <div class="home-4-new-collections">
+        <div class="container">
+            <h2 class="title-style title-style-1 text-center"><span class="title-left">Каталог </span><span class="title-right"> Комнатных растений</span></h2>
+            <div data-js-module="filtering-demo" class="big-demo go-wide">
+                <div class="filter-button-group button-group js-radio-button-group container">
+                    <button data-filter="*" class="button is-checked">All</button>
+                    <button data-filter=".outdoor" class="button">Awesome</button>
+                    <button data-filter=".outdoor" class="button">Featured</button>
+                    <button data-filter=".outdoor" class="button">Indoor</button>
+                    <button data-filter=".outdoor" class="button">New</button>
+                    <button data-filter=".pots" class="button">Pots</button>
+                    <button data-filter=".seeds" class="button">Seeds</button>
+                    <button data-filter=".indoor" class="button">Outdoor</button>
                 </div>
+                <ul class="grid shortcode-product-wrap product-begreen columns-4">
+                    @forelse ($plantsList as $plant)
+                    <li data-category="outdoor" class="element-item product-item-wrap product-style_1 pots seeds indoor">
+                        <div class="product-item-inner">
+                            <div class="product-thumb">
+                                <div class="product-flash-wrap"></div>
+                                <div class="product-thumb-primary"><img src="./Images/Small/{{$plant->photoSmallPath}}" alt="product1" width="375" height="450" class="attachment-shop_catalog size-shop_catalog wp-post-image"/></div><a href="#" class="product-link">
+                                    <div class="product-hover-sign">
+                                        <hr/>
+                                        <hr/>
+                                    </div></a>
+                                <div class="product-info">
+                                    <div class="star-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div><a href="#">
+                                        <h3>{{$plant->name}}</h3></a><span class="price"><span class="product-begreen-price-amount amount">{{$plant->shortInfo}}</span></span><h4>{{$plant->tags}}</h4>
+                                </div>
+                                <div class="product-actions">
+                                    <div class="yith-wcwl-add-to-wishlist add-to-wishlist-17">
+                                        <div class="yith-wcwl-add-button show"><a href="#" class="add_to_wishlist"><i class="fa fa-heart-o"></i> Add to Wishlist</a></div>
+                                    </div>
+                                    <div class="add-to-cart-wrap"><a href="#" class="add_to_cart_button"><i class="fa fa-cart-plus"></i> Add to cart</a></div><a href="/onePlant" class="product-quick-view"><i class="fa fa-search"></i>Quick view</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    @empty
+                        <h2>Что-то сломалось =(</h2>
+                    @endforelse
+                </ul>
             </div>
-        @empty
-            <h2>Что-то сломалось =(</h2>
-        @endforelse
-            <img src="http://via.placeholder.com/320x355">
-
-
-{{--            <section class="featureSec container-fluid overflow-hidden px-xl-17 pt-xl-12 pb-xl-10 pt-lg-10 pb-lg-4 pt-md-8 pb-md-2 pt-5">--}}
-{{--                <!-- mainHeader -->--}}
-{{--                <header class="col-12 mainHeader mb-7 text-center">--}}
-{{--                    <h1 class="headingIV playfair fwEblod mb-4">Каталог комнатных растений</h1>--}}
-{{--                    <span class="headerBorder d-block mb-5"><img src="images/hbdr.png" alt="Header Border" class="img-fluid img-bdr"></span>--}}
-{{--                    <p>Lorem ipsum is simply dummy text of the printing and typesetting industry.</p>--}}
-{{--                </header>--}}
-{{--                <div class="col-12 p-0 overflow-hidden d-flex flex-wrap">--}}
-{{--                    <!-- featureCol -->--}}
-{{--                    <div class="featureCol px-3 mb-6">--}}
-{{--                        <div class="border">--}}
-{{--                            <div class="imgHolder position-relative w-100 overflow-hidden">--}}
-{{--                                <img src="http://placehold.it/320x355" alt="image description" class="img-fluid w-100">--}}
-{{--                                <ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">--}}
-{{--                                    <li class="mr-2 overflow-hidden"><a href="#" class="icon-heart d-block"></a></li>--}}
-{{--                                    <li class="mr-2 overflow-hidden"><a href="#" class="icon-cart d-block"></a></li>--}}
-{{--                                    <li class="mr-2 overflow-hidden"><a href="#" class="icon-eye d-block"></a></li>--}}
-{{--                                    <li class="overflow-hidden"><a href="#" class="icon-arrow d-block"></a></li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
-{{--                            <div class="text-center py-xl-5 py-sm-4 py-2 px-xl-2 px-1">--}}
-{{--                                <span class="title d-block mb-2"><a href="shop-detail.html">Sit voluptatem</a></span>--}}
-{{--                                <span class="price d-block fwEbold">68.00 $</span>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <!-- featureCol -->--}}
-{{--                    <div class="featureCol px-3 position-relative mb-6">--}}
-{{--                        <div class="border">--}}
-{{--                            <div class="imgHolder position-relative w-100 overflow-hidden">--}}
-{{--                                <img src="http://placehold.it/320x355" alt="image description" class="img-fluid w-100">--}}
-{{--                                <ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">--}}
-{{--                                    <li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>--}}
-{{--                                    <li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>--}}
-{{--                                    <li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-eye d-block"></a></li>--}}
-{{--                                    <li class="overflow-hidden"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
-{{--                            <div class="text-center py-xl-5 py-sm-4 py-2 px-xl-2 px-1">--}}
-{{--                                <span class="title d-block mb-3"><a href="shop-detail.html">Neque Porro Quisquamest</a></span>--}}
-{{--                                <span class="price d-block fwEbold">60.50 $</span>--}}
-{{--                                <span class="hotOffer fwEbold text-uppercase text-white position-absolute d-block">HOT</span>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </section>--}}
+        </div>
     </div>
+</div>
+
 @endsection
