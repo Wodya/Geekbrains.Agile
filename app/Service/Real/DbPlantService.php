@@ -11,24 +11,14 @@ use App\Service\IDbPlantService;
  */
 class DbPlantService implements IDbPlantService
 {
+
     public function getAllPlants(): array
     {
         return [];
     }
+
     public function getPlant(): PlantFull
     {
         return new PlantFull();
-    }
-    public function UpdatePlant(PlantFull $plant)
-    {
-        // TODO: Implement UpdatePlant() method.
-    }
-    public function InsertPlant(PlantFull $plant): int
-    {
-        return 1;
-    }
-    public function DeletePlant(int $plantId)
-    {
-        // TODO: Implement DeletePlant() method.
     }
 }
