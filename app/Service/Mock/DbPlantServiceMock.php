@@ -38,8 +38,7 @@ class DbPlantServiceMock implements IDbPlantService
         return [$plant1, $plant2, $plant3, $plant1, $plant2, $plant3, $plant1, $plant2, $plant3];
 
     }
-
-    public function getPlant(): PlantFull
+    public function getPlant(int $id): PlantFull
     {
         $plant1 = new PlantFull();
         $plant1->id = 1;
@@ -48,5 +47,17 @@ class DbPlantServiceMock implements IDbPlantService
         $plant1->fullInfo = "Дикорастущее растение средней полосы. Произростает в каких-то широтах, на каких-то берегах";
         $plant1->photoSmallPath = "image1.jpg";
         $plant1->tags = ["Солнцелюбивое", "Дикорастущее"];
+    }
+    public function updatePlant(PlantFull $plant)
+    {
+        echo("<script>console.log('Update Plant');</script>");
+    }
+    public function insertPlant(PlantFull $plant): int
+    {
+        echo("<script>console.log('Insert Plant');</script>");
+    }
+    public function deletePlant(int $plantId)
+    {
+        echo("<script>console.log('Delete Plant');</script>");
     }
 }
