@@ -1,35 +1,16 @@
-<footer class="border-top">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <ul class="list-inline text-center">
-                            <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="small text-center text-muted fst-italic">Copyright &copy; Your Website 2021</div>
-                    </div>
-                </div>
+<div class="div-box">
+    <footer id="yolo-footer-wrapper">
+        <div class="yolo-footer-wrapper footer-5">
+            <div class="footer-col">
+                <h2><a href="index.html" class="logo"><img src="images/logo/logo-footer.png" alt="logo1" width="84" height="63" class="vc_single_image-img attachment-full"/></a></h2>
+                <ul id="social-footer-2">
+                    <li><a href="#"><i class="fa fa-facebook"></i>facebook</a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i>twitter</a></li>
+                    <li><a href="#"><i class="fa fa-instagram"></i>instagram</a></li>
+                    <li><a href="#"><i class="fa fa-cc-paypal"></i>paypal</a></li>
+                </ul>
+                <p class="copyright">All Right Reserved 2016 Designed by <a href="#">Yolo</a></p>
             </div>
-        </footer>
+        </div>
+    </footer>
+</div>
