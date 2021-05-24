@@ -14,11 +14,25 @@ class DbPlantService implements IDbPlantService
 
     public function getAllPlants(): array
     {
+
         return [];
     }
-
-    public function getPlant(): PlantFull
+    public function getPlant(int $id): PlantFull
     {
         return new PlantFull();
+    }
+    public function updatePlant(PlantFull $plant)
+    {
+        // TODO: Implement UpdatePlant() method.
+    }
+
+    public function insertPlant(PlantFull $plant): int
+    {
+        // TODO: Implement InsertPlant() method.
+    }
+
+    public function deletePlant(int $plantId)
+    {
+        // TODO: Implement DeletePlant() method.
     }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Providers;
 
+use App\Service\Real\DbPlantFile;
 use App\Service\Real\DbPlantService;
 use App\Service\IDbPlantService;
 use App\Service\Mock\DbPlantServiceMock;
