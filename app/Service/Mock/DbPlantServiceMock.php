@@ -34,7 +34,7 @@ class DbPlantServiceMock implements IDbPlantService
         $plant3->photoSmallPath = "image1.jpg";
         $plant3->tags = "Солнцелюбивое, дикорастущее";
 
-        return [$plant1, $plant2, $plant3];
+        return [$plant1, $plant2, $plant3, $plant1, $plant2, $plant3, $plant1, $plant2, $plant3];
     }
 
     public function getPlant(): PlantFull

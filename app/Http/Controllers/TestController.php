@@ -9,6 +9,6 @@ class TestController extends Controller
     public function index(Request $request, IDbPlantService $dbPlant)
     {
         $plantList = $dbPlant->getAllPlants();
-        return view('test.index',['PlantList' => $plantList]);
+        return view('plants.plantsList',['plantsList' => $plantList]);
     }
 }
