@@ -36,5 +36,4 @@
         <!-- Core theme JS-->
         <script src="{{ asset('js/scripts.js')}}"></script>
     </body>
->>>>>>> e732c2dc3d08824097adc8656126cc65d298bfe3
 </html>

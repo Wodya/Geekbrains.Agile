@@ -11,4 +11,8 @@ class TestController extends Controller
         $plantList = $dbPlant->getAllPlants();
         return view('plants.plantsList',['plantsList' => $plantList]);
     }
+    public function onePlant(Request $request, IDbPlantService $dbPlant)
+    {
+        return view('plants.onePlant');
+    }
 }

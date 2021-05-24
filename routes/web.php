@@ -19,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::resource('/test', TestController::class);
+
+Route::get('/onePlant', [TestController::class, 'onePlant']) ->name('onePlant');
