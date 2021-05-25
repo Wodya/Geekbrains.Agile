@@ -15,6 +15,8 @@ class SeederPlant extends Seeder
      */
     public function run()
     {
+        DB::table('plant_tag')->delete();
+        DB::table('plant')->delete();
         DB::table('plant')->insert($this->getData());
         DB::table('plant_tag')->insert($this->getDataTag());
     }
@@ -29,8 +31,8 @@ class SeederPlant extends Seeder
                 'name' => $faker->sentence(mt_rand(1,2)),
                 'short_info' => $faker->realText(mt_rand(30,40)),
                 'full_info' => $faker->realText(mt_rand(150,200)),
-                'photo_small_path' => 'image1.png',
-                'photo_big_path' => 'image1.jpg',
+                'photo_small_path' => 'image1.jpg',
+                'photo_big_path' => 'image1.png',
             ];
         }
         return $data;

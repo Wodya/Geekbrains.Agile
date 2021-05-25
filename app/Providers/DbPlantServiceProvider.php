@@ -11,7 +11,8 @@ class DbPlantServiceProvider extends \Illuminate\Support\ServiceProvider
     public function register()
     {
         $this->app->bind( IDbPlantService::class,function (){
-            return new DbPlantServiceMock();
+            return new DbPlantService();
+//            return new DbPlantServiceMock();
         });
     }
 }
