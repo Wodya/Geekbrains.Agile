@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <title>Tree Shop Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
     <!-- Favicon-->
-    <link rel="shortcut icon" href="images/icon/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset('Images/icon/favicon.png')}}" type="image/x-icon">
 
     <!-- Web Fonts-->
     <link
@@ -16,20 +13,20 @@
         rel="stylesheet">
 
     <!-- Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="libs/animate/animated.css">
-    <link rel="stylesheet" type="text/css" href="libs/owl.carousel.min/owl.carousel.min.css">
-    <link rel="stylesheet" type="text/css" href="libs/jquery.mmenu.all/jquery.mmenu.all.css">
-    <link rel="stylesheet" type="text/css" href="libs/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
-    <link rel="stylesheet" type="text/css" href="libs/direction/css/noJS.css">
-    <link rel="stylesheet" type="text/css" href="libs/prettyphoto-master/css/prettyPhoto.css">
-    <link rel="stylesheet" type="text/css" href="libs/slick-sider/slick.min.css">
-    <link rel="stylesheet" type="text/css" href="libs/countdown-timer/css/demo.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('libs/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('libs/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('libs/animate/animated.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('libs/owl.carousel.min/owl.carousel.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('libs/jquery.mmenu.all/jquery.mmenu.all.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('libs/pe-icon-7-stroke/css/pe-icon-7-stroke.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('libs/direction/css/noJS.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('libs/prettyphoto-master/css/prettyPhoto.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('libs/slick-sider/slick.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('libs/countdown-timer/css/demo.css')}}">
 
     <!-- Template CSS-->
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/home.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css')}}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
     <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
@@ -57,24 +54,24 @@
 </div>
 
 <!-- Vendor jQuery-->
-<script type="text/javascript" src="libs/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="libs/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="libs/animate/wow.min.js"></script>
-<script type="text/javascript" src="libs/jquery.mmenu.all/jquery.mmenu.all.min.js"></script>
-<script type="text/javascript" src="libs/countdown/jquery.countdown.min.js"></script>
-<script type="text/javascript" src="libs/jquery-appear/jquery.appear.min.js"></script>
-<script type="text/javascript" src="libs/jquery-countto/jquery.countTo.min.js"></script>
-<script type="text/javascript" src="libs/direction/js/jquery.hoverdir.js"></script>
-<script type="text/javascript" src="libs/direction/js/modernizr.custom.97074.js"></script>
-<script type="text/javascript" src="libs/isotope/isotope.pkgd.min.js"></script>
-<script type="text/javascript" src="libs/isotope/fit-columns.js"></script>
-<script type="text/javascript" src="libs/isotope/isotope-docs.min.js"></script>
-<script type="text/javascript" src="libs/mansory/mansory.js"></script>
-<script type="text/javascript" src="libs/prettyphoto-master/js/jquery.prettyPhoto.js"></script>
-<script type="text/javascript" src="libs/slick-sider/slick.min.js"></script>
-<script type="text/javascript" src="libs/countdown-timer/js/jquery.final-countdown.min.js"></script>
-<script type="text/javascript" src="libs/countdown-timer/js/kinetic.js"></script>
-<script type="text/javascript" src="libs/owl.carousel.min/owl.carousel.min.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="{{ asset('libs/jquery/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/bootstrap/js/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/animate/wow.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/jquery.mmenu.all/jquery.mmenu.all.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/countdown/jquery.countdown.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/jquery-appear/jquery.appear.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/jquery-countto/jquery.countTo.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/direction/js/jquery.hoverdir.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/direction/js/modernizr.custom.97074.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/isotope/isotope.pkgd.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/isotope/fit-columns.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/isotope/isotope-docs.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/mansory/mansory.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/prettyphoto-master/js/jquery.prettyPhoto.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/slick-sider/slick.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/countdown-timer/js/jquery.final-countdown.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/countdown-timer/js/kinetic.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/owl.carousel.min/owl.carousel.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('js/main.js')}}"></script>
 </body>
 </html>
