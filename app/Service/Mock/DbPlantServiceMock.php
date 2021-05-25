@@ -47,6 +47,8 @@ class DbPlantServiceMock implements IDbPlantService
         $plant1->fullInfo = "Дикорастущее растение средней полосы. Произростает в каких-то широтах, на каких-то берегах";
         $plant1->photoSmallPath = "image1.jpg";
         $plant1->tags = ["Солнцелюбивое", "Дикорастущее"];
+        return $plant1;
+        
     }
     public function updatePlant(PlantFull $plant)
     {

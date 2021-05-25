@@ -11,8 +11,12 @@ class TestController extends Controller
         $plantList = $dbPlant->getAllPlants();
         return view('plants.plantsList',['plantsList' => $plantList]);
     }
-    public function onePlant(Request $request, IDbPlantService $dbPlant)
+    public function onePlant($id, IDbPlantService $dbPlant)
     {
-        return view('plants.onePlant');
+        $onePlant = $dbPlant->getPlant($id);
+        // return "<h2>Отобразить запись одного товара с ID = {$id}</h2>";
+
+        // dd($onePlant);
+      return view('plants.onePlant', ['onePlant' => $onePlant]);
     }
 }
