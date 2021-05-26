@@ -61,7 +61,7 @@
                         <label>Availability:</label><span class="product-stock-status in-stock">In stock</span></span><span class="posted_in">
                         <label>Categories:</label><a href="#">New /</a><a href="#">Outdoor /</a><a href="#">Pots /</a><a href="#">Seeds</a></span>
                         <span class="tagged_as">
-                        <label>Категоря:</label>
+                        <label>Теги:</label>
                             @foreach($onePlant->tags as $tag)
                              <a href="#">{{$tag}}</a>
                             @endforeach

@@ -19,8 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/test', TestController::class);
-
 Route::get('/onePlant/{id}', [TestController::class, 'onePlant']) ->name('onePlant');
-Route::get('/testUpdate', [TestController::class, 'testUpdate']);
-Route::get('/lk', [LkController::class, 'index'])->name('lk');
+Route::get('catalog', [TestController::class, 'index'])->name('catalog');
+Route::get('/testUpdate', [TestController::class, 'testUpdate'])->name('testUpdate');
+Route::get('/myPlants', [LkController::class, 'index'])->name('myPlants');
