@@ -25,9 +25,9 @@ class SeederPlant extends Seeder
         $faker = Factory::create('ru_RU');
 
         $data = [];
-        for($i = 0; $i < 10; $i++) {
+        for($i = 0; $i < 20; $i++) {
             $data[] = [
-                'id'  => $i,
+                'id'  => $i+1,
                 'name' => $faker->sentence(mt_rand(1,2)),
                 'short_info' => $faker->realText(mt_rand(30,40)),
                 'full_info' => $faker->realText(mt_rand(150,200)),
