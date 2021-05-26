@@ -13,7 +13,7 @@
                     <button data-filter=".outdoor" class="button">Вьющиеся</button>
                     <button data-filter=".outdoor" class="button">Пальмы</button>
                     <button data-filter=".pots" class="button">Фикусы</button>
-                    
+
                 </div>
                 <ul class="grid shortcode-product-wrap product-begreen columns-4">
                     @forelse ($plantsList as $plant)
@@ -41,7 +41,7 @@
                                             <a href="#" class="add_to_cart_button"><i class="fa fa-cart-plus"></i> Add to cart</a>
                                         </div>
                                         <div class="yith-wcwl-add-button show">
-                                            <a href="/onePlant" class="product-quick-view"><i class="fa fa-search"></i>Quick view</a>
+                                            <a href="#" class="product-quick-view"><i class="fa fa-search"></i>Quick view</a>
                                         </div>
                                 </div>
                             </div>
