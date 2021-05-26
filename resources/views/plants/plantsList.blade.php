@@ -7,14 +7,13 @@
             <h2 class="title-style title-style-1 text-center"><span class="title-left">Каталог </span><span class="title-right"> Комнатных растений</span></h2>
             <div data-js-module="filtering-demo" class="big-demo go-wide">
                 <div class="filter-button-group button-group js-radio-button-group container">
-                    <button data-filter="*" class="button is-checked">All</button>
-                    <button data-filter=".outdoor" class="button">Awesome</button>
-                    <button data-filter=".outdoor" class="button">Featured</button>
-                    <button data-filter=".outdoor" class="button">Indoor</button>
-                    <button data-filter=".outdoor" class="button">New</button>
-                    <button data-filter=".pots" class="button">Pots</button>
-                    <button data-filter=".seeds" class="button">Seeds</button>
-                    <button data-filter=".indoor" class="button">Outdoor</button>
+                    <button data-filter="*" class="button is-checked">Все</button>
+                    <button data-filter=".outdoor" class="button">Орхидеи</button>
+                    <button data-filter=".outdoor" class="button">Ампельные</button>
+                    <button data-filter=".outdoor" class="button">Вьющиеся</button>
+                    <button data-filter=".outdoor" class="button">Пальмы</button>
+                    <button data-filter=".pots" class="button">Фикусы</button>
+                    
                 </div>
                 <ul class="grid shortcode-product-wrap product-begreen columns-4">
                     @forelse ($plantsList as $plant)
@@ -35,7 +34,7 @@
                                 <div class="product-actions">
                                     <div class="yith-wcwl-add-to-wishlist add-to-wishlist-17">
                                         <div class="yith-wcwl-add-button show">
-                                            <a href="#" class="add_to_wishlist"><i class="fa fa-heart-o"></i> Add to Wishlist</a>
+                                            <a href="#" class="add_to_wishlist"><i class="fa fa-heart-o"></i> Добавить в избранное</a>
                                         </div>
                                     </div>
                                         <div class="add-to-cart-wrap">
