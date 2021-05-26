@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,4 @@ Route::resource('/test', TestController::class);
 
 Route::get('/onePlant/{id}', [TestController::class, 'onePlant']) ->name('onePlant');
 Route::get('/testUpdate', [TestController::class, 'testUpdate']);
+Route::get('/lk', [LkController::class, 'index'])->name('lk');

@@ -179,14 +179,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="menu-item menu-blog"><a href="#">Blog</a>
-                                <ul class="sub-menu">
-                                    <li><a href="blog-masonry.html">Blog Masonry</a></li>
-                                    <li><a href="blog-2-columns-with-sidebar.html">Blog 2 Columns with Sidebar</a></li>
-                                    <li><a href="blog-list.html">Blog List</a></li>
-                                    <li><a href="blog-detail.html">Blog Details</a></li>
-                                </ul>
-                            </li>
+                            <li class="menu-item menu-blog"><a href="{{route('lk')}}">Личный кабинет</a>
+                                
                             <li class="menu-item menu-blog"><a href="#">Page</a>
                                 <ul class="sub-menu">
                                     <li><a href="about-us.html">About Us</a></li>

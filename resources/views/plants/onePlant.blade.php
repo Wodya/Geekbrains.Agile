@@ -55,7 +55,7 @@
                                 <button type="submit" class="single_add_to_cart_button button alt">Add to cart</button>
                             </form>
                             <div class="yith-wcwl-add-to-wishlist">
-                                <div class="yith-wcwl-add-button show"><a href="#" class="add_to_wishlist"><i class="fa fa-heart-o"></i> Add to Wishlist</a></div>
+                                <div class="yith-wcwl-add-button show"><a href="#" class="add_to_wishlist"><i class="fa fa-heart-o"></i> Добавить в избранное</a></div>
                             </div><a href="#" class="compare button"> <i class="fa fa-signal"></i>Compare</a>
                             <div class="product_meta"><span class="product-stock-status-wrapper">
                         <label>Availability:</label><span class="product-stock-status in-stock">In stock</span></span><span class="posted_in">
