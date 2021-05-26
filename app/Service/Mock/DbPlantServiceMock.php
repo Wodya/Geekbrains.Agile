@@ -48,7 +48,7 @@ class DbPlantServiceMock implements IDbPlantService
         $plant1->photoSmallPath = "image1.jpg";
         $plant1->tags = ["Солнцелюбивое", "Дикорастущее"];
         return $plant1;
-        
+
     }
     public function updatePlant(PlantFull $plant)
     {
@@ -61,5 +61,21 @@ class DbPlantServiceMock implements IDbPlantService
     public function deletePlant(int $plantId)
     {
         echo("<script>console.log('Delete Plant');</script>");
+    }
+    public function addPlantToFavor(int $userId, int $plantId)
+    {
+        echo("<script>console.log('addPlantToFavor');</script>");
+    }
+    public function removePlantFromFavor(int $userId, int $plantId)
+    {
+        echo("<script>console.log('removePlantFromFavor');</script>");
+    }
+    public function getFavorPlants(int $userId): array
+    {
+        echo("<script>console.log('getFavorPlants');</script>");
+    }
+    public function getFavorCalendar(int $userId): array
+    {
+        echo("<script>console.log('getFavorCalendar');</script>");
     }
 }

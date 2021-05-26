@@ -11,16 +11,14 @@
 
 
     <div class="row">
-    
+
     <table class="table table-bordered">
     <thead>
     <tr>
     <th>Название растения</th>
     <th>Дата добавления</th>
-    <th>Полив</th>
-    <th>Удобрение</th>
-    <th>Обрезка</th>
-    <th>Обработка от вредителей</th>
+    <th>Период полива (дн.)</th>
+    <th>Свойства</th>
     <th>Действия</th>
     </tr>
     </thead>
@@ -28,11 +26,9 @@
     @forelse($plants as $plant)
     <tr>
     <td><a href="{{route('onePlant', ['id' => $plant->id])}}">{{$plant->name}}</a></td>
-    <td>now()</td>
-    <td>полив</td>
-    <td>Удобрение</td>
-    <td>Обрезка</td>
-    <td>Обработка от вредителей</td>
+    <td>{{$plant->addDate}}</td>
+    <td>{{$plant->wateringDays}}</td>
+    <td>{{$plant->tags}}</td>
     <td><a href="#">Удалить из избранного</a></td>
     </tr>
     @empty

@@ -3,6 +3,7 @@ namespace App\Service\Real;
 
 use App\Models\DbModels\DbPlant;
 use App\Models\DbModels\DbPlantTag;
+use App\Models\DbModels\DbUserPlant;
 use App\Models\PlantFull;
 use App\Models\PlantShort;
 use App\Service\IDbPlantService;
@@ -24,8 +25,10 @@ class DbPlantService implements IDbPlantService
             $item = new PlantShort();
             $item->id = $dbItem['id'];
             $item->name = $dbItem['name'];
+            $item->addDate = $dbItem['add_date'];
             $item->shortInfo = $dbItem['short_info'];
             $item->photoSmallPath = $dbItem['photo_small_path'];
+            $item->wateringDays = $dbItem['watering_days'];
             $tags = [];
             foreach ($dbItem['tags'] as $dbTag)
                 $tags[] = $dbTag['tag'];
@@ -42,15 +45,21 @@ class DbPlantService implements IDbPlantService
         $item = new PlantFull();
         $item->id = $dbItem['id'];
         $item->name = $dbItem['name'];
+        $item->addDate = $dbItem['add_date'];
         $item->shortInfo = $dbItem['short_info'];
         $item->fullInfo = $dbItem['full_info'];
         $item->photoSmallPath = $dbItem['photo_small_path'];
         $item->photoBigPath = $dbItem['photo_big_path'];
+        $item->wateringDays = $dbItem['watering_days'];
         $item->tags = [];
         foreach ($dbItem['tags'] as $dbTag)
             $item->tags[] = $dbTag['tag'];
         return $item;
     }
+
+    /**
+     * @throws \ErrorException
+     */
     public function updatePlant(PlantFull $plant)
     {
         echo("<script>console.log('updatePlant');</script>");
@@ -86,14 +95,49 @@ class DbPlantService implements IDbPlantService
             $dbTag->delete();
         }
     }
-
     public function insertPlant(PlantFull $plant): int
     {
         echo("<script>console.log('insertPlant');</script>");
     }
-
+    /**
+     * @throws \ErrorException
+     */
     public function deletePlant(int $plantId)
     {
         echo("<script>console.log('deletePlant');</script>");
+        if(DbUserPlant::where('plant_id',$plantId)->count() > 1)
+            throw new \ErrorException('Растение используется пользователями');
+        $dbTags = DbPlantTag::where('plant_id',$plantId)->get();
+        foreach ($dbTags as $dbTag)
+            $dbTag->delete();
+
+        $dbPlant = DbPlant::first('id',$plantId);
+        $dbPlant->delete();
+    }
+    public function addPlantToFavor(int $userId, int $plantId)
+    {
+        echo("<script>console.log('addPlantToFavor');</script>");
+        if(DbUserPlant::where('user_id',$userId)->where('plant_id',$plantId)->count() > 0)
+            return;
+        $dbUserPlant = [];
+        $dbUserPlant['user_id'] = $userId;
+        $dbUserPlant['plant_id'] = $plantId;
+        DbUserPlant::create($dbUserPlant);
+    }
+    public function removePlantFromFavor(int $userId, int $plantId)
+    {
+        echo("<script>console.log('removePlantFromFavor');</script>");
+        $dbUserPlant = DbUserPlant::where('user_id',$userId)->where('plant_id',$plantId)->first();
+        if($dbUserPlant === null)
+            return;
+        $dbUserPlant->delete();
+    }
+    public function getFavorPlants(int $userId): array
+    {
+        echo("<script>console.log('getFavorPlants');</script>");
+    }
+    public function getFavorCalendar(int $userId): array
+    {
+        echo("<script>console.log('getFavorCalendar');</script>");
     }
 }

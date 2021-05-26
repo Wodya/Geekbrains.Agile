@@ -16,6 +16,10 @@ class PlantFull
     /**
      * @var string
      */
+    public $addDate;
+    /**
+     * @var string
+     */
     public $shortInfo;
     /**
      * @var string
@@ -31,6 +35,10 @@ class PlantFull
      */
     public $photoBigPath;
     /**
+     * @var string
+     */
+    public $wateringDays;
+   /**
      * @var string[]
      */
     public $tags;

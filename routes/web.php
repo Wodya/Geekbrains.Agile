@@ -24,4 +24,7 @@ Route::get('/onePlant/{id}', [PlantsController::class, 'onePlant']) ->name('oneP
 Route::get('catalog', [PlantsController::class, 'index'])->name('catalog');
 Route::get('/myPlants', [MyPlantsController::class, 'index'])->name('myPlants');
 
-Route::get('/testUpdate', [AdminPlantsController::class, 'edit'])->name('testUpdate');
+Route::get('/deletePlant', [\App\Http\Controllers\TestController::class, 'deletePlant']);
+Route::get('/addPlantToFavor', [\App\Http\Controllers\TestController::class, 'addPlantToFavor']);
+Route::get('/removePlantFromFavor', [\App\Http\Controllers\TestController::class, 'removePlantFromFavor']);
+
