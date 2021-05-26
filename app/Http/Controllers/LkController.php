@@ -9,8 +9,17 @@ class LkController extends Controller
 {
     public function index(Request $request, IDbPlantService $dbPlant)
     {
+        
         $plants = $dbPlant->getAllPlants();
         return view('plants.chosenTable',['plants' => $plants]);
+    }
+
+    public function destroy(IDbPlantService $dbPlant)
+    {
+        $dbPlant->deletePlant($dbPlant->id);
+        dd($dbPlant);
+        return ('hello');
+                   
     }
     
 

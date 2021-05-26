@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Tree Shop Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    @stack('js')
+    <meta name="csrf-token" content="{{csrf_token()}}">
     <!-- Favicon-->
     <link rel="shortcut icon" href="{{asset('Images/icon/favicon.png')}}" type="image/x-icon">
 

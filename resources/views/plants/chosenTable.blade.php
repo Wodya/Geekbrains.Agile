@@ -33,7 +33,16 @@
     <td>Удобрение</td>
     <td>Обрезка</td>
     <td>Обработка от вредителей</td>
-    <td><a href="#">Удалить из избранного</a></td>
+    <td>
+            <a href="javascript:void(0);"
+            onclick="$(this).find('form').submit();
+            ">Удалить растение
+                    <form action="{{route('lk.delete', $plant)}}" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                            @csrf
+                    </form>
+            </a>                                    <!--<a href="javascript: ;" class="delete" rel="{{$plant->id}}">Удалить из избранного</a> -->
+        </td>
     </tr>
     @empty
     <tr>
@@ -46,3 +55,23 @@
 </div>
 
 @endsection
+<!-- @push('js')
+<script>
+$(function() {
+    $(".delete").on('click', function() {
+        let id = $(this).attr('rel');
+        if (confirm("Подтверждаете?")) {
+            $.ajax({
+                method:"delete",
+                headers: {
+                    'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content'), 'Content-Type': 'application/json',
+                },
+                url:"/lk/" + id,
+                complete: function(response){
+                alert("Запись с ID" + id + "удалена")}
+            });
+        }
+    });
+});
+</script>
+@endpush -->

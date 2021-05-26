@@ -24,3 +24,4 @@ Route::resource('/test', TestController::class);
 Route::get('/onePlant/{id}', [TestController::class, 'onePlant']) ->name('onePlant');
 Route::get('/testUpdate', [TestController::class, 'testUpdate']);
 Route::get('/lk', [LkController::class, 'index'])->name('lk');
+Route::delete('/lk/delete', [LkController::class, 'destroy'])->name('lk.delete');
