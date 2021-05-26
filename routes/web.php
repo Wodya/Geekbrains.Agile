@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\PlantsController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LkController;
+use \App\Http\Controllers\MyPlantsController;
+use \App\Http\Controllers\Admin\AdminPlantsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/onePlant/{id}', [TestController::class, 'onePlant']) ->name('onePlant');
-Route::get('catalog', [TestController::class, 'index'])->name('catalog');
-Route::get('/testUpdate', [TestController::class, 'testUpdate'])->name('testUpdate');
-Route::get('/myPlants', [LkController::class, 'index'])->name('myPlants');
+Route::get('/onePlant/{id}', [PlantsController::class, 'onePlant']) ->name('onePlant');
+Route::get('catalog', [PlantsController::class, 'index'])->name('catalog');
+Route::get('/myPlants', [MyPlantsController::class, 'index'])->name('myPlants');
+
+Route::get('/testUpdate', [AdminPlantsController::class, 'edit'])->name('testUpdate');
