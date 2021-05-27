@@ -1,12 +1,14 @@
 <?php
 namespace App\Service\Real;
 
+use App\Models\CalendarPlant;
 use App\Models\DbModels\DbPlant;
 use App\Models\DbModels\DbPlantTag;
 use App\Models\DbModels\DbUserPlant;
 use App\Models\PlantFull;
 use App\Models\PlantShort;
 use App\Service\IDbPlantService;
+use DateTime;
 
 /**
  * Class DbPlantService
@@ -22,18 +24,7 @@ class DbPlantService implements IDbPlantService
         $dbData = DbPlant::with('tags')->orderBy('name')->get();
         $data = [];
         foreach ($dbData as $dbItem){
-            $item = new PlantShort();
-            $item->id = $dbItem['id'];
-            $item->name = $dbItem['name'];
-            $item->addDate = $dbItem['add_date'];
-            $item->shortInfo = $dbItem['short_info'];
-            $item->photoSmallPath = $dbItem['photo_small_path'];
-            $item->wateringDays = $dbItem['watering_days'];
-            $tags = [];
-            foreach ($dbItem['tags'] as $dbTag)
-                $tags[] = $dbTag['tag'];
-            $item->tags = implode(", ",$tags);
-            $data[] = $item;
+            $data[] = $this->getPlantFromDbPlant($dbItem);
         }
         return $data;
     }
@@ -135,9 +126,51 @@ class DbPlantService implements IDbPlantService
     public function getFavorPlants(int $userId): array
     {
         echo("<script>console.log('getFavorPlants');</script>");
+        $dbData = DbUserPlant::with("plant")->where('user_id',$userId)->get();
+        $data = [];
+        foreach ($dbData as $dbItemUserPlant){
+            $data[] = $this->getPlantFromDbPlant($dbItemUserPlant['plant']);
+        }
+        return $data;
     }
     public function getFavorCalendar(int $userId): array
     {
         echo("<script>console.log('getFavorCalendar');</script>");
+        $dbData = DbUserPlant::with("plant")->where('user_id',$userId)->get();
+        $dataPlant = [];
+        foreach ($dbData as $dbItemUserPlant){
+            $dataPlant[] = $this->getPlantFromDbPlant($dbItemUserPlant['plant']);
+        }
+        $date=[];
+        $begin = new DateTime('first day of this month');
+        $end = new DateTime('last day of this month');
+        $totalDays = $end->diff($begin)->d+1;
+
+        for($day=1; $day <= $totalDays; $day++){
+            $item = new CalendarPlant();
+            $item->dayNum = $day;
+            $item->plantsToWatering = [];
+            foreach ($dataPlant as $plant){
+                if( $day % $plant->wateringDays === 0)
+                    $item->plantsToWatering[] = $plant->name;
+            }
+            $date[] = $item;
+        }
+        return $date;
+    }
+    private function getPlantFromDbPlant(DbPlant $dbPlant) : PlantShort
+    {
+        $item = new PlantShort();
+        $item->id = $dbPlant['id'];
+        $item->name = $dbPlant['name'];
+        $item->addDate = \DateTime::createFromFormat('Y-m-d',$dbPlant['add_date'])->format('d.m.Y');
+        $item->shortInfo = $dbPlant['short_info'];
+        $item->photoSmallPath = $dbPlant['photo_small_path'];
+        $item->wateringDays = $dbPlant['watering_days'];
+        $tags = [];
+        foreach ($dbPlant['tags'] as $dbTag)
+            $tags[] = $dbTag['tag'];
+        $item->tags = implode(", ",$tags);
+        return $item;
     }
 }

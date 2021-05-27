@@ -9,8 +9,8 @@ class DbUserPlant extends \Illuminate\Database\Eloquent\Model
     protected $fillable = ['user_id', 'plant_id'];
     public $incrementing =false;
 
-    public function plants(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function plant(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasMany(DbPlant::class, 'plant_id', 'id');
+        return $this->belongsTo(DbPlant::class, 'plant_id', 'id');
     }
 }
