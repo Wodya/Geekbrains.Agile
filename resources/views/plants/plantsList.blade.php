@@ -7,14 +7,13 @@
             <h2 class="title-style title-style-1 text-center"><span class="title-left">Каталог </span><span class="title-right"> Комнатных растений</span></h2>
             <div data-js-module="filtering-demo" class="big-demo go-wide">
                 <div class="filter-button-group button-group js-radio-button-group container">
-                    <button data-filter="*" class="button is-checked">All</button>
-                    <button data-filter=".outdoor" class="button">Awesome</button>
-                    <button data-filter=".outdoor" class="button">Featured</button>
-                    <button data-filter=".outdoor" class="button">Indoor</button>
-                    <button data-filter=".outdoor" class="button">New</button>
-                    <button data-filter=".pots" class="button">Pots</button>
-                    <button data-filter=".seeds" class="button">Seeds</button>
-                    <button data-filter=".indoor" class="button">Outdoor</button>
+                    <button data-filter="*" class="button is-checked">Все</button>
+                    <button data-filter=".outdoor" class="button">Орхидеи</button>
+                    <button data-filter=".outdoor" class="button">Ампельные</button>
+                    <button data-filter=".outdoor" class="button">Вьющиеся</button>
+                    <button data-filter=".outdoor" class="button">Пальмы</button>
+                    <button data-filter=".pots" class="button">Фикусы</button>
+
                 </div>
                 <ul class="grid shortcode-product-wrap product-begreen columns-4">
                     @forelse ($plantsList as $plant)
@@ -22,20 +21,28 @@
                         <div class="product-item-inner">
                             <div class="product-thumb">
                                 <div class="product-flash-wrap"></div>
-                                <div class="product-thumb-primary"><img src="./Images/Small/{{$plant->photoSmallPath}}" alt="product1" width="375" height="450" class="attachment-shop_catalog size-shop_catalog wp-post-image"/></div><a href="#" class="product-link">
+                                <div class="product-thumb-primary"><img src="./Images/Small/{{$plant->photoSmallPath}}" alt="product1" width="375" height="450" class="attachment-shop_catalog size-shop_catalog wp-post-image"/></div>
+                                <a href="{{route('onePlant', ['id' => $plant->id])}}" class="product-link">
                                     <div class="product-hover-sign">
                                         <hr/>
                                         <hr/>
                                     </div></a>
                                 <div class="product-info">
                                     <div class="star-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div><a href="#">
-                                        <h3>{{$plant->name}}</h3></a><span class="price"><span class="product-begreen-price-amount amount">{{$plant->shortInfo}}</span></span><h4>{{$plant->tags}}</h4>
+                                        <h3>{{$plant->name}}</h3></a><span class="price"><span class="product-begreen-price-amount amount">{{$plant->shortInfo}}</span></span>
                                 </div>
                                 <div class="product-actions">
                                     <div class="yith-wcwl-add-to-wishlist add-to-wishlist-17">
-                                        <div class="yith-wcwl-add-button show"><a href="#" class="add_to_wishlist"><i class="fa fa-heart-o"></i> Add to Wishlist</a></div>
+                                        <div class="yith-wcwl-add-button show">
+                                            <a href="#" class="add_to_wishlist"><i class="fa fa-heart-o"></i> Добавить в избранное</a>
+                                        </div>
                                     </div>
-                                    <div class="add-to-cart-wrap"><a href="#" class="add_to_cart_button"><i class="fa fa-cart-plus"></i> Add to cart</a></div><a href="/onePlant" class="product-quick-view"><i class="fa fa-search"></i>Quick view</a>
+                                        <div class="add-to-cart-wrap">
+                                            <a href="#" class="add_to_cart_button"><i class="fa fa-cart-plus"></i> Add to cart</a>
+                                        </div>
+                                        <div class="yith-wcwl-add-button show">
+                                            <a href="#" class="product-quick-view"><i class="fa fa-search"></i>Quick view</a>
+                                        </div>
                                 </div>
                             </div>
                         </div>

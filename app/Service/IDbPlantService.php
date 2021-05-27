@@ -28,4 +28,31 @@ interface IDbPlantService{
      * Удаляет растение
      */
     public function deletePlant(int $plantId);
+
+    /**
+     * Добавляет растение в избранное
+     * @param int $userId
+     * @param int $plantId
+     * @return mixed
+     */
+    public function addPlantToFavor(int $userId, int $plantId);
+    /**
+     * Удаляет растение из избранного
+     * @param int $userId
+     * @param int $plantId
+     * @return mixed
+     */
+    public function removePlantFromFavor(int $userId, int $plantId);
+    /**
+     * Возвращает список избранных растений
+     * @return PlantShort[]
+     */
+    public function getFavorPlants(int $userId) : array;
+
+    /**
+     * Возвращает календарь
+     * @param int $userId
+     * @return array
+     */
+    public function getFavorCalendar(int $userId) : array;
 }

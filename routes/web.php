@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\PlantsController;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\MyPlantsController;
+use \App\Http\Controllers\Admin\AdminPlantsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,36 +20,46 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/test', TestController::class);
+Route::get('/onePlant/{id}', [PlantsController::class, 'onePlant']) ->name('onePlant');
+Route::get('catalog', [PlantsController::class, 'index'])->name('catalog');
+Route::get('/myPlants', [MyPlantsController::class, 'index'])->name('myPlants');
+
+Route::get('/deletePlant', [\App\Http\Controllers\TestController::class, 'deletePlant']);
+Route::get('/addPlantToFavor/{userId}/{plantId}', [\App\Http\Controllers\TestController::class, 'addPlantToFavor']);
+Route::get('/removePlantFromFavor/{userId}/{plantId}', [\App\Http\Controllers\TestController::class, 'removePlantFromFavor']);
+Route::get('/getFavorPlants', [\App\Http\Controllers\TestController::class, 'getFavorPlants']);
+Route::get('/getFavorCalendar', [\App\Http\Controllers\TestController::class, 'getFavorCalendar']);
+
 
 Route::get('/onePlant', [TestController::class, 'onePlant']) ->name('onePlant');
 
-Route::group([
-    'prefix' => '/plants',
-    'as' => 'admin::',
-    'namespace' => 'App\Http\Controllers\Admin',
-    'middleware' => ['auth']
-], function () {
-    Route::get('/', 'NewsController@index')
-        ->name('news');
+//Route::group([
+//    'prefix' => '/plants',
+//    'as' => 'admin::',
+//    'namespace' => 'App\Http\Controllers\Admin',
+//    'middleware' => ['auth']
+//], function () {
+//    Route::get('/', 'NewsController@index')
+//        ->name('news');
+//
+//    Route::get('/create', 'NewsController@createView')
+//        ->name('createView');
+//
+//    Route::post('/create', 'NewsController@create')
+//        ->name('create');
+//
+//    Route::get('/update/{id}', 'NewsController@updateView')
+//        ->name('updateView');
+//
+//    Route::post('/update/{id}', 'NewsController@update')
+//        ->name('update');
+//
+//    Route::get('/delete/{id}', 'NewsController@delete')
+//        ->name('delete');
+//
+//    Route::get('parser', [ParserController::class, 'index'])
+//        ->name('parserNews');
+////    Route::get('parserrr', [ParserController::class, 'currencyExchange'])
+////        ->name('parserCurrency ');
+//});
 
-    Route::get('/create', 'NewsController@createView')
-        ->name('createView');
-
-    Route::post('/create', 'NewsController@create')
-        ->name('create');
-
-    Route::get('/update/{id}', 'NewsController@updateView')
-        ->name('updateView');
-
-    Route::post('/update/{id}', 'NewsController@update')
-        ->name('update');
-
-    Route::get('/delete/{id}', 'NewsController@delete')
-        ->name('delete');
-
-    Route::get('parser', [ParserController::class, 'index'])
-        ->name('parserNews');
-//    Route::get('parserrr', [ParserController::class, 'currencyExchange'])
-//        ->name('parserCurrency ');
-});

@@ -1,18 +1,37 @@
 <?php
+
+
 namespace App\Http\Controllers;
+
 
 use App\Service\IDbPlantService;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
-    public function index(Request $request, IDbPlantService $dbPlant)
+    public function deletePlant(Request $request, IDbPlantService $dbPlant)
     {
-        $plantList = $dbPlant->getAllPlants();
-        return view('plants.plantsList',['plantsList' => $plantList]);
+        $dbPlant->deletePlant(1);
     }
-    public function onePlant(Request $request, IDbPlantService $dbPlant)
+    public function addPlantToFavor($userId, $plantId, Request $request, IDbPlantService $dbPlant)
     {
-        return view('plants.onePlant');
+        $dbPlant->addPlantToFavor($userId, $plantId);
+    }
+    public function removePlantFromFavor(Request $request, IDbPlantService $dbPlant)
+    {
+        $dbPlant->removePlantFromFavor(1,2);
+    }
+    public function getFavorPlants(Request $request, IDbPlantService $dbPlant)
+    {
+        foreach ($dbPlant->getFavorPlants(1) as $item)
+            echo "{$item->id}  ; {$item->name}  ; {$item->addDate}  ; {$item->photoSmallPath}  ; {$item->shortInfo}  ; {$item->wateringDays}  ; {$item->tags}  <BR>";
+    }
+    public function getFavorCalendar(Request $request, IDbPlantService $dbPlant)
+    {
+        $calendar = $dbPlant->getFavorCalendar(1);
+        foreach ($calendar as $item){
+            $plants = implode(',',$item->plantsToWatering);
+            echo "{$item->dayNum}  ; {$plants} <BR>";
+        }
     }
 }
