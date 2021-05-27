@@ -36,7 +36,7 @@
     </div>
     <div class="header-sidebar">
         <div class="header-logo">
-            <h1><a href="/test"><img src="images/logo/logo-footer.png" alt="logo"/></a></h1>
+            <h1><a href="/test"><img src="{{ asset('Images/logo/logo-footer.png')}}" alt="logo"/></a></h1>
         </div>
         <div class="header-bottom">
             <div class="main-nav-wrapper">
@@ -203,7 +203,7 @@
 
 
                 <div class="form-input">
-                    <input style="text" placeholder="Search"/><a href="#"><i class="fa fa-search"></i></a>
+                    <input type="text" placeholder="Search"/><a href="#"><i class="fa fa-search"></i></a>
                 </div>
             </div>
         </div>

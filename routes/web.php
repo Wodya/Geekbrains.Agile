@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\PlantsController;
+use App\Http\Controllers\ShowController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,36 +19,40 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/test', TestController::class);
+Route::resource('/test', ShowController::class);
 
-Route::get('/onePlant', [TestController::class, 'onePlant']) ->name('onePlant');
+//Route::get('/onePlant', [TestController::class, 'onePlant']) ->name('onePlant');
 
 Route::group([
-    'prefix' => '/plants',
-    'as' => 'admin::',
-    'namespace' => 'App\Http\Controllers\Admin',
-    'middleware' => ['auth']
+    'prefix' => '/',
+    'as' => 'plants::',
+//    'middleware' => ['auth']
 ], function () {
-    Route::get('/', 'NewsController@index')
-        ->name('news');
+    Route::get('/plants', [ShowController::class, 'index'])
+        ->name('plantList');
 
-    Route::get('/create', 'NewsController@createView')
+    Route::get('/onePlant/{id}', [ShowController::class, 'onePlant'])
+        ->name('onePlant');
+
+    Route::get('/create', [PlantsController::class, 'createView'])
         ->name('createView');
 
-    Route::post('/create', 'NewsController@create')
+    Route::post('/create', [PlantsController::class, 'create'])
         ->name('create');
 
-    Route::get('/update/{id}', 'NewsController@updateView')
+    Route::get('/update/{id}', [PlantsController::class, 'updateView'])
         ->name('updateView');
 
-    Route::post('/update/{id}', 'NewsController@update')
+    Route::post('/update/{id}', [PlantsController::class, 'update'])
         ->name('update');
 
-    Route::get('/delete/{id}', 'NewsController@delete')
+    Route::get('/delete/{id}', [PlantsController::class, 'delete'])
         ->name('delete');
 
-    Route::get('parser', [ParserController::class, 'index'])
-        ->name('parserNews');
-//    Route::get('parserrr', [ParserController::class, 'currencyExchange'])
-//        ->name('parserCurrency ');
+
 });
+
+Route::get('/onePlant/{id}', [ShowController::class, 'onePlant'])->name('onePlant');
+Route::get('/Plants', [ShowController::class, 'index'])->name('Plant List');
+
+
