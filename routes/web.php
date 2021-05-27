@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Route::get('/onePlant/{id}', [PlantsController::class, 'onePlant']) ->name('onePlant');
 Route::get('catalog', [PlantsController::class, 'index'])->name('catalog');
-Route::get('/myPlants', [MyPlantsController::class, 'index'])->name('myPlants');
+Route::resource('myPlants',MyPlantsController::class);
 
 Route::get('/deletePlant', [\App\Http\Controllers\TestController::class, 'deletePlant']);
 Route::get('/addPlantToFavor/{userId}/{plantId}', [\App\Http\Controllers\TestController::class, 'addPlantToFavor']);

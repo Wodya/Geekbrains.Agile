@@ -12,14 +12,17 @@ class TestController extends Controller
     public function deletePlant(Request $request, IDbPlantService $dbPlant)
     {
         $dbPlant->deletePlant(1);
+        //copied
     }
     public function addPlantToFavor($userId, $plantId, Request $request, IDbPlantService $dbPlant)
     {
         $dbPlant->addPlantToFavor($userId, $plantId);
+        //copied
     }
     public function removePlantFromFavor(Request $request, IDbPlantService $dbPlant)
     {
         $dbPlant->removePlantFromFavor(1,2);
+        //copied
     }
     public function getFavorPlants(Request $request, IDbPlantService $dbPlant)
     {
