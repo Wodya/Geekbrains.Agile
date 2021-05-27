@@ -14,7 +14,7 @@ class MyPlantsController extends Controller
      */
     public function index(Request $request, IDbPlantService $dbPlant)
     {
-        $plants = $dbPlant->getAllPlants();
+        $plants = $dbPlant->getFavorPlants(1);
         return view('plants.chosenTable',['plants' => $plants]);
     }
 
@@ -31,10 +31,13 @@ class MyPlantsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param $userId
+     * @param $plantId
+     * @param \Illuminate\Http\Request $request
+     * @param IDbPlantService $dbPlant
+     * @return void
      */
-    public function store(Request $request)
+    public function store()
     {
         //
     }
@@ -79,8 +82,8 @@ class MyPlantsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, IDbPlantService $dbPlant)
     {
-        //
+        $dbPlant->removePlantFromFavor(1,2);
     }
 }

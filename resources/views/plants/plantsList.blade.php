@@ -34,7 +34,7 @@
                                 <div class="product-actions">
                                     <div class="yith-wcwl-add-to-wishlist add-to-wishlist-17">
                                         <div class="yith-wcwl-add-button show">
-                                            <a href="#" class="add_to_wishlist"><i class="fa fa-heart-o"></i> Добавить в избранное</a>
+                                            <a href="{{route('addPlantToFavor', ['userId'=>1, 'plantId'=>$plant->id])}}" class="add_to_wishlist"><i class="fa fa-heart-o"></i> Добавить в избранное</a>
                                         </div>
                                     </div>
                                         <div class="add-to-cart-wrap">
