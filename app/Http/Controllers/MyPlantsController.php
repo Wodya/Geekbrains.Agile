@@ -14,7 +14,7 @@ class MyPlantsController extends Controller
      */
     public function index(Request $request, IDbPlantService $dbPlant)
     {
-        $plants = $dbPlant->getAllPlants();
+        $plants = $dbPlant->getFavorPlants(1);
         return view('plants.chosenTable',['plants' => $plants]);
     }
 
@@ -37,9 +37,9 @@ class MyPlantsController extends Controller
      * @param IDbPlantService $dbPlant
      * @return void
      */
-    public function store($userId, $plantId, Request $request, IDbPlantService $dbPlant)
+    public function store()
     {
-        $dbPlant->addPlantToFavor($userId, $plantId);
+        //
     }
 
     /**
