@@ -31,3 +31,5 @@ Route::get('/getFavorPlants', [\App\Http\Controllers\TestController::class, 'get
 Route::get('/getFavorCalendar', [\App\Http\Controllers\TestController::class, 'getFavorCalendar']);
 Route::get('/calendar', [\App\Http\Controllers\TestController::class, 'testCalendar'])->name('calendar');
 
+Route::get('/onePant/edit/{id}', [MyPlantsController::class, 'edit']) ->name('edit');
+Route::put('/onePant/edit/{id}', [MyPlantsController::class, 'update']) ->name('update');
