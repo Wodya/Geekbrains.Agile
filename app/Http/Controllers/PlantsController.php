@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PlantFull;
 use App\Service\IDbPlantService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class PlantsController extends Controller
 {

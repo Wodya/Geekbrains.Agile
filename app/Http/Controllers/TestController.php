@@ -6,11 +6,13 @@ namespace App\Http\Controllers;
 
 use App\Service\IDbPlantService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class TestController extends Controller
 {
-    public function deletePlant(Request $request, IDbPlantService $dbPlant)
+    public function deletePlant(Request $request)
     {
+        $dbPlant = App::make(IDbPlantService::class);
         $dbPlant->deletePlant(1);
     }
     public function addPlantToFavor($userId, $plantId, Request $request, IDbPlantService $dbPlant)
