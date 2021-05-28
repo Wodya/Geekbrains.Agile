@@ -15,13 +15,23 @@
                     <button data-filter=".pots" class="button">Фикусы</button>
 
                 </div>
+                <!-- Проверка на добавление -->
+                @if(session()->has('success'))
+                    <div class="alert alert-success">{{session()->get('success')}}</div>
+                @endif
+                @if(session()->has('error'))
+                    <div class="alert alert-success">{{session()->get('error')}}</div>
+                @endif
+                <!--  -->
                 <ul class="grid shortcode-product-wrap product-begreen columns-4">
                     @forelse ($plantsList as $plant)
                     <li data-category="outdoor" class="element-item product-item-wrap product-style_1 pots seeds indoor">
                         <div class="product-item-inner">
                             <div class="product-thumb">
                                 <div class="product-flash-wrap"></div>
-                                <div class="product-thumb-primary"><img src="./Images/Small/{{$plant->photoSmallPath}}" alt="product1" width="375" height="450" class="attachment-shop_catalog size-shop_catalog wp-post-image"/></div>
+                                <div class="style-img-div">
+                                    <img src="./Images/Small/{{$plant->photoSmallPath}}" alt="product1" class="style-img"/>
+                                </div>
                                 <a href="{{route('onePlant', ['id' => $plant->id])}}" class="product-link">
                                     <div class="product-hover-sign">
                                         <hr/>
@@ -55,5 +65,4 @@
         </div>
     </div>
 </div>
-
 @endsection
