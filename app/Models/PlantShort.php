@@ -17,11 +17,19 @@ class PlantShort
     /**
      * @var string
      */
+    public $addDate;
+    /**
+     * @var string
+     */
     public $shortInfo;
     /**
      * @var string
      */
     public $photoSmallPath;
+    /**
+     * @var int
+     */
+    public $wateringDays;
     /**
      * @var string
      */

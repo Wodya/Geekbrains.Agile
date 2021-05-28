@@ -8,11 +8,11 @@
     <link rel="shortcut icon" href="{{asset('Images/icon/favicon.png')}}" type="image/x-icon">
 
     <!-- Web Fonts-->
-    <link
-        href="https://fonts.googleapis.com/css?family=Pacifico%7CSource+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i&amp;amp;subset=latin-ext,vietnamese"
+    <link href="https://fonts.googleapis.com/css?family=Pacifico%7CSource+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i&amp;amp;subset=latin-ext,vietnamese"
         rel="stylesheet">
 
-    <!-- Vendor CSS-->
+   <!-- Vendor CSS-->
+
     <link rel="stylesheet" type="text/css" href="{{ asset('libs/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('libs/font-awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('libs/animate/animated.css')}}">
@@ -28,7 +28,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css')}}">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+
     <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
     <!--if lt IE 9
     script(src='https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')
@@ -73,5 +74,6 @@
 <script type="text/javascript" src="{{ asset('libs/countdown-timer/js/kinetic.js')}}"></script>
 <script type="text/javascript" src="{{ asset('libs/owl.carousel.min/owl.carousel.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/main.js')}}"></script>
+
 </body>
 </html>

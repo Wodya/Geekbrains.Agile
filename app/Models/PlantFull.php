@@ -9,50 +9,43 @@ use Illuminate\Support\Facades\DB;
 /**
  * Класс "Растение"
  */
-class PlantFull extends Model
+class PlantFull
 {
-    use HasFactory;
-
-//    protected $table = 'plants'; // TODO определить правильное имя базы данных
-
-    protected $fillable = [
-        'name',
-        'shortInfo',
-        'fullInfo',
-        'photoSmallPath',
-        'tags'
-    ];
-//    /**
-//     * @var int
-//     */
-//    public $id;
-//    /**
-//     * @var string
-//     */
-//    public $name;
-//    /**
-//     * @var string
-//     */
-//    public $shortInfo;
-//    /**
-//     * @var string
-//     */
-//    public $fullInfo;
-////    как ухаживать, грунт, цветение, опасное или нет
-//    /**
-//     * @var string
-//     */
-//    public $photoSmallPath;
-//    /**
-//     * @var string
-//     */
-//    public $photoBigPath;
-//    /**
-//     * @var string[]
-//     */
-//    public $tags;
-    public function getAllPlants(): array
-    {
-        return DB::$table('plant')->get();
-    }
+    /**
+     * @var int
+     */
+    public $id;
+    /**
+     * @var string
+     */
+    public $name;
+    /**
+     * @var string
+     */
+    public $addDate;
+    /**
+     * @var string
+     */
+    public $shortInfo;
+    /**
+     * @var string
+     */
+    public $fullInfo;
+//    как ухаживать, грунт, цветение, опасное или нет
+    /**
+     * @var string
+     */
+    public $photoSmallPath;
+    /**
+     * @var string
+     */
+    public $photoBigPath;
+    /**
+     * @var string
+     */
+    public $wateringDays;
+   /**
+     * @var string[]
+     */
+    public $tags;
 }

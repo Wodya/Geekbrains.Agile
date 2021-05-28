@@ -2,7 +2,11 @@
     <footer id="yolo-footer-wrapper">
         <div class="yolo-footer-wrapper footer-5">
             <div class="footer-col">
+<<<<<<< HEAD
                 <h2><a href="index.html" class="logo"><img src="/Images/logo/logo-footer.png" alt="logo1" width="84" height="63" class="vc_single_image-img attachment-full"/></a></h2>
+=======
+                <h2><a href="{{route('catalog')}}" class="logo"><img src="/Images/logo/logo-footer.png" alt="logo1" width="84" height="63" class="vc_single_image-img attachment-full"/></a></h2>
+>>>>>>> main
                 <ul id="social-footer-2">
                     <li><a href="#"><i class="fa fa-facebook"></i>facebook</a></li>
                     <li><a href="#"><i class="fa fa-twitter"></i>twitter</a></li>
