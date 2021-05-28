@@ -38,25 +38,14 @@ class TestController extends Controller
     public function getFavorCalendar(Request $request, IDbPlantService $dbPlant)
     {
         $calendar = $dbPlant->getFavorCalendar(1);
-//        foreach ($calendar as $item){
-//            $plants = implode(',',$item->plantsToWatering);
-//            echo "{$item->dayNum}  ; {$plants} <BR>";
-//        }
+                foreach ($calendar as $item){
+            $plants = implode(',',$item->plantsToWatering);
+            echo "{$item->dayNum}  ; {$plants} <BR>";
+        }
         return view('plants.calendarTable', ['dates'=>$calendar]);
     }
-    public function testCalendar(){
-        $dataCalendar = [
-            1 => ['plants'=>['орхидея', 'кактус', 'лиана'], 'actions'=>['полив', 'полив', 'полив']],
-            2 => ['plants'=>[], 'actions'=>[]],
-            3 => ['plants'=>[], 'actions'=>[]],
-            4 => ['plants'=>['орхидея'], 'actions'=>['полив']],
-            5 => ['plants'=>['лиана'], 'actions'=>['полив']],
-            6 => ['plants'=>[], 'actions'=>[]],
-            7 => ['plants'=>['орхидея'], 'actions'=>['полив']],
-            8 => ['plants'=>[], 'actions'=>[]],
-            9 => ['plants'=>[], 'actions'=>[]],
-            10 => ['plants'=>['лиана', 'кактус', 'орхидея'], 'actions'=>['полив', 'удобрение', 'полив']],
-        ];
-        return view('plants.calendarTable', ['dates'=>$dataCalendar]);
+    public function testCalendar(IDbPlantService $dbPlant){
+        $calendar = $dbPlant->getFavorCalendar(1);
+        return view('plants.calendarTable', ['dates'=>$calendar]);
     }
 }

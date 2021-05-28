@@ -17,7 +17,7 @@
                         <th>Дата</th>
                         <th>Растения</th>
                         <th>Действия</th>
-                        
+
                     </tr>
                     </thead>
                     <tbody>
@@ -25,24 +25,24 @@
 {{--                        @dd($date->dayNum, $date->plantsToWatering)--}}
                         <tr>
                             <td>{{$date->dayNum . ' мая'}}</td>
-                           
+
                             <td>
                             @foreach($date->plantsToWatering as $plant)
                                 {{$plant}}<hr>
                             @endforeach
                             </td>
-                          
+
                             <td>
                             @foreach($date->plantsToWatering as $plant)
                             <div class="form-check">
                                 <input type="checkbox">
-                                <label  >
+                                <label class="check-label">
                                     Полить<hr>
                                 </label>
                             </div>
                             @endforeach
                             </td>
-                           
+
                         </tr>
                     @empty
                         <tr>
