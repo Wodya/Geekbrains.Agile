@@ -49,7 +49,7 @@
                                 <a href="{{route('catalog')}}">На главную</a>
                             </li>
                             <li class="mega-menu menu-item">
-                                <a href="{{route('myPlants')}}">Мои растения</a>
+                                <a href="{{route('myPlants.index')}}">Мои растения</a>
                             </li>
                             <li class="menu-item menu-blog">
                                 <a href="#">Личный кабинет</a>

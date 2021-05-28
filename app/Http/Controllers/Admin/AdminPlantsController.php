@@ -54,8 +54,9 @@ class AdminPlantsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param IDbPlantService $dbPlant
+     * @return void
      */
     public function edit(Request $request, IDbPlantService $dbPlant)
     {
@@ -87,11 +88,12 @@ class AdminPlantsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param IDbPlantService $dbPlant
+     * @return void
      */
-    public function destroy($id)
+    public function destroy(Request $request, IDbPlantService $dbPlant)
     {
-        //
+        $dbPlant->deletePlant(1);
     }
 }

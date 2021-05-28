@@ -109,11 +109,13 @@ class DbPlantService implements IDbPlantService
     {
         echo("<script>console.log('addPlantToFavor');</script>");
         if(DbUserPlant::where('user_id',$userId)->where('plant_id',$plantId)->count() > 0)
-            return;
+            return false;
         $dbUserPlant = [];
         $dbUserPlant['user_id'] = $userId;
         $dbUserPlant['plant_id'] = $plantId;
-        DbUserPlant::create($dbUserPlant);
+        $plant = DbUserPlant::create($dbUserPlant);
+        return $plant;
+
     }
     public function removePlantFromFavor(int $userId, int $plantId)
     {
