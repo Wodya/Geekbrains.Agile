@@ -23,7 +23,7 @@
                     <div class="alert alert-success">{{session()->get('error')}}</div>
                 @endif
                 <!--  -->
-                <ul class="grid shortcode-product-wrap product-begreen columns-6">
+                <ul class="grid shortcode-product-wrap product-begreen columns-4">
                     @forelse ($plantsList as $plant)
                     <li data-category="outdoor" class="element-item product-item-wrap product-style_1 pots seeds indoor">
                         <div class="product-item-inner">

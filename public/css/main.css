@@ -6275,12 +6275,12 @@ recent-news
 .columns-3 .product-item-wrap:nth-child(3n+1) {
   clear: both;
 }
-.columns-6 .product-item-wrap {
-  width: 17%;
+.columns-4 .product-item-wrap {
+  width: 25%;
   margin-bottom: 25px;
   margin-top: 0;
 }
-.columns-6 .product-item-wrap:nth-child(4n+1) {
+.columns-4 .product-item-wrap:nth-child(4n+1) {
   clear: both;
 }
 .columns-5 .product-item-wrap {
