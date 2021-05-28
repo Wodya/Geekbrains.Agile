@@ -15,6 +15,14 @@
                     <button data-filter=".pots" class="button">Фикусы</button>
 
                 </div>
+                <!-- Проверка на добавление -->
+                @if(session()->has('success'))
+                    <div class="alert alert-success">{{session()->get('success')}}</div>
+                @endif
+                @if(session()->has('error'))
+                    <div class="alert alert-success">{{session()->get('error')}}</div>
+                @endif
+                <!--  -->
                 <ul class="grid shortcode-product-wrap product-begreen columns-4">
                     @forelse ($plantsList as $plant)
                     <li data-category="outdoor" class="element-item product-item-wrap product-style_1 pots seeds indoor">

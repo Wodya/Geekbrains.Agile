@@ -7,6 +7,11 @@
             <h1 class="h3 mb-0 text-gray-800">Список избранных растений</h1>
             <a href="{{route('catalog')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"> Добавить растение</a>
             <a href="{{route('calendar')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Посмотреть календарь</a>
+        <!-- Проверка на удаление -->
+        @if(session()->has('success'))
+                    <div class="alert alert-success">{{session()->get('success')}}</div>
+                @endif
+        <!--  -->
         </div>
 
 
