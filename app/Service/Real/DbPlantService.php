@@ -60,11 +60,12 @@ class DbPlantService implements IDbPlantService
                throw new \ErrorException('Растение с таким именем уже сущетсвует');
         }
         $dbPlant = DbPlant::first('id',$plant->id);
-        $dbPlant->name = $plant->name;
-        $dbPlant->short_info = $plant->shortInfo;
-        $dbPlant->full_info = $plant->fullInfo;
-        $dbPlant->photo_small_path = $plant->photoSmallPath;
-        $dbPlant->photo_big_path = $plant->photoBigPath;
+        $dbPlant['name'] = $plant->name;
+        $dbPlant['short_info'] = $plant->shortInfo;
+        $dbPlant['full_info'] = $plant->fullInfo;
+        $dbPlant['photo_small_path'] = $plant->photoSmallPath;
+        $dbPlant['photo_big_path'] = $plant->photoBigPath;
+        $dbPlant['watering_days'] = $plant->wateringDays;
         $dbPlant->save();
 
         $dbTags = DbPlantTag::where('plant_id',$plant->id)->get();
