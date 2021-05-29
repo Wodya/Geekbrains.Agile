@@ -5,16 +5,15 @@
     <form method="post" action="{{route('plant.update', ['id' => $plants->id])}}">
         @csrf
         @method('PUT')
-        <input type="submit" value="Сохранить">
-        <input type="text" class="form-control" name="addDate" placeholder="addDate" value="{{$plants->addDate}}">
-        <input type="text" class="form-control" name="fullInfo" placeholder="fullInfo" value="{{$plants->fullInfo}}">
-        <input type="text" class="form-control" name="photoSmallPath" placeholder="photoSmallPath" value="{{$plants->photoSmallPath}}">
-        <input type="text" class="form-control" name="photoBigPath" placeholder="photoBigPath" value="{{$plants->photoBigPath}}">
-        <input type="text" class="form-control" name="wateringDays" placeholder="wateringDays" value="{{$plants->wateringDays}}">
-        <input type="text" class="form-control" name="tag1" placeholder="tag1" value="{{$plants->tag1}}">
-        <input type="text" class="form-control" name="tag2" placeholder="tag2" value="{{$plants->tag2}}">
-        <input type="text" class="form-control" name="tag3" placeholder="tag3" value="{{$plants->tag3}}">
-        <input type="text" class="form-control" name="tag4" placeholder="tag4" value="{{$plants->tag4}}">
+        <label for="addDate">Дата старта для расчёта календаря</label>
+        <input type="text" class="form-control" name="addDate" id="addDate" placeholder="addDate" value="{{$plants->addDate}}">
+        <label for="fullInfo">Полная информация</label>
+        <input type="text" class="form-control" name="fullInfo" id="fullInfo" placeholder="fullInfo" value="{{$plants->fullInfo}}">
+        <label for="wateringDays">Частота полива</label>
+        <input type="text" class="form-control" name="wateringDays" id="wateringDays" placeholder="wateringDays" value="{{$plants->wateringDays}}">
+        <label for="tags">Теги</label>
+        <input type="text" class="form-control" name="tags" id="tags" placeholder="tags" value="{{$plants->tag1}}, {{$plants->tag2}}, {{$plants->tag3}}, {{$plants->tag4}}, ">
+        <input type="submit" value="Сохранить"><br>
 
         <div class="div-box mb mt">
             <div class="container">
