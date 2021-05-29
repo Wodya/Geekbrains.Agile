@@ -56,7 +56,7 @@ class DbPlantService implements IDbPlantService
         echo("<script>console.log('updatePlant');</script>");
         $exists = DbPlant::where('name', $plant->name)->get();
         foreach ($exists as $exist) {
-           if ($exist["id"] !== $plant->id)
+           if ($exist["id"] != $plant->id)
                throw new \ErrorException('Растение с таким именем уже сущетсвует');
         }
         $dbPlant = DbPlant::first('id',$plant->id);
