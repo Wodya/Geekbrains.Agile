@@ -20,7 +20,7 @@
                     <div class="alert alert-success">{{session()->get('success')}}</div>
                 @endif
                 @if(session()->has('error'))
-                    <div class="alert alert-success">{{session()->get('error')}}</div>
+                    <div class="alert alert-danger">{{session()->get('error')}}</div>
                 @endif
                 <!--  -->
                 <ul class="grid shortcode-product-wrap product-begreen columns-4">

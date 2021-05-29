@@ -140,7 +140,6 @@ class DbPlantService implements IDbPlantService
     {
         echo("<script>console.log('getFavorCalendar');</script>");
         $dbData = DbUserPlant::with("plant")->where('user_id',$userId)->get();
-        $dataPlant = [];
         foreach ($dbData as $dbItemUserPlant){
             $dataPlant[] = $this->getPlantFromDbPlant($dbItemUserPlant['plant']);
         }
@@ -155,10 +154,11 @@ class DbPlantService implements IDbPlantService
             $item->plantsToWatering = [];
             foreach ($dataPlant as $plant){
                 if( $day % $plant->wateringDays === 0)
-                    $item->plantsToWatering[] = $plant->name;
+                    $item->plantsToWatering[] = $plant;
             }
             $date[] = $item;
         }
+//        dd($date);
         return $date;
     }
     private function getPlantFromDbPlant(DbPlant $dbPlant) : PlantShort
