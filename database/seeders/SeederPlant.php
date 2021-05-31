@@ -35,7 +35,9 @@ class SeederPlant extends Seeder
                 'full_info' => $faker->realText(mt_rand(150,200)),
                 'photo_small_path' => "image{$imgNum}.jpg",
                 'photo_big_path' => "image{$imgNum}.jpg",
-                'watering_days' => mt_rand(1,10)
+                'watering_days' => mt_rand(1,10),
+                'manuring_days' => mt_rand(1,15),
+                'pest_control_days' => mt_rand(1,30),
             ];
         }
         return $data;

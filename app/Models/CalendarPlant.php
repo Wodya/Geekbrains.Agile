@@ -11,4 +11,5 @@ class CalendarPlant
      * @var string[]
      */
     public $plantsToWatering;
+    public $plantsToManuring;
 }

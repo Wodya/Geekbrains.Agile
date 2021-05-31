@@ -23,6 +23,8 @@
                     <th>Название растения</th>
                     <th>Дата добавления</th>
                     <th>Период полива (дн.)</th>
+                    <th>Период подкормки (дн.)</th>
+                    <th>Период обработки от вредителей (дн.)</th>
                     <th>Свойства</th>
                     <th>Действия</th>
                 </tr>
@@ -33,6 +35,8 @@
                         <td><a href="{{route('onePlant', ['id' => $plant->id])}}">{{$plant->name}}</a></td>
                         <td>{{$plant->addDate}}</td>
                         <td>{{$plant->wateringDays}}</td>
+                        <td>{{$plant->manuringDays}}</td>
+                        <td>{{$plant->pestControlDays}}</td>
                         <td>{{$plant->tags}}</td>
                         <td>
                             <a href="{{route('removePlantFromFavor', ['userId'=>1, 'plantId'=>$plant->id])}}">Удалить из избранного </a>

@@ -33,6 +33,16 @@ class PlantShort
     /**
      * @var string
      */
+    public $manuringDays;
+    /**
+     * @var string
+     */
     public $tags;
+
+    public $pestControlDays;
+    /**
+      * @var string[]
+      */
+
 
 }

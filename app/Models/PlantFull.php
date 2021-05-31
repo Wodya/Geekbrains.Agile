@@ -42,4 +42,13 @@ class PlantFull
      * @var string[]
      */
     public $tags;
+
+    public $manuringDays;
+    /**
+      * @var string[]
+      */
+      public $pestControlDays;
+    /**
+      * @var string[]
+      */
 }

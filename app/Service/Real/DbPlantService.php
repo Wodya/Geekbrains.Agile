@@ -42,6 +42,8 @@ class DbPlantService implements IDbPlantService
         $item->photoSmallPath = $dbItem['photo_small_path'];
         $item->photoBigPath = $dbItem['photo_big_path'];
         $item->wateringDays = $dbItem['watering_days'];
+        $item->manuringDays = $dbItem['manuring_days'];
+        $item->pestControlDays = $dbItem['pest_control_days'];
         $item->tags = [];
         foreach ($dbItem['tags'] as $dbTag)
             $item->tags[] = $dbTag['tag'];
@@ -66,6 +68,8 @@ class DbPlantService implements IDbPlantService
         $dbPlant['photo_small_path'] = $plant->photoSmallPath;
         $dbPlant['photo_big_path'] = $plant->photoBigPath;
         $dbPlant['watering_days'] = $plant->wateringDays;
+        $dbPlant['manuring_days'] = $plant->manuringDays;
+        $dbPlant['pest_control_days'] = $plant->pestControlDays;
         $dbPlant->save();
 
         $dbTags = DbPlantTag::where('plant_id',$plant->id)->get();
@@ -153,9 +157,15 @@ class DbPlantService implements IDbPlantService
             $item = new CalendarPlant();
             $item->dayNum = $day;
             $item->plantsToWatering = [];
+            $item->plantsToManuring = [];
+            $item->plantsToPesting = [];
             foreach ($dataPlant as $plant){
                 if( $day % $plant->wateringDays === 0)
                     $item->plantsToWatering[] = $plant->name;
+                if( $day % $plant->manuringDays === 0)
+                    $item->plantsToManuring[] = $plant->name;
+                if( $day % $plant->pestControlDays === 0)
+                    $item->plantsToPesting[] = $plant->name;
             }
             $date[] = $item;
         }
@@ -170,6 +180,8 @@ class DbPlantService implements IDbPlantService
         $item->shortInfo = $dbPlant['short_info'];
         $item->photoSmallPath = $dbPlant['photo_small_path'];
         $item->wateringDays = $dbPlant['watering_days'];
+        $item->manuringDays = $dbPlant['manuring_days'];
+        $item->pestControlDays = $dbPlant['pest_control_days'];
         $tags = [];
         foreach ($dbPlant['tags'] as $dbTag)
             $tags[] = $dbTag['tag'];
