@@ -7,7 +7,7 @@
             <h2 class="title-style title-style-1 text-center"><span class="title-left">Каталог </span><span class="title-right"> Комнатных растений</span></h2>
             <div data-js-module="filtering-demo" class="big-demo go-wide">
                 <div class="filter-button-group button-group js-radio-button-group container">
-                    <button data-filter="*" class="button is-checked">Все</button>
+                    <button data-filter="*" class="button is-checked" title='Показать все растения'>Все</button>
                     <button data-filter=".outdoor" class="button">Орхидеи</button>
                     <button data-filter=".outdoor" class="button">Ампельные</button>
                     <button data-filter=".outdoor" class="button">Вьющиеся</button>
