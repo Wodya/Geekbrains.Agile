@@ -174,6 +174,8 @@ class DbPlantService implements IDbPlantService
         foreach ($dbPlant['tags'] as $dbTag)
             $tags[] = $dbTag['tag'];
         $item->tags = implode(", ",$tags);
+        $item->isFavor = DbUserPlant::where('user_id', 1)->where('plant_id', $item->id)->first() !== null;
+
         return $item;
     }
 }

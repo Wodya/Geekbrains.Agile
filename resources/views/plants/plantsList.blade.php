@@ -44,7 +44,8 @@
                                 <div class="product-actions">
                                     <div class="yith-wcwl-add-to-wishlist add-to-wishlist-17">
                                         <div class="yith-wcwl-add-button show">
-                                            <a href="{{route('addPlantToFavor', ['userId'=>1, 'plantId'=>$plant->id])}}" class="add_to_wishlist"><i class="fa fa-heart-o"></i> Добавить в избранное</a>
+                                            <a href="#" class="add_to_wishlist" data-id="{{$plant->id}}" data-isfavor="{{$plant->isFavor}}">
+                                                <i @if($plant->isFavor)class="fa fa-heart" aria-hidden="true" @else class="fa fa-heart-o" @endif}}></i> Добавить в избранное</a>
                                         </div>
                                     </div>
                                         <div class="add-to-cart-wrap">
@@ -65,4 +66,41 @@
         </div>
     </div>
 </div>
+<script>
+    $('.add_to_wishlist').click(function (e){
+        e.preventDefault();
+        let isFavor = +$(this).data("isfavor");
+        let url = '';
+
+        if(isFavor === 1)
+            url = "{{route('plant.removeFavor', ['userId'=>1, 'plantId'=>'plant_id_val'])}}";
+        else
+            url = "{{route('plant.addFavor', ['userId'=>1, 'plantId'=>'plant_id_val'])}}";
+
+        url = url.replace('plant_id_val', $(this).data("id"));
+        let element = $(this);
+        let child = $(this).children('i').first();
+
+        $.ajax({
+            url: url,
+            success: function(data) {
+                console.log(url);
+                child.removeAttr('class');
+                child.removeAttr('aria-hidden');
+                console.log(child);
+                if (isFavor === 1) {
+                    child.addClass("fa fa-heart-o");
+                    element.data("isfavor",0);
+                }
+                else {
+                    child.addClass("fa fa-heart");
+                    child.attr("aria-hidden","true");
+                    element.data("isfavor",1);
+                }
+                console.log(child);
+            }
+        });
+    });
+</script>
+
 @endsection

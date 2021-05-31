@@ -38,7 +38,10 @@ class PlantFull extends ModelCommon
      * @var string
      */
     public $wateringDays;
-   /**
+    /**
+     * @var bool
+     */
+    public $isFavor;   /**
      * @var string[]
      */
     public $tags;
