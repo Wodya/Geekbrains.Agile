@@ -30,7 +30,12 @@
                 <tbody>
                 @forelse($plants as $plant)
                     <tr>
-                        <td><a href="{{route('onePlant', ['id' => $plant->id])}}">{{$plant->name}}</a></td>
+                        <td>
+                            <a href="{{route('onePlant', ['id' => $plant->id])}}">
+                                <p>{{$plant->name}}</p>
+                                <img src="/Images/Small/{{$plant->photoSmallPath}}" alt="slide" width="100px"/>
+                            </a>
+                        </td>
                         <td>{{$plant->addDate}}</td>
                         <td>{{$plant->wateringDays}}</td>
                         <td>{{$plant->tags}}</td>
@@ -48,5 +53,5 @@
         </div>
 
     </div>
-    
+
 @endsection

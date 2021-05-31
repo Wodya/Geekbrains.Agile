@@ -1,7 +1,6 @@
 @extends('layouts.main')
 @section('content')
     <div class="container container-fluid">
-{{--    @dd($dates)--}}
     <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4 calendar-head">
             <h1 class="h3 mb-0 text-gray-800">Календарь полива</h1>
@@ -22,13 +21,14 @@
                     </thead>
                     <tbody>
                     @forelse($dates as $date)
-{{--                        @dd($date->dayNum, $date->plantsToWatering)--}}
                         <tr>
                             <td>{{$date->dayNum . ' мая'}}</td>
 
                             <td>
                             @foreach($date->plantsToWatering as $plant)
-                                {{$plant}}<hr>
+                                    <img src="/Images/Small/{{$plant->photoSmallPath}}" alt="slide" width="30px"/>
+                                    {{$plant->name}}
+                                    <hr>
                             @endforeach
                             </td>
 

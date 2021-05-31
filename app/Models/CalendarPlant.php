@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 
-class CalendarPlant
+class CalendarPlant extends ModelCommon
 {
     /**
      * @var int

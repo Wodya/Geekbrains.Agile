@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PlantFull;
 use App\Service\IDbPlantService;
 use Illuminate\Http\Request;
 
@@ -62,8 +61,6 @@ class MyPlantsController extends Controller
      */
     public function edit($id, IDbPlantService $dbPlant)
     {
-        $plants = $dbPlant->getPlant($id);
-        return view('plants.edit', ['plants' => $plants]);
     }
 
     /**
@@ -73,12 +70,9 @@ class MyPlantsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, IDbPlantService $dbPlant)
+    public function update(Request $request, $id, IDbPlantService $dbPlant)
     {
-        $plant = new PlantFull();
-        $dbPlant->updatePlant($plant);
 
-        return redirect('/catalog');
     }
 
     /**

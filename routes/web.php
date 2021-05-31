@@ -23,6 +23,9 @@ Route::get('/', function () {
 Route::get('/onePlant/{id}', [PlantsController::class, 'onePlant']) ->name('onePlant');
 Route::get('catalog', [PlantsController::class, 'index'])->name('catalog');
 Route::resource('myPlants',MyPlantsController::class);
+Route::get('/plant/edit/{id}', [PlantsController::class, 'edit'])->name('plant.edit');
+Route::put('/plant/post', [PlantsController::class, 'update'])->name('plant.update');
+
 
 Route::get('/deletePlant', [\App\Http\Controllers\TestController::class, 'deletePlant']);
 Route::get('/addPlantToFavor/{userId}/{plantId}', [\App\Http\Controllers\TestController::class, 'addPlantToFavor'])->name('addPlantToFavor');
@@ -31,5 +34,3 @@ Route::get('/getFavorPlants', [\App\Http\Controllers\TestController::class, 'get
 Route::get('/getFavorCalendar', [\App\Http\Controllers\TestController::class, 'getFavorCalendar']);
 Route::get('/calendar', [\App\Http\Controllers\TestController::class, 'testCalendar'])->name('calendar');
 
-Route::get('/onePant/edit/{id}', [MyPlantsController::class, 'edit']) ->name('edit');
-Route::put('/onePant/edit/{id}', [MyPlantsController::class, 'update']) ->name('update');
