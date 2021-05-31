@@ -16,11 +16,13 @@
                         <th>Дата</th>
                         <th>Растения</th>
                         <th>Действия</th>
-
                     </tr>
                     </thead>
                     <tbody>
                     @forelse($dates as $date)
+
+{{--                        @dd($date->dayNum, $date->plantsToWatering, $date->plantsToManuring, $date->plantsToPesting)--}}
+
                         <tr>
                             <td>{{$date->dayNum . ' мая'}}</td>
 
@@ -40,6 +42,29 @@
                                     Полить<hr>
                                 </label>
                             </div>
+                            @endforeach
+                            </td>
+
+                            <td>
+                            @foreach($date->plantsToManuring as $plant)
+                            <div class="form-check">
+                                <input type="checkbox">
+                                <label  >
+                                    Удобрить<hr>
+                                </label>
+                            </div>
+                            
+                            @endforeach
+                            </td>
+                            <td>
+                            @foreach($date->plantsToPesting as $plant)
+                            <div class="form-check">
+                                <input type="checkbox">
+                                <label  >
+                                    Обработать от вредителей<hr>
+                                </label>
+                            </div>
+                            
                             @endforeach
                             </td>
 
