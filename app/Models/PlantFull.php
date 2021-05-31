@@ -45,4 +45,13 @@ class PlantFull extends ModelCommon
      * @var string[]
      */
     public $tags;
+
+    public $manuringDays;
+    /**
+      * @var string[]
+      */
+      public $pestControlDays;
+    /**
+      * @var string[]
+      */
 }
