@@ -48,11 +48,8 @@
                                                 <i @if($plant->isFavor)class="fa fa-heart" aria-hidden="true" @else class="fa fa-heart-o" @endif}}></i> Добавить в избранное</a>
                                         </div>
                                     </div>
-                                        <div class="add-to-cart-wrap">
-                                            <a href="#" class="add_to_cart_button"><i class="fa fa-cart-plus"></i> Add to cart</a>
-                                        </div>
                                         <div class="yith-wcwl-add-button show">
-                                            <a href="#" class="product-quick-view"><i class="fa fa-search"></i>Quick view</a>
+                                            <a href="{{route('onePlant', ['id' => $plant->id])}}" class="product-quick-view"><i class="fa fa-search"></i>Quick view</a>
                                         </div>
                                 </div>
                             </div>
