@@ -169,7 +169,7 @@ class DbPlantService implements IDbPlantService
             }
             $date[] = $item;
         }
-//        dd($date);
+//dd($date);
         return $date;
     }
     private function getPlantFromDbPlant(DbPlant $dbPlant) : PlantShort
