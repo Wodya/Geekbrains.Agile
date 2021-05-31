@@ -12,4 +12,5 @@ class CalendarPlant extends ModelCommon
      */
     public $plantsToWatering;
     public $plantsToManuring;
+    public $plantsToPesting;
 }

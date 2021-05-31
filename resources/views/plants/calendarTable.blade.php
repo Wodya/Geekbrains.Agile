@@ -1,5 +1,7 @@
 @extends('layouts.main')
 @section('content')
+  <div class="div-box">
+    <div class="home-4-new-collections">
     <div class="container container-fluid">
     <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4 calendar-head">
@@ -80,5 +82,7 @@
             </div>
 
         </div>
-
+    </div>
+</div>
+</div>
 @endsection
