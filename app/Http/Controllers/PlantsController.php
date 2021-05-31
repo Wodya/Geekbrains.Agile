@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DbModels\DbPlantTag;
 use App\Models\PlantFull;
 use App\Service\IDbPlantService;
 use Illuminate\Http\Request;
@@ -11,8 +12,10 @@ class PlantsController extends Controller
 {
     public function index(Request $request, IDbPlantService $dbPlant)
     {
+        $tagsList = DbPlantTag::pluck('tag')->unique();
         $plantList = $dbPlant->getAllPlants();
-        return view('plants.plantsList',['plantsList' => $plantList]);
+//dd($plantList);
+        return view('plants.plantsList',['plantsList' => $plantList, 'tagsList'=>$tagsList]);
     }
 
     public function onePlant($id, IDbPlantService $dbPlant)

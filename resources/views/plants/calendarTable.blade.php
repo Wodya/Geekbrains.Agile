@@ -55,7 +55,7 @@
                                     Удобрить<hr>
                                 </label>
                             </div>
-                            
+
                             @endforeach
                             </td>
                             <td>
@@ -66,7 +66,7 @@
                                     Обработать от вредителей<hr>
                                 </label>
                             </div>
-                            
+
                             @endforeach
                             </td>
 

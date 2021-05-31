@@ -8,14 +8,14 @@ $(document).ready(function(){
     /*****************************/
     var wow = new WOW(
       {
-        boxClass:     'wow',      
-        animateClass: 'animated', 
-        offset:       80,          
-        mobile:       true,       
-        live:         true,       
+        boxClass:     'wow',
+        animateClass: 'animated',
+        offset:       80,
+        mobile:       true,
+        live:         true,
         callback:     function(box) {
         },
-        scrollContainer: null 
+        scrollContainer: null
       }
     );
     wow.init();
@@ -264,18 +264,18 @@ $(document).ready(function(){
           function syncPosition(el) {
             //if you set loop to false, you have to restore this next line
             //var current = el.item.index;
-            
+
             //if you disable loop you have to comment this block
             var count = el.item.count-1;
             var current = Math.round(el.item.index - (el.item.count/2) - .5);
-            
+
             if(current < 0) {
               current = count;
             }
             if(current > count) {
               current = 0;
             }
-            
+
             //end block
 
             sync2
@@ -286,7 +286,7 @@ $(document).ready(function(){
             var onscreen = sync2.find('.owl-item.active').length - 1;
             var start = sync2.find('.owl-item.active').first().index();
             var end = sync2.find('.owl-item.active').last().index();
-            
+
             if (current > end) {
               sync2.data('owl.carousel').to(current, 100, true);
             }
@@ -294,14 +294,14 @@ $(document).ready(function(){
               sync2.data('owl.carousel').to(current - onscreen, 100, true);
             }
           }
-          
+
           function syncPosition2(el) {
             if(syncedSecondary) {
               var number = el.item.index;
               sync1.data('owl.carousel').to(number, 100, true);
             }
           }
-          
+
           sync2.on("click", ".owl-item", function(e){
             e.preventDefault();
             var number = $(this).index();
@@ -344,18 +344,18 @@ $(document).ready(function(){
           function syncPosition(el) {
             //if you set loop to false, you have to restore this next line
             //var current = el.item.index;
-            
+
             //if you disable loop you have to comment this block
             var count = el.item.count-1;
             var current = Math.round(el.item.index - (el.item.count/2) - .5);
-            
+
             if(current < 0) {
               current = count;
             }
             if(current > count) {
               current = 0;
             }
-            
+
             //end block
 
             syncs2
@@ -366,7 +366,7 @@ $(document).ready(function(){
             var onscreen = syncs2.find('.owl-item.active').length - 1;
             var start = syncs2.find('.owl-item.active').first().index();
             var end = syncs2.find('.owl-item.active').last().index();
-            
+
             if (current > end) {
               syncs2.data('owl.carousel').to(current, 100, true);
             }
@@ -374,14 +374,14 @@ $(document).ready(function(){
               syncs2.data('owl.carousel').to(current - onscreen, 100, true);
             }
           }
-          
+
           function syncPosition2(el) {
             if(syncedSecondary) {
               var number = el.item.index;
               syncs1.data('owl.carousel').to(number, 100, true);
             }
           }
-          
+
           syncs2.on("click", ".owl-item", function(e){
             e.preventDefault();
             var number = $(this).index();
@@ -396,7 +396,7 @@ $(document).ready(function(){
     /* hoverdir */
     /*****************************/
     $('.da-thumbs > li').each( function() { $(this).hoverdir(); } );
-            
+
 
 
     /*****************************/
@@ -525,7 +525,7 @@ $(document).ready(function(){
             event.preventDefault();
             $('nav.yolo-canvas-menu-wrapper').removeClass('in');
         });
-  
+
 
 
     /*****************************/
@@ -542,7 +542,7 @@ $(document).ready(function(){
                 $('body').css('padding-top',header_h_o);
                 $('.header.header-style-8').removeClass('menu-fixed');
                 $('body.home-sidebar').css('padding-top',0);
-            } 
+            }
             if (scroll < 200) {
                 $('.header').removeClass('menu-fixed');
                 $('body').css('padding-top',0);
@@ -622,7 +622,7 @@ $(document).ready(function(){
             counter.countTo({
               speed: 1500,
               refreshInterval: 100,
-              
+
               onComplete: function() {
                 counter.addClass('count-complete');
               }
@@ -715,7 +715,7 @@ $(document).ready(function(){
         $('.map-embed iframe').css("pointer-events", "auto");
     });
     $( ".map-embed" ).on('hover', function (event) {
-      $('.map-embed iframe').css("pointer-events", "none"); 
+      $('.map-embed iframe').css("pointer-events", "none");
     });
 
 
@@ -742,7 +742,7 @@ $(document).ready(function(){
         $('.checkout_coupon').slideToggle("slow");
     })
     /* --------------------------------------------------------------------- */
-    /* create-account input 
+    /* create-account input
     /* --------------------------------------------------------------------- */
     $('p.create-account input').on('click', function (e) {
         $('div.create-account').slideToggle();

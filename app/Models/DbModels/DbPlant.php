@@ -5,6 +5,7 @@ namespace App\Models\DbModels;
 
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class DbPlant extends \Illuminate\Database\Eloquent\Model
 {
@@ -12,7 +13,7 @@ class DbPlant extends \Illuminate\Database\Eloquent\Model
     protected $table = "plant";
     protected $primaryKey = "id";
 
-    public function tags(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function tags(): HasMany
     {
         return $this->hasMany(DbPlantTag::class, 'plant_id', 'id');
     }

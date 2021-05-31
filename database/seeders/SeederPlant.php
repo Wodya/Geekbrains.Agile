@@ -46,8 +46,7 @@ class SeederPlant extends Seeder
     {
         $tags1 = ["напольные", "настольные", "подвесные"];
         $tags2 = ["теневыносливые", "светолюбивые"];
-        $tags3 = ["не цветущие", "цветущие"];
-        $tags4 = ["выделяют кислород", "очищают воздух"];
+        $tags3 = ["нецветущие", "цветущие"];
         $selects = DB::table('plant')->select("id")->get();
 
         $data = [];
@@ -56,7 +55,6 @@ class SeederPlant extends Seeder
             $tag1 = $tags1[mt_rand(0,count($tags1)-1)];
             $tag2 = $tags2[mt_rand(0,count($tags2)-1)];
             $tag3 = $tags3[mt_rand(0,count($tags3)-1)];
-            $tag4 = $tags4[mt_rand(0,count($tags4)-1)];
             $data[] = [
                     "plant_id" => $select->id,
                     "tag" => $tag1
@@ -68,10 +66,6 @@ class SeederPlant extends Seeder
             $data[] = [
                     "plant_id" => $select->id,
                     "tag" => $tag3
-                ];
-            $data[] = [
-                    "plant_id" => $select->id,
-                    "tag" => $tag4
                 ];
         }
         return $data;

@@ -169,7 +169,6 @@ class DbPlantService implements IDbPlantService
             }
             $date[] = $item;
         }
-//        dd($date);
         return $date;
     }
     private function getPlantFromDbPlant(DbPlant $dbPlant) : PlantShort
@@ -183,10 +182,11 @@ class DbPlantService implements IDbPlantService
         $item->wateringDays = $dbPlant['watering_days'];
         $item->manuringDays = $dbPlant['manuring_days'];
         $item->pestControlDays = $dbPlant['pest_control_days'];
-        $tags = [];
+        $tags = '';
         foreach ($dbPlant['tags'] as $dbTag)
-            $tags[] = $dbTag['tag'];
-        $item->tags = implode(", ",$tags);
+            $tags .= $dbTag['tag'] . " ";
+        $item->tags = $tags;
+//        $item->tags = implode(", ",$tags);
         return $item;
     }
 }

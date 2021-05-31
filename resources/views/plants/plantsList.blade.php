@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-
+{{--@dd($tagsList)--}}
 <div class="div-box">
     <div class="home-4-new-collections">
         <div class="container">
@@ -8,11 +8,9 @@
             <div data-js-module="filtering-demo" class="big-demo go-wide">
                 <div class="filter-button-group button-group js-radio-button-group container">
                     <button data-filter="*" class="button is-checked">Все</button>
-                    <button data-filter=".outdoor" class="button">Орхидеи</button>
-                    <button data-filter=".outdoor" class="button">Ампельные</button>
-                    <button data-filter=".outdoor" class="button">Вьющиеся</button>
-                    <button data-filter=".outdoor" class="button">Пальмы</button>
-                    <button data-filter=".pots" class="button">Фикусы</button>
+                @foreach($tagsList as $tag)
+                    <button data-filter=".{{$tag}}" class="button">{{$tag}}</button>
+                    @endforeach
 
                 </div>
                 <!-- Проверка на добавление -->
@@ -25,7 +23,8 @@
                 <!--  -->
                 <ul class="grid shortcode-product-wrap product-begreen columns-4">
                     @forelse ($plantsList as $plant)
-                    <li data-category="outdoor" class="element-item product-item-wrap product-style_1 pots seeds indoor">
+{{--                        @dd($plant)--}}
+                    <li data-category="outdoor" class="element-item product-item-wrap product-style_1 {{$plant->tags}}">
                         <div class="product-item-inner">
                             <div class="product-thumb">
                                 <div class="product-flash-wrap"></div>
