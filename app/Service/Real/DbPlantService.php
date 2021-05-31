@@ -144,6 +144,7 @@ class DbPlantService implements IDbPlantService
     {
         echo("<script>console.log('getFavorCalendar');</script>");
         $dbData = DbUserPlant::with("plant")->where('user_id',$userId)->get();
+        $dataPlant = [];
         foreach ($dbData as $dbItemUserPlant){
             $dataPlant[] = $this->getPlantFromDbPlant($dbItemUserPlant['plant']);
         }
