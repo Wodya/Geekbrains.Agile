@@ -18,8 +18,7 @@
                         <th>Дата</th>
                         <th>Растения</th>
                         <th>Действия</th>
-                        <th>Действия</th>
-                        <th>Действия</th>
+                       
                     </tr>
                     </thead>
                     <tbody>
@@ -36,6 +35,16 @@
                                     {{$plant->name}}
                                     <hr>
                             @endforeach
+                            @foreach($date->plantsToManuring as $plant)
+                                    <img src="/Images/Small/{{$plant->photoSmallPath}}" alt="slide" width="30px"/>
+                                    {{$plant->name}}
+                                    <hr>
+                            @endforeach
+                            @foreach($date->plantsToPesting as $plant)
+                                    <img src="/Images/Small/{{$plant->photoSmallPath}}" alt="slide" width="30px"/>
+                                    {{$plant->name}}
+                                    <hr>
+                            @endforeach
                             </td>
 
                             <td>
@@ -47,9 +56,8 @@
                                 </label>
                             </div>
                             @endforeach
-                            </td>
+                            
 
-                            <td>
                             @foreach($date->plantsToManuring as $plant)
                             <div class="form-check">
                                 <input type="checkbox">
@@ -59,8 +67,7 @@
                             </div>
                             
                             @endforeach
-                            </td>
-                            <td>
+                            
                             @foreach($date->plantsToPesting as $plant)
                             <div class="form-check">
                                 <input type="checkbox">
