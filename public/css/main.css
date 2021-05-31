@@ -15398,3 +15398,15 @@ html.mm-opening .mm-slideout {
     margin-right: auto;
     display: block;
 }
+
+.form-check{
+    vertical-align: center;
+    display: flex;
+    align-content: space-between;
+}
+.check-label{
+    margin-left: 10px;
+}
+.calendar-head{
+    margin-bottom: 10px;
+}

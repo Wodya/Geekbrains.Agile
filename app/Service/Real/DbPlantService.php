@@ -58,7 +58,7 @@ class DbPlantService implements IDbPlantService
         echo("<script>console.log('updatePlant');</script>");
         $exists = DbPlant::where('name', $plant->name)->get();
         foreach ($exists as $exist) {
-           if ($exist["id"] !== $plant->id)
+           if ($exist["id"] != $plant->id)
                throw new \ErrorException('Растение с таким именем уже сущетсвует');
         }
         $dbPlant = DbPlant::first('id',$plant->id);
@@ -144,7 +144,6 @@ class DbPlantService implements IDbPlantService
     {
         echo("<script>console.log('getFavorCalendar');</script>");
         $dbData = DbUserPlant::with("plant")->where('user_id',$userId)->get();
-        $dataPlant = [];
         foreach ($dbData as $dbItemUserPlant){
             $dataPlant[] = $this->getPlantFromDbPlant($dbItemUserPlant['plant']);
         }
@@ -161,14 +160,15 @@ class DbPlantService implements IDbPlantService
             $item->plantsToPesting = [];
             foreach ($dataPlant as $plant){
                 if( $day % $plant->wateringDays === 0)
-                    $item->plantsToWatering[] = $plant->name;
+                    $item->plantsToWatering[] = $plant;
                 if( $day % $plant->manuringDays === 0)
-                    $item->plantsToManuring[] = $plant->name;
+                    $item->plantsToManuring[] = $plant;
                 if( $day % $plant->pestControlDays === 0)
-                    $item->plantsToPesting[] = $plant->name;
+                    $item->plantsToPesting[] = $plant;
             }
             $date[] = $item;
         }
+//        dd($date);
         return $date;
     }
     private function getPlantFromDbPlant(DbPlant $dbPlant) : PlantShort

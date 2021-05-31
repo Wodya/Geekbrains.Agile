@@ -1,10 +1,7 @@
 <?php
-
-
 namespace App\Models;
 
-
-class PlantShort
+class PlantShort extends ModelCommon
 {
     /**
     * @var int

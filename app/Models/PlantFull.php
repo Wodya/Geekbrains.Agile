@@ -3,7 +3,7 @@ namespace App\Models;
 /**
  * Класс "Растение"
  */
-class PlantFull
+class PlantFull extends ModelCommon
 {
     /**
      * @var int
