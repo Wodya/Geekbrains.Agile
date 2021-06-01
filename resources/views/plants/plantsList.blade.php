@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-
+{{--@dd($plantsList)--}}
 <div class="div-box">
     <div class="home-4-new-collections">
         <div class="container">
@@ -8,11 +8,9 @@
             <div data-js-module="filtering-demo" class="big-demo go-wide">
                 <div class="filter-button-group button-group js-radio-button-group container">
                     <button data-filter="*" class="button is-checked" title='Показать все растения'>Все</button>
-                    <button data-filter=".outdoor" class="button">Орхидеи</button>
-                    <button data-filter=".outdoor" class="button">Ампельные</button>
-                    <button data-filter=".outdoor" class="button">Вьющиеся</button>
-                    <button data-filter=".outdoor" class="button">Пальмы</button>
-                    <button data-filter=".pots" class="button">Фикусы</button>
+                    @foreach($tagsList as $tag)
+                        <button data-filter=".{{$tag}}" class="button">{{$tag}}</button>
+                    @endforeach
 
                 </div>
                 <!-- Проверка на добавление -->
@@ -25,7 +23,7 @@
                 <!--  -->
                 <ul class="grid shortcode-product-wrap product-begreen columns-4">
                     @forelse ($plantsList as $plant)
-                    <li data-category="outdoor" class="element-item product-item-wrap product-style_1 pots seeds indoor">
+                        <li data-category="outdoor" class="element-item product-item-wrap product-style_1 {{$plant->tagsList}}">
                         <div class="product-item-inner">
                             <div class="product-thumb">
                                 <div class="product-flash-wrap"></div>
@@ -63,41 +61,5 @@
         </div>
     </div>
 </div>
-<script>
-    $('.add_to_wishlist').click(function (e){
-        e.preventDefault();
-        let isFavor = +$(this).data("isfavor");
-        let url = '';
-
-        if(isFavor === 1)
-            url = "{{route('plant.removeFavor', ['userId'=>1, 'plantId'=>'plant_id_val'])}}";
-        else
-            url = "{{route('plant.addFavor', ['userId'=>1, 'plantId'=>'plant_id_val'])}}";
-
-        url = url.replace('plant_id_val', $(this).data("id"));
-        let element = $(this);
-        let child = $(this).children('i').first();
-
-        $.ajax({
-            url: url,
-            success: function(data) {
-                console.log(url);
-                child.removeAttr('class');
-                child.removeAttr('aria-hidden');
-                console.log(child);
-                if (isFavor === 1) {
-                    child.addClass("fa fa-heart-o");
-                    element.data("isfavor",0);
-                }
-                else {
-                    child.addClass("fa fa-heart");
-                    child.attr("aria-hidden","true");
-                    element.data("isfavor",1);
-                }
-                console.log(child);
-            }
-        });
-    });
-</script>
 
 @endsection

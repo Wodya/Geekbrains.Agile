@@ -41,6 +41,11 @@ class PlantShort extends ModelCommon
     public $tags;
 
     public $pestControlDays;
+
+    /**
+     * @var string
+     */
+    public string $tagsList;
     /**
       * @var string[]
       */
