@@ -34,6 +34,7 @@ class PlantsController extends Controller
         $plant->{"tag4"} = $plant->tags[3];
         return view('plants.edit', ['plants' => $plant]);
     }
+
     public function update(Request $request, IDbPlantService $dbPlant)
     {
         $plant = new PlantFull();
@@ -44,9 +45,10 @@ class PlantsController extends Controller
         $plant->tags[] =$_POST['tag2'];
         $plant->tags[] =$_POST['tag3'];
         $plant->tags[] =$_POST['tag4'];
-        $dbPlant->updatePlant($plant);
+        
+       $dbPlant->updatePlant($plant);
 
-        return redirect('/catalog');
+        //return redirect('/catalog');
     }
    
 }

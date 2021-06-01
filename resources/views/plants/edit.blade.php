@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="col-md-4  offset-2">
-    <form method="post" action="{{route('plant.update', ['id' => $plants->id])}}">
+    <form method="post" action="{{route('plant.update', ['db' => $plants->id])}}">
         @csrf
         @method('PUT')
 
@@ -227,9 +227,11 @@
         </div>
 
         <!-- <p><input type="text" class="form-control" name="title" placeholder="Заголовок" value="{{$plants->name}}">
+
             <button type="submit" class="btn btn-success">Сохранить</button> -->
     </form>
 </div>
 
 
 @endsection
+
