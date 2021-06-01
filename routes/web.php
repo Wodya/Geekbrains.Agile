@@ -31,7 +31,7 @@ Route::resource('/test', TestController::class);
 
 Route::group([
     'prefix' => '/admin',
-    'as' => 'plants::',
+    'as' => 'admin::plants::',
 //    'middleware' => ['auth']
 ], function () {
     Route::get('/plants', [AdminPlantsController::class, 'index'])
@@ -40,19 +40,19 @@ Route::group([
     Route::get('/onePlant/{id}', [AdminPlantsController::class, 'onePlant'])
         ->name('onePlant');
 
-    Route::get('/create', [AdminPlantsController::class, 'create'])
+    Route::get('/create', [AdminPlantsController::class, 'createView'])
         ->name('createView');
 
-    Route::post('/create', [PlantsController::class, 'create'])
+    Route::post('/create', [AdminPlantsController::class, 'create'])
         ->name('create');
 
-    Route::get('/update/{id}', [PlantsController::class, 'updateView'])
+    Route::get('/update/{id}', [AdminPlantsController::class, 'updateView'])
         ->name('updateView');
 
-    Route::post('/update/{id}', [PlantsController::class, 'update'])
+    Route::post('/update/{id}', [AdminPlantsController::class, 'update'])
         ->name('update');
 
-    Route::get('/delete/{id}', [PlantsController::class, 'delete'])
+    Route::get('/delete/{id}', [AdminPlantsController::class, 'delete'])
         ->name('delete');
 
 
@@ -66,14 +66,14 @@ Route::resource('myPlants', MyPlantsController::class);
 Route::get('/deletePlant', [\App\Http\Controllers\TestController::class, 'deletePlant']);
 Route::get('/addPlantToFavor/{userId}/{plantId}', [\App\Http\Controllers\TestController::class, 'addPlantToFavor'])->name('addPlantToFavor');
 Route::get('/removePlantFromFavor/{userId}/{plantId}', [\App\Http\Controllers\TestController::class, 'removePlantFromFavor'])->name('removePlantFromFavor');
-Route::get('/getFavorPlants', [\App\Http\Controllers\TestController::class, 'getFavorPlants']);
+Route::get('/getFavorPlants', [\App\Http\Controllers\TestController::class, 'getFavorPlants'])->name('getFavorPlants');
 Route::get('/getFavorCalendar', [\App\Http\Controllers\TestController::class, 'getFavorCalendar']);
-Route::get('/calendar', [\App\Http\Controllers\TestController::class, 'getFavorCalendar'])->name('calendar');
+Route::get('/calendar', [\App\Http\Controllers\TestController::class, 'testCalendar'])->name('calendar');
 
 Route::group([
     'prefix' => '/',
     'as' => 'plants::',
-//    'middleware' => ['auth']
+
 ], function () {
     Route::get('/plants', [PlantsController::class, 'index'])->name('plants');
     Route::get('/onePlant', [PlantsController::class, 'onePlant'])->name('onePlant');

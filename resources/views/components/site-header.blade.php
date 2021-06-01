@@ -37,12 +37,8 @@
     </div>
     <div class="header-sidebar">
         <div class="header-logo">
-<<<<<<< HEAD
-            <h1><a href="/test"><img src="{{ asset('Images/logo/logo-footer.png')}}" alt="logo"/></a></h1>
-=======
             <h1><a href="{{route('catalog')}}"><img src="{{ asset('Images/logo/logo-footer.png')}}" alt="logo"/></a>
             </h1>
->>>>>>> main
         </div>
         <div class="header-bottom">
             <div class="main-nav-wrapper">

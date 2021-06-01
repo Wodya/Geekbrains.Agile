@@ -55,4 +55,5 @@ interface IDbPlantService{
      * @return array
      */
     public function getFavorCalendar(int $userId) : array;
+    public function getTags();
 }

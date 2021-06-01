@@ -26,14 +26,15 @@ class SeederPlant extends Seeder
 
         $data = [];
         for($i = 0; $i < 20; $i++) {
+            $imgNum = ($i % 10) + 1;
             $data[] = [
                 'id'  => $i+1,
-                'name' => $faker->sentence(mt_rand(1,2)),
+                'name' => $faker->word(),
                 'add_date' => $faker->dateTimeBetween('2021-01-01'),
-                'short_info' => $faker->realText(mt_rand(30,40)),
+                'short_info' => $faker->realText(mt_rand(10,25)),
                 'full_info' => $faker->realText(mt_rand(150,200)),
-                'photo_small_path' => 'image1.jpg',
-                'photo_big_path' => 'image1.png',
+                'photo_small_path' => "image{$imgNum}.jpg",
+                'photo_big_path' => "image{$imgNum}.jpg",
                 'watering_days' => mt_rand(1,10)
             ];
         }
