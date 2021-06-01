@@ -32,21 +32,26 @@ class PlantsController extends Controller
         $plant->{"tag2"} = $plant->tags[1];
         $plant->{"tag3"} = $plant->tags[2];
         $plant->{"tag4"} = $plant->tags[3];
+        
         return view('plants.edit', ['plants' => $plant]);
     }
+
     public function update(Request $request, IDbPlantService $dbPlant)
     {
+        
         $plant = new PlantFull();
         $plant->fill($_POST);
+        
         $plant->id =$request->query->get('id');
         $plant->tags = [];
         $plant->tags[] =$_POST['tag1'];
         $plant->tags[] =$_POST['tag2'];
         $plant->tags[] =$_POST['tag3'];
         $plant->tags[] =$_POST['tag4'];
-        $dbPlant->updatePlant($plant);
+        
+       $dbPlant->updatePlant($plant);
 
         return redirect('/catalog');
     }
-
+   
 }

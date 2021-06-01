@@ -15,7 +15,7 @@
 
             <div class="container">
                 <h1 id="name">Редактировать растение<span></span></h1><br><br>
-                @method('PUT')
+                <!-- @method('PUT') -->
                 <div class="row">
                     <div class="col-md-5">
                         <div class="single-product-slider">
@@ -108,6 +108,46 @@
                                     </span>
                                     <span class="posted_in" style="display: flex;">
                                         <label for="wateringDays" style="align-self: center; width: 100%;">
+                                            Частота обработки от вредителей:
+                                        </label>
+                                        <select class="form-control" name="pestControlDays" style="width: min-content;">
+                                            <option selected="selected">
+                                                {{$plants->pestControlDays}}
+                                            </option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                        </select>
+                                    </span>
+                                    <span class="posted_in" style="display: flex;">
+                                        <label for="wateringDays" style="align-self: center; width: 100%;">
+                                            Частота удобрения:
+                                        </label>
+                                        <select class="form-control" name="manuringDays" style="width: min-content;">
+                                            <option selected="selected">
+                                                {{$plants->manuringDays}}
+                                            </option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                        </select>
+                                    </span>
+                                    <span class="posted_in" style="display: flex;">
+                                        <label for="wateringDays" style="align-self: center; width: 100%;">
                                             Теги:
                                         </label>
                                         <select class="tag_edit" name="tag1" placeholder="tag1">
@@ -141,17 +181,7 @@
                                         </select>
                                     </span>
                                 </div>
-                                <form class="cart">
-                                    <div class="quantity">
-                                        <label>Quantity:</label>
-                                        <div class="quantity-inner">
-                                            <input step="1" min="1" name="quantity" value="1" title="Qty" size="4"
-                                                type="number" class="input-text qty text" />
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="single_add_to_cart_button button alt">Add to
-                                        cart</button>
-                                </form>
+                               
                                 <div class="yith-wcwl-add-to-wishlist">
                                     <div class="yith-wcwl-add-button show">
                                         <a href="{{route('addPlantToFavor', ['userId'=>1, 'plantId'=>$plants->id])}}"
