@@ -22,6 +22,9 @@ class CreateUsersPlantsTable extends Migration
                 ->constrained('plants')
                 ->cascadeOnDelete();
             $table->timestamps();
+            $table->string("nickname")->default('Моё любимимое растение');
+            $table->string("note")->default('Примечание');
+            $table->date('start_date')->default(now());
         });
     }
 

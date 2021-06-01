@@ -21,6 +21,7 @@ class CreatePlantsTable extends Migration
             $table->string("name")->default('Растение без имени');
             $table->string("short_info")->default('Краткая информация');
             $table->string("full_info")->default('Подробная информация');
+            $table->integer('watering_days');
             $table->string("photo_small_path")->default('1.jpg');
             $table->string("photo_big_path")->default('1.jpg');
             $table->timestamps();
