@@ -24,7 +24,67 @@ class MyPlantsController extends Controller
         echo('$userId = ' . $userId);
         echo('$plantId = ' . $plantId);
     }
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param $userId
+     * @param $plantId
+     * @param \Illuminate\Http\Request $request
+     * @param IDbPlantService $dbPlant
+     * @return void
+     */
+    public function store()
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id, IDbPlantService $dbPlant)
+    {
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id, IDbPlantService $dbPlant)
+    {
+
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request, IDbPlantService $dbPlant)
+    {
+      //
+    }
     public function removeFavor($userId, $plantId, Request $request, IDbPlantService $dbPlant)
+
     {
         $dbPlant->removePlantFromFavor($userId, $plantId);
     }

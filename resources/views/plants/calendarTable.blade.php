@@ -26,6 +26,7 @@
 
 {{--                        @dd($date->dayNum, $date->plantsToWatering, $date->plantsToManuring, $date->plantsToPesting)--}}
 
+
                         <tr>
                             <td>{{$date->dayNum . ' мая'}}</td>
 
@@ -34,7 +35,7 @@
                                     <img src="/Images/Small/{{$plant->photoSmallPath}}" alt="slide" width="30px"/>
                                     {{$plant->name}}
                                     <hr>
-                            @endforeach
+                    @endforeach
                             @foreach($date->plantsToManuring as $plant)
                                     <img src="/Images/Small/{{$plant->photoSmallPath}}" alt="slide" width="30px"/>
                                     {{$plant->name}}
@@ -44,6 +45,7 @@
                                     <img src="/Images/Small/{{$plant->photoSmallPath}}" alt="slide" width="30px"/>
                                     {{$plant->name}}
                                     <hr>
+
                             @endforeach
                             </td>
 
