@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Service\IDbPlantService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class MyPlantsController extends Controller
 {
@@ -17,16 +18,13 @@ class MyPlantsController extends Controller
         $plants = $dbPlant->getFavorPlants(1);
         return view('plants.chosenTable',['plants' => $plants]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function addFavor($userId, $plantId, Request $request, IDbPlantService $dbPlant)
     {
-        //
+        $dbPlant->addPlantToFavor($userId, $plantId);
+        echo('$userId = ' . $userId);
+        echo('$plantId = ' . $plantId);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -83,6 +81,11 @@ class MyPlantsController extends Controller
      */
     public function destroy(Request $request, IDbPlantService $dbPlant)
     {
-        $dbPlant->removePlantFromFavor(1,2);
+      //
+    }
+    public function removeFavor($userId, $plantId, Request $request, IDbPlantService $dbPlant)
+
+    {
+        $dbPlant->removePlantFromFavor($userId, $plantId);
     }
 }

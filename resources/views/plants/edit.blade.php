@@ -5,12 +5,14 @@
     <form method="post" action="{{route('plant.update', ['id' => $plants->id])}}">
         @csrf
         @method('PUT')
+
         <input type="text" class="form-control" name="photoSmallPath" placeholder="photoSmallPath"
             value="{{$plants->photoSmallPath}}" style="display: none;">
         <input type="text" class="form-control" name="photoBigPath" placeholder="photoBigPath"
             value="{{$plants->photoBigPath}}" style="display: none;">
 
         <div class=" div-box mb mt">
+
             <div class="container">
                 <h1 id="name">Редактировать растение<span></span></h1><br><br>
                 @method('PUT')
@@ -58,6 +60,7 @@
                     <div class="col-md-7">
                         <div class="single-product-content">
                             <div class="summary-product entry-summary">
+
                                 <label for="name">
                                     <h3>Название растения</h3><br>
                                 </label>
@@ -67,6 +70,7 @@
                                     <br>
                                     <h3>Короткое описание продукта</h3><br>
                                 </label>
+
                                 <div class="product-single-short-description">
                                     <p><input type="text" class="form-control" name="shortInfo" placeholder="shortInfo"
                                             value="{{$plants->shortInfo}}"></p>
@@ -137,6 +141,50 @@
                                         </select>
                                     </span>
                                 </div>
+                                <form class="cart">
+                                    <div class="quantity">
+                                        <label>Quantity:</label>
+                                        <div class="quantity-inner">
+                                            <input step="1" min="1" name="quantity" value="1" title="Qty" size="4"
+                                                type="number" class="input-text qty text" />
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="single_add_to_cart_button button alt">Add to
+                                        cart</button>
+                                </form>
+                                <div class="yith-wcwl-add-to-wishlist">
+                                    <div class="yith-wcwl-add-button show">
+                                        <a href="{{route('addPlantToFavor', ['userId'=>1, 'plantId'=>$plants->id])}}"
+                                            class="add_to_wishlist">
+                                            <i class="fa fa-heart-o"></i>
+                                            Добавить в избранное
+                                        </a>
+                                    </div>
+                                </div><a href="#" class="compare button"> <i class="fa fa-signal"></i>Compare</a>
+                                <div class="product_meta"><span class="product-stock-status-wrapper">
+                                        <label>Availability:</label><span class="product-stock-status in-stock">In
+                                            stock</span></span><span class="posted_in">
+                                        <label>Categories:</label><a href="#">New /</a><a href="#">Outdoor /</a><a
+                                            href="#">Pots
+                                            /</a><a href="#">Seeds</a></span>
+                                    <span class="tagged_as">
+                                        <label>Теги:</label>
+                                        @foreach($plants->tags as $tag)
+                                        <a href="#">{{$tag}}</a>
+                                        @endforeach
+                                    </span>
+                                </div>
+                                <div class="social-share-wrap">
+                                    <label><i class="fa fa-share-alt"></i>Share:</label>
+                                    <ul class="social-share">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-tumblr"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -149,13 +197,16 @@
                     <div class="row">
                         <div class="col-md-2 col-sm-12">
                             <ul class="nav nav-pills">
+
                                 <li class="active"><a href="#tab-description" data-toggle="tab">Description</a>
                                 </li>
+
                             </ul>
                         </div>
                         <div class="col-md-10 col-sm-12">
                             <div class="desc-review-content tab-content clearfix">
                                 <div id="tab-description" class="tab-pane active">
+
                                     <label for="fullInfo">
                                         <h3>Подробное описание продукта</h3><br>
                                     </label>
@@ -169,6 +220,7 @@
                                     value="Сохранить"><br><br><br><br>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -176,14 +228,10 @@
 
         <!-- <p><input type="text" class="form-control" name="title" placeholder="Заголовок" value="{{$plants->name}}">
 
-
             <button type="submit" class="btn btn-success">Сохранить</button> -->
     </form>
 </div>
 
 
-
-
-
-
 @endsection
+

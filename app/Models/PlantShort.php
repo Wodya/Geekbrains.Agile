@@ -28,8 +28,27 @@ class PlantShort extends ModelCommon
      */
     public $wateringDays;
     /**
+     * @var bool
+     */
+    public $isFavor;
+    /**
+     * @var string
+     */
+    public $manuringDays;
+    /**
      * @var string
      */
     public $tags;
+
+    public $pestControlDays;
+
+    /**
+     * @var string
+     */
+    public string $tagsList;
+    /**
+      * @var string[]
+      */
+
 
 }

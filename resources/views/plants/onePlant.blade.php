@@ -42,6 +42,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
             <div class="col-md-7">
                 <div class="single-product-content">
@@ -95,12 +96,15 @@
                                 <li><a href="#"><i class="fa fa-tumblr"></i></a></li>
                                 <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
                             </ul>
+
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 <div class="div-box mt mb">
     <div class="product-begreen-tabs">
@@ -112,6 +116,7 @@
                         <li><a href="#tab-reviews" data-toggle="tab">Reviews (0)</a></li>
                     </ul>
                 </div>
+
                 <div class="col-md-10 col-sm-12">
                     <div class="desc-review-content tab-content clearfix">
                         <div id="tab-description" class="tab-pane active">

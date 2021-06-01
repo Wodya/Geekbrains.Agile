@@ -1,5 +1,7 @@
 @extends('layouts.main')
 @section('content')
+  <div class="div-box">
+    <div class="home-4-new-collections">
     <div class="container container-fluid">
     <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4 calendar-head">
@@ -16,11 +18,15 @@
                         <th>Дата</th>
                         <th>Растения</th>
                         <th>Действия</th>
-
+                       
                     </tr>
                     </thead>
                     <tbody>
                     @forelse($dates as $date)
+
+{{--                        @dd($date->dayNum, $date->plantsToWatering, $date->plantsToManuring, $date->plantsToPesting)--}}
+
+
                         <tr>
                             <td>{{$date->dayNum . ' мая'}}</td>
 
@@ -29,6 +35,17 @@
                                     <img src="/Images/Small/{{$plant->photoSmallPath}}" alt="slide" width="30px"/>
                                     {{$plant->name}}
                                     <hr>
+                    @endforeach
+                            @foreach($date->plantsToManuring as $plant)
+                                    <img src="/Images/Small/{{$plant->photoSmallPath}}" alt="slide" width="30px"/>
+                                    {{$plant->name}}
+                                    <hr>
+                            @endforeach
+                            @foreach($date->plantsToPesting as $plant)
+                                    <img src="/Images/Small/{{$plant->photoSmallPath}}" alt="slide" width="30px"/>
+                                    {{$plant->name}}
+                                    <hr>
+
                             @endforeach
                             </td>
 
@@ -40,6 +57,27 @@
                                     Полить<hr>
                                 </label>
                             </div>
+                            @endforeach
+                            
+
+                            @foreach($date->plantsToManuring as $plant)
+                            <div class="form-check">
+                                <input type="checkbox">
+                                <label  >
+                                    Удобрить<hr>
+                                </label>
+                            </div>
+                            
+                            @endforeach
+                            
+                            @foreach($date->plantsToPesting as $plant)
+                            <div class="form-check">
+                                <input type="checkbox">
+                                <label  >
+                                    Обработать от вредителей<hr>
+                                </label>
+                            </div>
+                            
                             @endforeach
                             </td>
 
@@ -53,5 +91,7 @@
             </div>
 
         </div>
-
+    </div>
+</div>
+</div>
 @endsection
