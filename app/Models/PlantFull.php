@@ -25,7 +25,7 @@ class PlantFull extends ModelCommon
      * @var string
      */
     public $fullInfo;
-//    как ухаживать, грунт, цветение, опасное или нет
+
     /**
      * @var string
      */
