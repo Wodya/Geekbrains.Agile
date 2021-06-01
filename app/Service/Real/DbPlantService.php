@@ -91,6 +91,8 @@ class DbPlantService implements IDbPlantService
             $dbTag->delete();
         }
     }
+
+    
     public function insertPlant(PlantFull $plant): int
     {
         echo("<script>console.log('insertPlant');</script>");

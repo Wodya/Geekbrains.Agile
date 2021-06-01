@@ -48,5 +48,5 @@ class PlantsController extends Controller
 
         return redirect('/catalog');
     }
-
+   
 }

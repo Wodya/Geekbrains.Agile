@@ -227,11 +227,9 @@
         </div>
 
         <!-- <p><input type="text" class="form-control" name="title" placeholder="Заголовок" value="{{$plants->name}}">
-
             <button type="submit" class="btn btn-success">Сохранить</button> -->
     </form>
 </div>
 
 
 @endsection
-
