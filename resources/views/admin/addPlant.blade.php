@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.admin')
 @section('content')
     @if (session('success'))
         <div class="alert alert-success" role="alert">
@@ -84,17 +84,15 @@
                                         <label for="tags" style="align-self: center; width: 100%;">
                                             Теги:
                                         </label>
-
+                                            <ul>
                                             @forelse($tags as $key => $tag)
-                                                <input type="checkbox" name="tag{{$key}}" value="{{$tag}}">{{$tag}}
+
+                                                <li><input type="checkbox" name="tag{{$key}}" value="{{$tag}}">{{$tag}}</li>
                                             @empty
                                                 <p>Тегов нет</p>
 
                                             @endforelse
-
-
-
-
+                                            </ul>
                                     </span>
                                     </div>
                                 </div>
