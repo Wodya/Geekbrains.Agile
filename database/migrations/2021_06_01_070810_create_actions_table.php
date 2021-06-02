@@ -17,7 +17,6 @@ class CreateActionsTable extends Migration
             $table->id();
             $table->string('name', 100)->default('Полив');
             $table->text('description')->nullable();
-            $table->timestamps();
         });
     }
 

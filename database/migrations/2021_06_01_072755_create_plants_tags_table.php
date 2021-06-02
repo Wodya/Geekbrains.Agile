@@ -21,7 +21,6 @@ class CreatePlantsTagsTable extends Migration
             $table->foreignId('plant_id')
                 ->constrained('plants')
                 ->cascadeOnDelete();
-            $table->timestamps();
         });
     }
 

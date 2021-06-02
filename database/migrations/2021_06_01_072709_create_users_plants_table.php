@@ -21,10 +21,10 @@ class CreateUsersPlantsTable extends Migration
             $table->foreignId('plant_id')
                 ->constrained('plants')
                 ->cascadeOnDelete();
-            $table->timestamps();
             $table->string("nickname")->default('Моё любимимое растение');
             $table->string("note")->default('Примечание');
             $table->date('start_date')->default(now());
+            $table->timestamps();
         });
     }
 

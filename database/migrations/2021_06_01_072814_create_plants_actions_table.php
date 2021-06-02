@@ -21,6 +21,7 @@ class CreatePlantsActionsTable extends Migration
             $table->foreignId('user_plant_id')
                 ->constrained('users_plants')
                 ->cascadeOnDelete();
+            $table->date('date')->default(now());
             $table->timestamps();
         });
     }

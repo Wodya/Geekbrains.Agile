@@ -18,7 +18,6 @@ class CreateTagsTable extends Migration
             $table->string('name', 100)->default('Зелёные');
             $table->string('english_name', 100)->default('green');
             $table->text('description')->nullable();
-            $table->timestamps();
         });
     }
 
