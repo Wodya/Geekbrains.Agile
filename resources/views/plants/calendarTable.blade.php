@@ -18,7 +18,7 @@
                         <th>Дата</th>
                         <th>Растения</th>
                         <th>Действия</th>
-                       
+
                     </tr>
                     </thead>
                     <tbody>
@@ -53,31 +53,31 @@
                             @foreach($date->plantsToWatering as $plant)
                             <div class="form-check">
                                 <input type="checkbox">
-                                <label class="check-label">
+                                <label class="check-label" title="Информация о поливе">
                                     Полить<hr>
                                 </label>
                             </div>
                             @endforeach
-                            
+
 
                             @foreach($date->plantsToManuring as $plant)
                             <div class="form-check">
                                 <input type="checkbox">
-                                <label  >
+                                <label   title="Информация о удобрении">
                                     Удобрить<hr>
                                 </label>
                             </div>
-                            
+
                             @endforeach
-                            
+
                             @foreach($date->plantsToPesting as $plant)
                             <div class="form-check">
                                 <input type="checkbox">
-                                <label  >
+                                <label   title="Информация о вредителях">
                                     Обработать от вредителей<hr>
                                 </label>
                             </div>
-                            
+
                             @endforeach
                             </td>
 
