@@ -88,4 +88,12 @@ class MyPlantsController extends Controller
     {
         $dbPlant->removePlantFromFavor($userId, $plantId);
     }
+    public function setUserPlantDone(int $userId, int $plantId, int  $actionId, string $date, Request $request, IDbPlantService $dbPlant)
+    {
+        $dbPlant->setUserPlantDone($userId, $plantId, $actionId, $date);
+    }
+    public function resetUserPlantDone(int $userId, int $plantId, int  $actionId, string $date, Request $request, IDbPlantService $dbPlant)
+    {
+        $dbPlant->resetUserPlantDone($userId, $plantId, $actionId, $date);
+    }
 }
