@@ -46,13 +46,11 @@
                     <nav id="primary-menu" class="main-nav">
                         <ul class="nav">
                             <li class="active menu-item menu-home">
-                                <a href="{{route('catalog')}}">На главную</a>
+                                <a href="{{url('/')}}">На главную</a>
                             </li>
-                            <li class="mega-menu menu-item">
-                                <a href="{{route('myPlants.index')}}">Мои растения</a>
-                            </li>
+                            
                             <li class="menu-item menu-blog">
-                                <a href="#">Личный кабинет</a>
+                            <a href="{{route('myPlants.index')}}">Личный кабинет</a>
                             </li>
                             @auth
                             @if(\Auth::user()->hasRole('admin'))

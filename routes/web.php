@@ -25,7 +25,7 @@ Route::get('/', function () {
 Route::get('/onePlant/{id}', [PlantsController::class, 'onePlant']) ->name('onePlant');
 Route::get('catalog', [PlantsController::class, 'index'])->name('catalog');
 
-Route::resource('/myPlants',MyPlantsController::class);
+// Route::resource('/myPlants',MyPlantsController::class);
 Route::get('/plant/edit/{id}', [PlantsController::class, 'edit'])->name('plant.edit');
 Route::put('/plant/post', [PlantsController::class, 'update'])->name('plant.update');
 Route::get('/addFavor/{userId}/{plantId}', [MyPlantsController::class, 'addFavor'])->name('plant.addFavor');
@@ -36,7 +36,7 @@ Route::get('/removeFavor/{userId}/{plantId}', [MyPlantsController::class, 'remov
 Route::get('/deletePlant', [\App\Http\Controllers\TestController::class, 'deletePlant']);
 Route::get('/addPlantToFavor/{userId}/{plantId}', [\App\Http\Controllers\TestController::class, 'addPlantToFavor'])->name('addPlantToFavor');
 Route::get('/removePlantFromFavor/{userId}/{plantId}', [\App\Http\Controllers\TestController::class, 'removePlantFromFavor'])->name('removePlantFromFavor');
-Route::get('/getFavorPlants', [\App\Http\Controllers\TestController::class, 'getFavorPlants'])->name('getFavorPlants');
+// Route::get('/getFavorPlants', [\App\Http\Controllers\TestController::class, 'getFavorPlants'])->name('getFavorPlants');
 Route::get('/getFavorCalendar', [\App\Http\Controllers\TestController::class, 'getFavorCalendar']);
 Route::get('/calendar', [\App\Http\Controllers\TestController::class, 'testCalendar'])->name('calendar');
 
@@ -45,16 +45,18 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => ['auth', 'role:admin']], function()
+Route::group(['middleware' => 'auth'],
+     function()
 {   Route::get('/account', AccountController::class) // это как профиль
     ->name('account');
+    Route::resource('/myPlants',MyPlantsController::class);
     Route::get('/logout', function(){
         Auth::logout();
         return redirect()->route('login');
     })->name('logout');
 
-    Route::group(['prefix' => '/admin', 'as' => 'admin.' ], //'middleware' => 'admin'
-    function() {
+    Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'role:admin'],
+    function(){ 
     Route::resource('/plantList', AdminPlantsController::class);
     Route::resource('/users', AdminUserController::class);
     
