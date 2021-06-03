@@ -24,6 +24,7 @@ class CreateUsersPlantsTable extends Migration
             $table->string("nickname")->default('Моё любимимое растение');
             $table->string("note")->default('Примечание');
             $table->date('start_date')->default(now());
+            $table->boolean('is_deleted')->default(false);
             $table->timestamps();
         });
     }

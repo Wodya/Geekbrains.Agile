@@ -22,6 +22,7 @@ class CreatePlantsActionsTable extends Migration
                 ->constrained('users_plants')
                 ->cascadeOnDelete();
             $table->date('date')->default(now());
+            $table->enum('status', ['toDo', 'done', 'inProgress'])->default('toDo');
             $table->timestamps();
         });
     }
