@@ -17,7 +17,7 @@ class CreateTagsTable extends Migration
             $table->id();
             $table->string('name', 100)->default('Зелёные');
             $table->string('english_name', 100)->default('green');
-            $table->text('description')->nullable();
+            $table->enum('group', ['place', 'light', 'blossom', 'other']);
         });
     }
 
