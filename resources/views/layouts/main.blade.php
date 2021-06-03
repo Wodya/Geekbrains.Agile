@@ -35,7 +35,6 @@
     -->
 </head>
 <body class="home tree-shop-home has-header-sidebar product single-product">
-<div id="preloaderKDZ"></div>
 <div class="yolo-site">
     <x-site-header></x-site-header>
     <div id="example-wrapper">

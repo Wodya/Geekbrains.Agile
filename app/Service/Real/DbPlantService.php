@@ -91,6 +91,8 @@ class DbPlantService implements IDbPlantService
             $dbTag->delete();
         }
     }
+
+    
     public function insertPlant(PlantFull $plant): int
     {
         echo("<script>console.log('insertPlant');</script>");
@@ -144,7 +146,6 @@ class DbPlantService implements IDbPlantService
     {
         echo("<script>console.log('getFavorCalendar');</script>");
         $dbData = DbUserPlant::with("plant")->where('user_id',$userId)->get();
-        $dataPlant = [];
         foreach ($dbData as $dbItemUserPlant){
             $dataPlant[] = $this->getPlantFromDbPlant($dbItemUserPlant['plant']);
         }
@@ -162,6 +163,7 @@ class DbPlantService implements IDbPlantService
             foreach ($dataPlant as $plant){
                 if( $day % $plant->wateringDays === 0)
                     $item->plantsToWatering[] = $plant;
+
                 if( $day % $plant->manuringDays === 0)
                     $item->plantsToManuring[] = $plant;
                 if( $day % $plant->pestControlDays === 0)
@@ -170,6 +172,7 @@ class DbPlantService implements IDbPlantService
             $date[] = $item;
         }
 // dd($date);
+
         return $date;
     }
     private function getPlantFromDbPlant(DbPlant $dbPlant) : PlantShort

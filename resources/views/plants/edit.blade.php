@@ -5,20 +5,17 @@
     <form method="post" action="{{route('plant.update', ['id' => $plants->id])}}">
         @csrf
         @method('PUT')
-        <label for="addDate">Дата старта для расчёта календаря</label>
-        <input type="text" class="form-control" name="addDate" id="addDate" placeholder="addDate" value="{{$plants->addDate}}">
-        <label for="fullInfo">Полная информация</label>
-        <input type="text" class="form-control" name="fullInfo" id="fullInfo" placeholder="fullInfo" value="{{$plants->fullInfo}}">
-        <label for="wateringDays">Частота полива</label>
-        <input type="text" class="form-control" name="wateringDays" id="wateringDays" placeholder="wateringDays" value="{{$plants->wateringDays}}">
-        <label for="tags">Теги</label>
-        <input type="text" class="form-control" name="tags" id="tags" placeholder="tags" value="{{$plants->tag1}}, {{$plants->tag2}}, {{$plants->tag3}}, {{$plants->tag4}}, ">
-        <input type="submit" value="Сохранить"><br>
 
-        <div class="div-box mb mt">
+        <input type="text" class="form-control" name="photoSmallPath" placeholder="photoSmallPath"
+            value="{{$plants->photoSmallPath}}" style="display: none;">
+        <input type="text" class="form-control" name="photoBigPath" placeholder="photoBigPath"
+            value="{{$plants->photoBigPath}}" style="display: none;">
+
+        <div class=" div-box mb mt">
+
             <div class="container">
                 <h1 id="name">Редактировать растение<span></span></h1><br><br>
-                @method('PUT')
+                <!-- @method('PUT') -->
                 <div class="row">
                     <div class="col-md-5">
                         <div class="single-product-slider">
@@ -63,26 +60,128 @@
                     <div class="col-md-7">
                         <div class="single-product-content">
                             <div class="summary-product entry-summary">
-                                <input type="text" class="form-control" name="name" placeholder="name" value="{{$plants->name}}">
-                                <div>
-                                    <p class="price"><span class="product-begreen-price-amount amount"><span
-                                                class="product-begreen-price-currencysymbol">$</span>38.00</span></p>
-                                </div>
+
+                                <label for="name">
+                                    <h3>Название растения</h3><br>
+                                </label>
+                                <input type="text" class="form-control" name="name" placeholder="name"
+                                    value="{{$plants->name}}">
+                                <label for="shortInfo">
+                                    <br>
+                                    <h3>Короткое описание продукта</h3><br>
+                                </label>
+
                                 <div class="product-single-short-description">
                                     <p><input type="text" class="form-control" name="shortInfo" placeholder="shortInfo"
                                             value="{{$plants->shortInfo}}"></p>
                                 </div>
-                                <form class="cart">
-                                    <div class="quantity">
-                                        <label>Quantity:</label>
-                                        <div class="quantity-inner">
-                                            <input step="1" min="1" name="quantity" value="1" title="Qty" size="4"
-                                                type="number" class="input-text qty text" />
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="single_add_to_cart_button button alt">Add to
-                                        cart</button>
-                                </form>
+
+                                <div class="product_meta" style="margin-top: 30px;">
+                                    <span class="product-stock-status-wrapper" style="display: flex;">
+                                        <label for="start" style="align-self: center; width: 100%;">
+                                            Дата старта для расчёта календаря:
+                                        </label>
+                                        <span class="product-stock-status in-stock">
+                                            <input type="date" class="form-control" name="addDate" placeholder="addDate"
+                                                value="{{$plants->addDate}}" style="width: min-content;">
+                                        </span>
+                                    </span>
+                                    <span class="posted_in" style="display: flex;">
+                                        <label for="wateringDays" style="align-self: center; width: 100%;">
+                                            Частота полива:
+                                        </label>
+                                        <select class="form-control" name="wateringDays" style="width: min-content;">
+                                            <option selected="selected">
+                                                {{$plants->wateringDays}}
+                                            </option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                        </select>
+                                    </span>
+                                    <span class="posted_in" style="display: flex;">
+                                        <label for="wateringDays" style="align-self: center; width: 100%;">
+                                            Частота обработки от вредителей:
+                                        </label>
+                                        <select class="form-control" name="pestControlDays" style="width: min-content;">
+                                            <option selected="selected">
+                                                {{$plants->pestControlDays}}
+                                            </option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                        </select>
+                                    </span>
+                                    <span class="posted_in" style="display: flex;">
+                                        <label for="wateringDays" style="align-self: center; width: 100%;">
+                                            Частота удобрения:
+                                        </label>
+                                        <select class="form-control" name="manuringDays" style="width: min-content;">
+                                            <option selected="selected">
+                                                {{$plants->manuringDays}}
+                                            </option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                        </select>
+                                    </span>
+                                    <span class="posted_in" style="display: flex;">
+                                        <label for="wateringDays" style="align-self: center; width: 100%;">
+                                            Теги:
+                                        </label>
+                                        <select class="tag_edit" name="tag1" placeholder="tag1">
+                                            <option selected="selected">
+                                                {{$plants->tag1}}
+                                            </option>
+                                            <option>напольные</option>
+                                            <option>настольные</option>
+                                            <option>подвесные</option>
+                                        </select>
+                                        <select class="tag_edit" name="tag2" placeholder="tag2">
+                                            <option selected="selected">
+                                                {{$plants->tag2}}
+                                            </option>
+                                            <option>теневыносливые</option>
+                                            <option>светолюбивые</option>
+                                        </select>
+                                        <select class="tag_edit" name="tag3" placeholder="tag3">
+                                            <option selected="selected">
+                                                {{$plants->tag3}}
+                                            </option>
+                                            <option>не цветущие</option>
+                                            <option>цветущие</option>
+                                        </select>
+                                        <select class="tag_edit" name="tag4" placeholder="tag4">
+                                            <option selected="selected">
+                                                {{$plants->tag4}}
+                                            </option>
+                                            <option>выделяют кислород</option>
+                                            <option>очищают воздух</option>
+                                        </select>
+                                    </span>
+                                </div>
+                               
                                 <div class="yith-wcwl-add-to-wishlist">
                                     <div class="yith-wcwl-add-button show">
                                         <a href="{{route('addPlantToFavor', ['userId'=>1, 'plantId'=>$plants->id])}}"
@@ -128,73 +227,30 @@
                     <div class="row">
                         <div class="col-md-2 col-sm-12">
                             <ul class="nav nav-pills">
-                                <li class="active"><a href="#tab-description" data-toggle="tab">Description</a></li>
-                                <li><a href="#tab-reviews" data-toggle="tab">Reviews (0)</a></li>
+
+                                <li class="active"><a href="#tab-description" data-toggle="tab">Description</a>
+                                </li>
+
                             </ul>
                         </div>
                         <div class="col-md-10 col-sm-12">
                             <div class="desc-review-content tab-content clearfix">
                                 <div id="tab-description" class="tab-pane active">
-                                    <h2 class="mb-20">Подробное описание продукта</h2>
+
+                                    <label for="fullInfo">
+                                        <h3>Подробное описание продукта</h3><br>
+                                    </label>
+                                    <textarea rows="7" cols="30" style="width:95%;" class="form-control" name="fullInfo"
+                                        placeholder="{{$plants->fullInfo}}" value="{{$plants->fullInfo}}"></textarea>
+                                    <!-- <h2 class="mb-20">Подробное описание продукта</h2>
                                     <p><input type="text" class="form-control" name="fullInfo" placeholder="fullInfo"
-                                            value="{{$plants->fullInfo}}"></p>
+                                            value="{{$plants->fullInfo}}"></p> -->
                                 </div>
-                                <div id="tab-reviews" class="tab-pane dib-none">
-                                    <div id="reviews" class="product-begreen-reviews">
-                                        <div id="comments">
-                                            <h2 class="product-begreen-reviews-title">Reviews</h2>
-                                            <p class="product-begreen-noreviews">There are no reviews yet.</p>
-                                        </div>
-                                        <div id="review_form_wrapper">
-                                            <div id="review_form">
-                                                <div id="respond" class="comment-respond">
-                                                    <h3 id="reply-title" class="comment-reply-title">Be the first to
-                                                        review “The
-                                                        Calvert with Succulents” <small></small></h3>
-                                                    <form id="commentform" class="comment-form">
-                                                        <div class="comment-notes"><span id="email-notes">Your email
-                                                                address
-                                                                will not be published.</span> Required fields are marked
-                                                            <span class="required">*</span>
-                                                        </div>
-                                                        <div class="comment-form-rating mb-20 mt-20">
-                                                            <label>Your Rating</label>
-                                                        </div>
-                                                        <div class="star-rating"><i class="fa fa-star"></i><i
-                                                                class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                                                class="fa fa-star"></i><i class="fa fa-star-o"></i>
-                                                        </div>
-                                                        <div class="comment-form-comment">
-                                                            <label class="mb-20 mt-20">Your Review *</label>
-                                                            <textarea id="comment" name="comment" cols="45" rows="8"
-                                                                required=""></textarea>
-                                                        </div>
-                                                        <div class="comment-fields-wrap">
-                                                            <div class="comment-fields-inner clearfix">
-                                                                <p class="comment-form-author">
-                                                                    <label class="mb-20 mt-20">Name *</label>
-                                                                    <input id="author" type="text" />
-                                                                </p>
-                                                                <p class="comment-form-email">
-                                                                    <label class="mb-20 mt-20">Email *</label>
-                                                                    <input id="email" name="email" size="30" required=""
-                                                                        type="email" />
-                                                                </p>
-                                                                <p class="form-submit mt-20">
-                                                                    <input id="submit" name="submit" value="Submit"
-                                                                        type="submit" class="submit" />
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <br /><input class="btn btn-primary" style="float: right" type="submit"
+                                    value="Сохранить"><br><br><br><br>
                             </div>
                         </div>
-                        <br>
+
                     </div>
                 </div>
             </div>
@@ -206,4 +262,6 @@
     </form>
 </div>
 
+
 @endsection
+

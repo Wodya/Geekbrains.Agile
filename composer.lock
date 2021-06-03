@@ -4,8 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "003fd2a7fdf4c0e5d16953e0618397f0",
-    "packages": [
+
+    "content-hash": "fbb5075f89ce0ba04c3e9f2333dcb39c",
+   "packages": [
         {
             "name": "asm89/stack-cors",
             "version": "v2.0.3",
@@ -4828,6 +4829,7 @@
     ],
     "packages-dev": [
         {
+
             "name": "barryvdh/laravel-debugbar",
             "version": "v3.5.7",
             "source": {
@@ -4909,6 +4911,7 @@
             "time": "2021-05-13T20:18:35+00:00"
         },
         {
+
             "name": "barryvdh/laravel-ide-helper",
             "version": "v2.10.0",
             "source": {
@@ -8681,6 +8684,7 @@
             "time": "2020-07-07T18:42:57+00:00"
         },
         {
+
             "name": "symfony/debug",
             "version": "v4.4.22",
             "source": {
@@ -8750,6 +8754,7 @@
             "time": "2021-04-02T07:50:12+00:00"
         },
         {
+
             "name": "symfony/filesystem",
             "version": "v5.2.7",
             "source": {
