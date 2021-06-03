@@ -19,6 +19,16 @@ class SeederPlant extends Seeder
         DB::table('plant')->delete();
         DB::table('plant')->insert($this->getData());
         DB::table('plant_tag')->insert($this->getDataTag());
+        DB::table('action')->delete();
+        DB::table('action')->insert($this->getDataActions());
+    }
+    private function getDataActions() :array
+    {
+        $data = [];
+        $data[] = ["id" => 1, "name" => "Полив", "info" => 'Полив осуществляется лейкой с водой'];
+        $data[] = ["id" => 2, "name" => "Удобрение", "info" => 'Удобрение при помощие специальных средств'];
+        $data[] = ["id" => 3, "name" => "Обработка", "info" => 'Обработка от вредителей и насекомых'];
+        return $data;
     }
     private function getData() :array
     {

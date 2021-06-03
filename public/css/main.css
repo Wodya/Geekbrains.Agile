@@ -18032,13 +18032,8 @@ html.mm-opening .mm-slideout {
 }
 
 .form-check {
-    vertical-align: center;
     display: flex;
-    align-content: space-between;
-}
-
-.check-label {
-    margin-left: 10px;
+    align-items: center;
 }
 
 .calendar-head {
@@ -18048,4 +18043,31 @@ html.mm-opening .mm-slideout {
 .tag_edit {
     padding: 0;
     height: 20px;
+}
+.calendar-td-center{
+    text-align: center;
+    vertical-align: center;
+}
+.calendar-td{
+    display: flex;
+    flex-direction: column;
+}
+.calendar-td-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    height: 30px;
+    margin-top: 5px;
+    align-content: center;
+}
+.calendar-td-name{
+    width: 120px;
+    margin-left: 5px;
+}
+.calendar-td-check {
+    margin: 0 10px 0 0 !important;
+}
+
+.odd-row{
+    background-color: lightcyan;
 }
