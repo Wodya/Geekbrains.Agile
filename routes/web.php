@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\PlantsController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\MyPlantsController;
 use \App\Http\Controllers\Admin\AdminPlantsController;
+use App\Http\Controllers\Admin\AdminUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +40,25 @@ Route::get('/getFavorPlants', [\App\Http\Controllers\TestController::class, 'get
 Route::get('/getFavorCalendar', [\App\Http\Controllers\TestController::class, 'getFavorCalendar']);
 Route::get('/calendar', [\App\Http\Controllers\TestController::class, 'testCalendar'])->name('calendar');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => ['auth', 'role:admin']], function()
+{   Route::get('/account', AccountController::class) // это как профиль
+    ->name('account');
+    Route::get('/logout', function(){
+        Auth::logout();
+        return redirect()->route('login');
+    })->name('logout');
+
+    Route::group(['prefix' => '/admin', 'as' => 'admin.' ], //'middleware' => 'admin'
+    function() {
+    Route::resource('/plantList', AdminPlantsController::class);
+    Route::resource('/users', AdminUserController::class);
+    
+    
+    });
+
+});

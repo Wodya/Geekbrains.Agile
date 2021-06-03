@@ -54,18 +54,13 @@
                             <li class="menu-item menu-blog">
                                 <a href="#">Личный кабинет</a>
                             </li>
+                            @auth
+                            @if(\Auth::user()->hasRole('admin'))
                             <li class="menu-item menu-blog">
-                                <a href="#">Ещё один пункт меню</a>
+                                <a href="#">Админка</a>
                             </li>
-                            <li class="menu-item menu-blog">
-                                <a href="#">Пункт меню с подменю</a>
-                                <ul class="sub-menu">
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li><a href="contact-us.html">Contact Us</a></li>
-                                    <li><a href="book-service.html">Book Service</a></li>
-                                    <li><a href="page-404.html">404 Page</a></li>
-                                </ul>
-                            </li>
+                           @endif
+                           @endauth
                         </ul>
                     </nav>
                     <!-- .header-main-nav-->
