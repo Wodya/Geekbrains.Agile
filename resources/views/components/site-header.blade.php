@@ -55,7 +55,7 @@
                                 <a href="#">Личный кабинет</a>
                             </li>
                             <li class="menu-item menu-blog">
-                                <a href="#">Ещё один пункт меню</a>
+                                <a href="{{route('calendar')}}">Календарь работ</a>
                             </li>
                             <li class="menu-item menu-blog">
                                 <a href="#">Пункт меню с подменю</a>
