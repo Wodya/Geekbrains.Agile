@@ -61,6 +61,7 @@ interface IDbPlantService
      * @param int $userId
      * @return array
      */
+
     public function getFavorCalendar(int $userId): array;
 
     /**

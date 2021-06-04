@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\DbModels\DbPlantTag;
 use App\Models\PlantFull;
 use App\Service\IDbPlantService;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
 class PlantsController extends Controller
 {
+
     public function index(Request $request, IDbPlantService $dbPlant)
     {
         $tagsList = DbPlantTag::pluck('tag')->unique();
@@ -53,5 +55,4 @@ class PlantsController extends Controller
 
         return redirect('/catalog');
     }
-   
 }

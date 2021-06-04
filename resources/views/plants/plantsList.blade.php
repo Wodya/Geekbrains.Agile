@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('content')
+
 <script type="text/javascript" src="{{ asset('libs/jquery/jquery.min.js')}}"></script>
 <div class="div-box">
     <div class="home-4-new-collections">
@@ -11,7 +12,6 @@
                     @foreach($tagsList as $tag)
                         <button data-filter=".{{$tag}}" class="button">{{$tag}}</button>
                     @endforeach
-
                 </div>
                 <!-- Проверка на добавление -->
                 @if(session()->has('success'))
@@ -49,17 +49,18 @@
                                         <div class="yith-wcwl-add-button show">
                                             <a href="{{route('onePlant', ['id' => $plant->id])}}" class="product-quick-view"><i class="fa fa-search"></i>Quick view</a>
                                         </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </li>
-                    @empty
-                        <h2>Что-то сломалось =(</h2>
-                    @endforelse
-                </ul>
+                            </li>
+                        @empty
+                            <h2>Что-то сломалось =(</h2>
+                        @endforelse
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
+
 </div>
 <script>
     $('.add_to_wishlist').click(function (e){

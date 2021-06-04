@@ -68,21 +68,21 @@ class SeederPlant extends Seeder
             $tag3 = $tags3[mt_rand(0,count($tags3)-1)];
             $tag4 = $tags4[mt_rand(0,count($tags4)-1)];
             $data[] = [
-                    "plant_id" => $select->id,
-                    "tag" => $tag1
-                ];
+                "plant_id" => $select->id,
+                "tag" => $tag1
+            ];
             $data[] = [
-                    "plant_id" => $select->id,
-                    "tag" => $tag2
-                ];
+                "plant_id" => $select->id,
+                "tag" => $tag2
+            ];
             $data[] = [
-                    "plant_id" => $select->id,
-                    "tag" => $tag3
-                ];
+                "plant_id" => $select->id,
+                "tag" => $tag3
+            ];
             $data[] = [
-                    "plant_id" => $select->id,
-                    "tag" => $tag4
-                ];
+                "plant_id" => $select->id,
+                "tag" => $tag4
+            ];
         }
         return $data;
     }
