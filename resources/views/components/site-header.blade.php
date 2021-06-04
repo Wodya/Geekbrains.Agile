@@ -48,14 +48,17 @@
                             <li class="active menu-item menu-home">
                                 <a href="{{url('/')}}">На главную</a>
                             </li>
-                            
+                            <li class="active menu-item menu-home">
+                                <a href="{{route('catalog')}}">Каталог</a>
+                            </li>
+
                             <li class="menu-item menu-blog">
                             <a href="{{route('myPlants.index')}}">Личный кабинет</a>
                             </li>
                             <li class="menu-item menu-blog">
                             <a href="{{route('calendar')}}">Календарь работ</a>
                             </li>
-                            
+
                             @auth
                             @if(\Auth::user()->hasRole('admin'))
                             <li class="menu-item menu-blog">
