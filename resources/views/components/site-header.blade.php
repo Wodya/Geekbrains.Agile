@@ -46,26 +46,23 @@
                     <nav id="primary-menu" class="main-nav">
                         <ul class="nav">
                             <li class="active menu-item menu-home">
-                                <a href="{{route('catalog')}}">На главную</a>
+                                <a href="{{url('/')}}">На главную</a>
                             </li>
-                            <li class="mega-menu menu-item">
-                                <a href="{{route('myPlants.index')}}">Мои растения</a>
+                            
+                            <li class="menu-item menu-blog">
+                            <a href="{{route('myPlants.index')}}">Личный кабинет</a>
                             </li>
                             <li class="menu-item menu-blog">
-                                <a href="#">Личный кабинет</a>
+                            <a href="{{route('calendar')}}">Календарь работ</a>
                             </li>
+                            
+                            @auth
+                            @if(\Auth::user()->hasRole('admin'))
                             <li class="menu-item menu-blog">
-                                <a href="{{route('calendar')}}">Календарь работ</a>
+                                <a href="#">Админка</a>
                             </li>
-                            <li class="menu-item menu-blog">
-                                <a href="#">Пункт меню с подменю</a>
-                                <ul class="sub-menu">
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li><a href="contact-us.html">Contact Us</a></li>
-                                    <li><a href="book-service.html">Book Service</a></li>
-                                    <li><a href="page-404.html">404 Page</a></li>
-                                </ul>
-                            </li>
+                           @endif
+                           @endauth
                         </ul>
                     </nav>
                     <!-- .header-main-nav-->
