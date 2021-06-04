@@ -3,27 +3,32 @@ namespace App\Service;
 use App\Models\PlantFull;
 use App\Models\PlantShort;
 
-interface IDbPlantService{
+interface IDbPlantService
+{
     /**
      * Возвращает список растений
      * @return PlantShort[]
      */
-    public function getAllPlants() : array;
+    public function getAllPlants(): array;
+
     /**
      * Возвращает подробную информацию об одном растении
      * @param int $id
      * @return PlantFull
      */
-    public function getPlant(int $id) : PlantFull;
+    public function getPlant(int $id): PlantFull;
+
     /**
      * Сохраняет подробную информацию о существующем растении
      */
     public function updatePlant(PlantFull $plant);
+
     /**
      * Вставляет подробную информацию о растении, которого нет в БД
      * @return int - Id вставленного растения
      */
-    public function insertPlant(PlantFull $plant) : int;
+    public function insertPlant(PlantFull $plant): int;
+
     /**
      * Удаляет растение
      */
@@ -36,6 +41,7 @@ interface IDbPlantService{
      * @return mixed
      */
     public function addPlantToFavor(int $userId, int $plantId);
+
     /**
      * Удаляет растение из избранного
      * @param int $userId
@@ -43,16 +49,36 @@ interface IDbPlantService{
      * @return mixed
      */
     public function removePlantFromFavor(int $userId, int $plantId);
+
     /**
      * Возвращает список избранных растений
      * @return PlantShort[]
      */
-    public function getFavorPlants(int $userId) : array;
+    public function getFavorPlants(int $userId): array;
 
     /**
      * Возвращает календарь
      * @param int $userId
      * @return array
      */
-    public function getFavorCalendar(int $userId) : array;
+
+    public function getFavorCalendar(int $userId): array;
+
+    /**
+     * Установка флага сделанной работы
+     * @param int $userId
+     * @param int $plantId
+     * @param int $actionId
+     * @param string $date
+     */
+    public function setUserPlantDone(int $userId, int $plantId, int $actionId, string $date): void;
+
+    /**
+     * Сброс флага сделанной работы
+     * @param int $userId
+     * @param int $plantId
+     * @param int $actionId
+     * @param string $date
+     */
+    public function resetUserPlantDone(int $userId, int $plantId, int $actionId, string $date): void;
 }

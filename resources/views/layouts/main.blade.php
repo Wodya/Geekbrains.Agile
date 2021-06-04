@@ -10,7 +10,9 @@
     <!-- Web Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Pacifico%7CSource+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i&amp;amp;subset=latin-ext,vietnamese"
         rel="stylesheet">
+
    <!-- Vendor CSS-->
+
     <link rel="stylesheet" type="text/css" href="{{ asset('libs/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('libs/font-awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('libs/animate/animated.css')}}">
@@ -26,7 +28,9 @@
     <!-- Template CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css')}}">
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+
     <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
     <!--if lt IE 9
     script(src='https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')
@@ -35,7 +39,7 @@
     -->
 </head>
 <body class="home tree-shop-home has-header-sidebar product single-product">
-<div id="preloaderKDZ"></div>
+
 <div class="yolo-site">
     <x-site-header></x-site-header>
     <div id="example-wrapper">
@@ -72,43 +76,6 @@
 <script type="text/javascript" src="{{ asset('libs/owl.carousel.min/owl.carousel.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/main.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/add_to_favor.js')}}"></script>
-<script>
-    $('.add_to_wishlist').click(function (e){
-        e.preventDefault();
-        let isFavor = +$(this).data("isfavor");
-        let url = '';
 
-        if(isFavor === 1)
-            url = "{{route('plant.removeFavor', ['userId'=>1, 'plantId'=>'plant_id_val'])}}";
-        else
-            url = "{{route('plant.addFavor', ['userId'=>1, 'plantId'=>'plant_id_val'])}}";
-
-        url = url.replace('plant_id_val', $(this).data("id"));
-        let element = $(this);
-        let child = $(this).children('i').first();
-
-        $.ajax({
-            url: url,
-            success: function(data) {
-                console.log(url);
-                child.removeAttr('class');
-                child.removeAttr('aria-hidden');
-                console.log(child);
-                if (isFavor === 1) {
-                    child.addClass("fa fa-heart-o");
-                    element.data("isfavor",0);
-                    alert("Удалено из избранного");
-                }
-                else {
-                    child.addClass("fa fa-heart");
-                    child.attr("aria-hidden","true");
-                    element.data("isfavor",1);
-                    alert("Добавлено в избранное");
-                }
-                console.log(child);
-            }
-        });
-    });
-</script>
 </body>
 </html>

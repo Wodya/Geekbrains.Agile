@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('content')
-{{--@dd($plantsList)--}}
+
+<script type="text/javascript" src="{{ asset('libs/jquery/jquery.min.js')}}"></script>
 <div class="div-box">
     <div class="home-4-new-collections">
         <div class="container">
@@ -11,7 +12,6 @@
                     @foreach($tagsList as $tag)
                         <button data-filter=".{{$tag}}" class="button">{{$tag}}</button>
                     @endforeach
-
                 </div>
                 <!-- Проверка на добавление -->
                 @if(session()->has('success'))
@@ -49,17 +49,55 @@
                                         <div class="yith-wcwl-add-button show">
                                             <a href="{{route('onePlant', ['id' => $plant->id])}}" class="product-quick-view"><i class="fa fa-search"></i>Quick view</a>
                                         </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </li>
-                    @empty
-                        <h2>Что-то сломалось =(</h2>
-                    @endforelse
-                </ul>
+                            </li>
+                        @empty
+                            <h2>Что-то сломалось =(</h2>
+                        @endforelse
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
+</div>
+<script>
+    $('.add_to_wishlist').click(function (e){
+        e.preventDefault();
+        let isFavor = +$(this).data("isfavor");
+        let url = '';
+
+        if(isFavor === 1)
+            url = "{{route('plant.removeFavor', ['userId'=>1, 'plantId'=>'plant_id_val'])}}";
+        else
+            url = "{{route('plant.addFavor', ['userId'=>1, 'plantId'=>'plant_id_val'])}}";
+
+        url = url.replace('plant_id_val', $(this).data("id"));
+        let element = $(this);
+        let child = $(this).children('i').first();
+
+        $.ajax({
+            url: url,
+            success: function(data) {
+                console.log(url);
+                child.removeAttr('class');
+                child.removeAttr('aria-hidden');
+                console.log(child);
+                if (isFavor === 1) {
+                    child.addClass("fa fa-heart-o");
+                    element.data("isfavor",0);
+                    alert("Удалено из избранного");
+                }
+                else {
+                    child.addClass("fa fa-heart");
+                    child.attr("aria-hidden","true");
+                    element.data("isfavor",1);
+                    alert("Добавлено в избранное");
+                }
+                console.log(child);
+            }
+        });
+    });
+</script>
 @endsection

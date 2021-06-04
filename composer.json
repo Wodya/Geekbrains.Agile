@@ -14,7 +14,6 @@
         "laravel/ui": "^3.3"
     },
     "require-dev": {
-
         "barryvdh/laravel-debugbar": "^3.5",
         "barryvdh/laravel-ide-helper": "^2.10",
         "facade/ignition": "^2.5",

@@ -52,6 +52,10 @@
                             <li class="menu-item menu-blog">
                             <a href="{{route('myPlants.index')}}">Личный кабинет</a>
                             </li>
+                            <li class="menu-item menu-blog">
+                            <a href="{{route('calendar')}}">Календарь работ</a>
+                            </li>
+                            
                             @auth
                             @if(\Auth::user()->hasRole('admin'))
                             <li class="menu-item menu-blog">
