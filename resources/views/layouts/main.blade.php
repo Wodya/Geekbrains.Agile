@@ -71,43 +71,6 @@
 <script type="text/javascript" src="{{ asset('libs/owl.carousel.min/owl.carousel.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/main.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/add_to_favor.js')}}"></script>
-<script>
-    $('.add_to_wishlist').click(function (e){
-        e.preventDefault();
-        let isFavor = +$(this).data("isfavor");
-        let url = '';
 
-        if(isFavor === 1)
-            url = "{{route('plant.removeFavor', ['userId'=>1, 'plantId'=>'plant_id_val'])}}";
-        else
-            url = "{{route('plant.addFavor', ['userId'=>1, 'plantId'=>'plant_id_val'])}}";
-
-        url = url.replace('plant_id_val', $(this).data("id"));
-        let element = $(this);
-        let child = $(this).children('i').first();
-
-        $.ajax({
-            url: url,
-            success: function(data) {
-                console.log(url);
-                child.removeAttr('class');
-                child.removeAttr('aria-hidden');
-                console.log(child);
-                if (isFavor === 1) {
-                    child.addClass("fa fa-heart-o");
-                    element.data("isfavor",0);
-                    alert("Удалено из избранного");
-                }
-                else {
-                    child.addClass("fa fa-heart");
-                    child.attr("aria-hidden","true");
-                    element.data("isfavor",1);
-                    alert("Добавлено в избранное");
-                }
-                console.log(child);
-            }
-        });
-    });
-</script>
 </body>
 </html>

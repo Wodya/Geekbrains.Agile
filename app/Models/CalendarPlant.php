@@ -12,6 +12,10 @@ class CalendarPlant extends ModelCommon
      */
     public $date;
     /**
+     * @var string
+     */
+    public $dayInfo;
+    /**
      * @var CalendarPlantRow[]
      */
     public $plantsToDo;

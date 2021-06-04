@@ -164,35 +164,36 @@ class DbPlantService implements IDbPlantService
         $actionPesting = DbAction::where('id', 3)->first();
 
         for($day=1; $day <= $totalDays; $day++){
-            $dateDay = $begin->modify("+{$day} day");
             $item = new CalendarPlant();
             $item->dayNum = $day;
-            $item->date = date_format($dateDay,'Y-m-d');
+            $item->date = date_format($begin,'Y-m-d');
+            $item->dayInfo = date_format($begin,'d.m');
             $item->plantsToDo = [];
             foreach ($dataPlant as $plant){
                 if( $plant->wateringDays > 0 && $day % $plant->wateringDays === 0) {
                     $toDo = new CalendarPlantRow();
                     $toDo->plant = $plant;
                     $toDo->action = $actionWatering;
-                    $toDo->done = DbPlantUserDone::where('user_id', $userId)->where('plant_id',$plant->id)->where('action_id',1)->where('date',$dateDay)->first() !== null;
+                    $toDo->done = DbPlantUserDone::where('user_id', $userId)->where('plant_id',$plant->id)->where('action_id',1)->where('date',$begin)->first() !== null;
                     $item->plantsToDo[] = $toDo;
                 }
                 if( $plant->manuringDays > 0 && $day % $plant->manuringDays === 0){
                     $toDo = new CalendarPlantRow();
                     $toDo->plant = $plant;
                     $toDo->action = $actionManuring;
-                    $toDo->done = DbPlantUserDone::where('user_id', $userId)->where('plant_id',$plant->id)->where('action_id',2)->where('date',$dateDay)->first() !== null;
+                    $toDo->done = DbPlantUserDone::where('user_id', $userId)->where('plant_id',$plant->id)->where('action_id',2)->where('date',$begin)->first() !== null;
                     $item->plantsToDo[] = $toDo;
                 }
                 if( $plant->pestControlDays > 0 && $day % $plant->pestControlDays === 0){
                     $toDo = new CalendarPlantRow();
                     $toDo->plant = $plant;
                     $toDo->action = $actionPesting;
-                    $toDo->done = DbPlantUserDone::where('user_id', $userId)->where('plant_id',$plant->id)->where('action_id',3)->where('date',$dateDay)->first() !== null;
+                    $toDo->done = DbPlantUserDone::where('user_id', $userId)->where('plant_id',$plant->id)->where('action_id',3)->where('date',$begin)->first() !== null;
                     $item->plantsToDo[] = $toDo;
                 }
             }
             $date[] = $item;
+            $begin->modify("+1 day");
         }
 //        dd($date);
         return $date;

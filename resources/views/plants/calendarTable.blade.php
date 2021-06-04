@@ -23,7 +23,7 @@
                     <tbody>
                     @forelse($dates as $date)
                         <tr class="{{$loop->iteration % 2 == 0 ? 'odd-row' : ''}}">
-                            <td class="calendar-td-center">{{$date->dayNum . ' мая'}}</td>
+                            <td class="calendar-td-center">{{$date->dayInfo}}</td>
                             <td class="calendar-td">
                                 @foreach($date->plantsToDo as $do)
                                 <div class="calendar-td-item" title="{{$do->action->info}}">
