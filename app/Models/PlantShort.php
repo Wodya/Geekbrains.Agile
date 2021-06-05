@@ -1,10 +1,7 @@
 <?php
-
-
 namespace App\Models;
 
-
-class PlantShort
+class PlantShort extends ModelCommon
 {
     /**
     * @var int
@@ -31,8 +28,27 @@ class PlantShort
      */
     public $wateringDays;
     /**
+     * @var bool
+     */
+    public $isFavor;
+    /**
+     * @var string
+     */
+    public $manuringDays;
+    /**
      * @var string
      */
     public $tags;
+
+    public $pestControlDays;
+
+    /**
+     * @var string
+     */
+    public string $tagsList;
+    /**
+      * @var string[]
+      */
+
 
 }

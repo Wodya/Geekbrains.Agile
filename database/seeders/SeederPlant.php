@@ -19,6 +19,16 @@ class SeederPlant extends Seeder
         DB::table('plant')->delete();
         DB::table('plant')->insert($this->getData());
         DB::table('plant_tag')->insert($this->getDataTag());
+        DB::table('action')->delete();
+        DB::table('action')->insert($this->getDataActions());
+    }
+    private function getDataActions() :array
+    {
+        $data = [];
+        $data[] = ["id" => 1, "name" => "Полив", "info" => 'Полив осуществляется лейкой с водой'];
+        $data[] = ["id" => 2, "name" => "Удобрение", "info" => 'Удобрение при помощие специальных средств'];
+        $data[] = ["id" => 3, "name" => "Обработка", "info" => 'Обработка от вредителей и насекомых'];
+        return $data;
     }
     private function getData() :array
     {
@@ -35,7 +45,9 @@ class SeederPlant extends Seeder
                 'full_info' => $faker->realText(mt_rand(150,200)),
                 'photo_small_path' => "image{$imgNum}.jpg",
                 'photo_big_path' => "image{$imgNum}.jpg",
-                'watering_days' => mt_rand(1,10)
+                'watering_days' => mt_rand(1,10),
+                'manuring_days' => mt_rand(1,15),
+                'pest_control_days' => mt_rand(1,30),
             ];
         }
         return $data;

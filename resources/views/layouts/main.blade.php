@@ -24,6 +24,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('libs/slick-sider/slick.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('libs/countdown-timer/css/demo.css')}}">
 
+
     <!-- Template CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css')}}">
@@ -38,7 +39,7 @@
     -->
 </head>
 <body class="home tree-shop-home has-header-sidebar product single-product">
-<div id="preloaderKDZ"></div>
+
 <div class="yolo-site">
     <x-site-header></x-site-header>
     <div id="example-wrapper">
@@ -74,6 +75,7 @@
 <script type="text/javascript" src="{{ asset('libs/countdown-timer/js/kinetic.js')}}"></script>
 <script type="text/javascript" src="{{ asset('libs/owl.carousel.min/owl.carousel.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/main.js')}}"></script>
+<script type="text/javascript" src="{{ asset('js/add_to_favor.js')}}"></script>
 
 </body>
 </html>

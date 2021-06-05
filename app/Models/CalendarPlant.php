@@ -1,14 +1,22 @@
 <?php
 namespace App\Models;
 
-class CalendarPlant
+class CalendarPlant extends ModelCommon
 {
     /**
      * @var int
      */
     public $dayNum;
     /**
-     * @var string[]
+     * @var string
      */
-    public $plantsToWatering;
+    public $date;
+    /**
+     * @var string
+     */
+    public $dayInfo;
+    /**
+     * @var CalendarPlantRow[]
+     */
+    public $plantsToDo;
 }

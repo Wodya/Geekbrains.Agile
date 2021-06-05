@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 /**
  * Класс "Растение"
  */
-class PlantFull
+class PlantFull extends ModelCommon
 {
     /**
      * @var int
@@ -31,7 +31,7 @@ class PlantFull
      * @var string
      */
     public $fullInfo;
-//    как ухаживать, грунт, цветение, опасное или нет
+
     /**
      * @var string
      */
@@ -44,8 +44,20 @@ class PlantFull
      * @var string
      */
     public $wateringDays;
-   /**
+    /**
+     * @var bool
+     */
+    public $isFavor;   /**
      * @var string[]
      */
     public $tags;
+
+    public $manuringDays;
+    /**
+      * @var string[]
+      */
+      public $pestControlDays;
+    /**
+      * @var string[]
+      */
 }

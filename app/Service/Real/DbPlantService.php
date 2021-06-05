@@ -2,9 +2,13 @@
 
 namespace App\Service\Real;
 
+use App\Models\Action;
 use App\Models\CalendarPlant;
+use App\Models\CalendarPlantRow;
+use App\Models\DbModels\DbAction;
 use App\Models\DbModels\DbPlant;
 use App\Models\DbModels\DbPlantTag;
+use App\Models\DbModels\DbPlantUserDone;
 use App\Models\DbModels\DbUserPlant;
 use App\Models\PlantFull;
 use App\Models\PlantShort;
@@ -44,6 +48,8 @@ class DbPlantService implements IDbPlantService
         $item->photoSmallPath = $dbItem['photo_small_path'];
         $item->photoBigPath = $dbItem['photo_big_path'];
         $item->wateringDays = $dbItem['watering_days'];
+        $item->manuringDays = $dbItem['manuring_days'];
+        $item->pestControlDays = $dbItem['pest_control_days'];
         $item->tags = [];
         foreach ($dbItem['tags'] as $dbTag)
             $item->tags[] = $dbTag['tag'];
@@ -58,8 +64,8 @@ class DbPlantService implements IDbPlantService
         echo("<script>console.log('updatePlant');</script>");
         $exists = DbPlant::where('name', $plant->name)->get();
         foreach ($exists as $exist) {
-            if ($exist["id"] !== $plant->id)
-                throw new \ErrorException('Растение с таким именем уже сущетсвует');
+           if ($exist["id"] != $plant->id)
+               throw new \ErrorException('Растение с таким именем уже сущетсвует');
         }
         $dbPlant = DbPlant::first('id', $plant->id);
         $dbPlant['name'] = $plant->name;
@@ -68,6 +74,8 @@ class DbPlantService implements IDbPlantService
         $dbPlant['photo_small_path'] = $plant->photoSmallPath;
         $dbPlant['photo_big_path'] = $plant->photoBigPath;
         $dbPlant['watering_days'] = $plant->wateringDays;
+        $dbPlant['manuring_days'] = $plant->manuringDays;
+        $dbPlant['pest_control_days'] = $plant->pestControlDays;
         $dbPlant->save();
 
         $dbTags = DbPlantTag::where('plant_id', $plant->id)->get();
@@ -91,7 +99,6 @@ class DbPlantService implements IDbPlantService
             $dbTag->delete();
         }
     }
-
     public function insertPlant(PlantFull $plant): int
     {
         echo("<script>console.log('insertPlant');</script>");
@@ -156,19 +163,46 @@ class DbPlantService implements IDbPlantService
         }
         $date = [];
         $begin = new DateTime('first day of this month');
+        date_time_set($begin,0,0,0);
         $end = new DateTime('last day of this month');
-        $totalDays = $end->diff($begin)->d + 1;
+        $totalDays = $end->diff($begin)->d+1;
+        $actionWatering = DbAction::where('id', 1)->first();
+        $actionManuring = DbAction::where('id', 2)->first();
+        $actionPesting = DbAction::where('id', 3)->first();
 
         for ($day = 1; $day <= $totalDays; $day++) {
             $item = new CalendarPlant();
             $item->dayNum = $day;
-            $item->plantsToWatering = [];
-            foreach ($dataPlant as $plant) {
-                if ($day % $plant->wateringDays === 0)
-                    $item->plantsToWatering[] = $plant->name;
+            $item->date = date_format($begin,'Y-m-d');
+            $item->dayInfo = date_format($begin,'d.m');
+            $item->plantsToDo = [];
+            foreach ($dataPlant as $plant){
+                if( $plant->wateringDays > 0 && $day % $plant->wateringDays === 0) {
+                    $toDo = new CalendarPlantRow();
+                    $toDo->plant = $plant;
+                    $toDo->action = $actionWatering;
+                    $toDo->done = DbPlantUserDone::where('user_id', $userId)->where('plant_id',$plant->id)->where('action_id',1)->where('date',$begin)->first() !== null;
+                    $item->plantsToDo[] = $toDo;
+                }
+                if( $plant->manuringDays > 0 && $day % $plant->manuringDays === 0){
+                    $toDo = new CalendarPlantRow();
+                    $toDo->plant = $plant;
+                    $toDo->action = $actionManuring;
+                    $toDo->done = DbPlantUserDone::where('user_id', $userId)->where('plant_id',$plant->id)->where('action_id',2)->where('date',$begin)->first() !== null;
+                    $item->plantsToDo[] = $toDo;
+                }
+                if( $plant->pestControlDays > 0 && $day % $plant->pestControlDays === 0){
+                    $toDo = new CalendarPlantRow();
+                    $toDo->plant = $plant;
+                    $toDo->action = $actionPesting;
+                    $toDo->done = DbPlantUserDone::where('user_id', $userId)->where('plant_id',$plant->id)->where('action_id',3)->where('date',$begin)->first() !== null;
+                    $item->plantsToDo[] = $toDo;
+                }
             }
             $date[] = $item;
+            $begin->modify("+1 day");
         }
+//        dd($date);
         return $date;
     }
 
@@ -181,6 +215,8 @@ class DbPlantService implements IDbPlantService
         $item->shortInfo = $dbPlant['short_info'];
         $item->photoSmallPath = $dbPlant['photo_small_path'];
         $item->wateringDays = $dbPlant['watering_days'];
+        $item->manuringDays = $dbPlant['manuring_days'];
+        $item->pestControlDays = $dbPlant['pest_control_days'];
         $tags = [];
         foreach ($dbPlant['tags'] as $dbTag)
             $tags[] = $dbTag['tag'];
@@ -191,5 +227,26 @@ class DbPlantService implements IDbPlantService
     public function getTags()
     {
         return DbPlantTag::pluck('tag')->unique();
+    }
+
+    public function setUserPlantDone(int $userId, int $plantId, int $actionId, string $date) : void
+    {
+        echo("<script>console.log('setUserPlantDone');</script>");
+        if(DbPlantUserDone::where('user_id',$userId)->where('plant_id',$plantId)->where('action_id',$actionId)->where('date',$date)->count() > 0)
+            return;
+        $dbUserPlantDone = [];
+        $dbUserPlantDone['user_id'] = $userId;
+        $dbUserPlantDone['plant_id'] = $plantId;
+        $dbUserPlantDone['action_id'] = $actionId;
+        $dbUserPlantDone['date'] = $date;
+        DbPlantUserDone::create($dbUserPlantDone);
+    }
+    public function resetUserPlantDone(int $userId, int $plantId, int $actionId, string $date): void
+    {
+        echo("<script>console.log('resetUserPlantDone');</script>");
+        $dbUserPlantDone = DbPlantUserDone::where('user_id',$userId)->where('plant_id',$plantId)->where('action_id',$actionId)->where('date',$date)->first();
+        if($dbUserPlantDone === null)
+            return;
+        $dbUserPlantDone->delete();
     }
 }
