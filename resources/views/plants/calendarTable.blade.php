@@ -9,52 +9,53 @@
             <h1 class="h3 mb-0 text-gray-800">Календарь ухода за растениями</h1>
             <a href="{{route('catalog')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"> Добавить растение</a>
         </div>
-
-
-        <div class="row">
-            <div class="row">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr class="odd-row">
-                        <th class="calendar-td-center">Дата</th>
-                        <th class="calendar-td-center">Растения</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @forelse($dates as $date)
-                        <tr class="{{$loop->iteration % 2 == 0 ? 'odd-row' : ''}}">
-                            <td class="calendar-td-center">{{$date->dayInfo}}
-                                @if(count($date->plantsToDo) > 0)
-                                    <div class="progress">
-                                        <div id="progress_{{$date->dayNum}}" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$date->percent}}" aria-valuemin="0"
-                                             aria-valuemax="100" style="width: {{$date->percent}}%"  data-total_count="{{$date->totalCount}}" data-done_count="{{$date->doneCount}}"></div>
-                                    </div>
-                                @endif
-                            </td>
-                            @if(count($date->plantsToDo) > 0)
-                                <td class="calendar-td">
-                                    @foreach($date->plantsToDo as $do)
-                                    <div class="calendar-td-item" title="{{$do->action->info}}">
-                                        <img src="/Images/Small/{{$do->plant->photoSmallPath}}" alt="slide" height="20px" width="40px"/>
-                                        <p class="calendar-td-name">{{$do->plant->name}}</p>
-                                        <label class="form-check">
-                                            <input class="calendar-td-check" data-date_id="{{$date->dayNum}}" type="checkbox" data-plantid="{{$do->plant->id}}" data-actionid="{{$do->action->id}}" data-date="{{$date->date}}" {{$do->done?"checked":""}}>
-                                            <p>{{$do->action->name}}</p>
-                                        </label>
-                                    </div>
-                                    @endforeach
-                                </td>
-                            @endif
-                        </tr>
-                    @empty
-                        <tr>
-                            <td calspan="4"> Выбранных растений нет</td>
-                        </tr>
-                    @endforelse
-                    </tbody></table>
+        @if($dates === null)
+            <div class="alert alert-warning" role="alert">
+                Ваш список растений пуст. Добавьте растения в Избранное для отображения календаря.
             </div>
-
-        </div>
+        @else
+            <div class="row">
+                <div class="row">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr class="odd-row">
+                            <th class="calendar-td-center">Дата</th>
+                            <th class="calendar-td-center">Растения</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @forelse($dates as $date)
+                            <tr class="calendar-row {{$loop->iteration % 2 == 0 ? 'odd-row' : ''}}">
+                                <td class="calendar-td-center">{{$date->dayInfo}}
+                                    @if(count($date->plantsToDo) > 0)
+                                        <div class="progress">
+                                            <div id="progress_{{$date->dayNum}}" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$date->percent}}" aria-valuemin="0"
+                                                 aria-valuemax="100" style="width: {{$date->percent}}%"  data-total_count="{{$date->totalCount}}" data-done_count="{{$date->doneCount}}"></div>
+                                        </div>
+                                    @endif
+                                </td>
+                                    <td class="calendar-td">
+                                        @foreach($date->plantsToDo as $do)
+                                        <div class="calendar-td-item" title="{{$do->action->info}}">
+                                            <img src="/Images/Small/{{$do->plant->photoSmallPath}}" alt="slide" height="20px" width="40px"/>
+                                            <p class="calendar-td-name">{{$do->plant->name}}</p>
+                                            <label class="form-check">
+                                                <input class="calendar-td-check" data-date_id="{{$date->dayNum}}" type="checkbox" data-plantid="{{$do->plant->id}}" data-actionid="{{$do->action->id}}" data-date="{{$date->date}}" {{$do->done?"checked":""}}>
+                                                <p>{{$do->action->name}}</p>
+                                            </label>
+                                        </div>
+                                        @endforeach
+                                    </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td calspan="4"> Выбранных растений нет</td>
+                            </tr>
+                        @endforelse
+                        </tbody></table>
+                </div>
+            </div>
+        @endif
     </div>
 </div>
 </div>

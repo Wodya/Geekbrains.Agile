@@ -64,7 +64,7 @@ Route::get('/onePlant/{id}', [PlantsController::class, 'onePlant'])->name('onePl
 Route::get('catalog', [PlantsController::class, 'index'])->name('catalog');
 Route::resource('/myPlants',MyPlantsController::class);
 
- 
+
 Route::get('/plant/edit/{id}', [PlantsController::class, 'edit'])->name('plant.edit');
 Route::put('/plant/post', [PlantsController::class, 'update'])->name('plant.update');
 Route::get('/addFavor/{userId}/{plantId}', [MyPlantsController::class, 'addFavor'])->name('plant.addFavor');
@@ -76,8 +76,7 @@ Route::get('/deletePlant', [\App\Http\Controllers\TestController::class, 'delete
 Route::get('/addPlantToFavor/{userId}/{plantId}', [\App\Http\Controllers\TestController::class, 'addPlantToFavor'])->name('addPlantToFavor');
 Route::get('/removePlantFromFavor/{userId}/{plantId}', [\App\Http\Controllers\TestController::class, 'removePlantFromFavor'])->name('removePlantFromFavor');
 // Route::get('/getFavorPlants', [\App\Http\Controllers\TestController::class, 'getFavorPlants'])->name('getFavorPlants');
-Route::get('/getFavorCalendar', [\App\Http\Controllers\TestController::class, 'getFavorCalendar']);
-Route::get('/calendar', [\App\Http\Controllers\TestController::class, 'testCalendar'])->name('calendar');
+Route::get('/calendar', [\App\Http\Controllers\MyPlantsController::class, 'calendar'])->name('calendar');
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -92,10 +91,10 @@ Route::group(['middleware' => 'auth'],
     })->name('logout');
 
     Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'role:admin'],
-    function(){ 
+    function(){
     Route::resource('/plantList', AdminPlantsController::class);
     Route::resource('/users', AdminUserController::class);
-    
+
     });
 
 });
