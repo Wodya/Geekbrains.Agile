@@ -84,7 +84,6 @@ class MyPlantsController extends Controller
       //
     }
     public function removeFavor($userId, $plantId, Request $request, IDbPlantService $dbPlant)
-
     {
         $dbPlant->removePlantFromFavor($userId, $plantId);
     }
@@ -95,5 +94,10 @@ class MyPlantsController extends Controller
     public function resetUserPlantDone(int $userId, int $plantId, int  $actionId, string $date, Request $request, IDbPlantService $dbPlant)
     {
         $dbPlant->resetUserPlantDone($userId, $plantId, $actionId, $date);
+    }
+    public function calendar(Request $request, IDbPlantService $dbPlant)
+    {
+        $calendar = $dbPlant->getFavorCalendar(1);
+        return view('plants.calendarTable', ['dates' => $calendar]);
     }
 }

@@ -19,4 +19,16 @@ class CalendarPlant extends ModelCommon
      * @var CalendarPlantRow[]
      */
     public $plantsToDo;
+    /**
+     * @var int
+     */
+    public $totalCount;
+    /**
+     * @var int
+     */
+    public $doneCount;
+    /**
+     * @var int
+     */
+    public $percent;
 }

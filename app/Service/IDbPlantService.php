@@ -1,5 +1,6 @@
 <?php
 namespace App\Service;
+use App\Models\CalendarPlant;
 use App\Models\PlantFull;
 use App\Models\PlantShort;
 
@@ -59,10 +60,10 @@ interface IDbPlantService
     /**
      * Возвращает календарь
      * @param int $userId
-     * @return array
+     * @return CalendarPlant[]
      */
 
-    public function getFavorCalendar(int $userId): array;
+    public function getFavorCalendar(int $userId): ?array;
 
     /**
      * Установка флага сделанной работы

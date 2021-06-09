@@ -153,10 +153,12 @@ class DbPlantService implements IDbPlantService
         return $data;
     }
 
-    public function getFavorCalendar(int $userId): array
+    public function getFavorCalendar(int $userId): ?array
     {
         echo("<script>console.log('getFavorCalendar');</script>");
         $dbData = DbUserPlant::with("plant")->where('user_id', $userId)->get();
+        if(count($dbData) === 0)
+            return null;
         $dataPlant = [];
         foreach ($dbData as $dbItemUserPlant) {
             $dataPlant[] = $this->getPlantFromDbPlant($dbItemUserPlant['plant']);
@@ -176,6 +178,7 @@ class DbPlantService implements IDbPlantService
             $item->date = date_format($begin,'Y-m-d');
             $item->dayInfo = date_format($begin,'d.m');
             $item->plantsToDo = [];
+            $item->doneCount = 0;
             foreach ($dataPlant as $plant){
                 if( $plant->wateringDays > 0 && $day % $plant->wateringDays === 0) {
                     $toDo = new CalendarPlantRow();
@@ -183,6 +186,8 @@ class DbPlantService implements IDbPlantService
                     $toDo->action = $actionWatering;
                     $toDo->done = DbPlantUserDone::where('user_id', $userId)->where('plant_id',$plant->id)->where('action_id',1)->where('date',$begin)->first() !== null;
                     $item->plantsToDo[] = $toDo;
+                    if($toDo->done)
+                        $item->doneCount++;
                 }
                 if( $plant->manuringDays > 0 && $day % $plant->manuringDays === 0){
                     $toDo = new CalendarPlantRow();
@@ -190,6 +195,8 @@ class DbPlantService implements IDbPlantService
                     $toDo->action = $actionManuring;
                     $toDo->done = DbPlantUserDone::where('user_id', $userId)->where('plant_id',$plant->id)->where('action_id',2)->where('date',$begin)->first() !== null;
                     $item->plantsToDo[] = $toDo;
+                    if($toDo->done)
+                        $item->doneCount++;
                 }
                 if( $plant->pestControlDays > 0 && $day % $plant->pestControlDays === 0){
                     $toDo = new CalendarPlantRow();
@@ -197,8 +204,14 @@ class DbPlantService implements IDbPlantService
                     $toDo->action = $actionPesting;
                     $toDo->done = DbPlantUserDone::where('user_id', $userId)->where('plant_id',$plant->id)->where('action_id',3)->where('date',$begin)->first() !== null;
                     $item->plantsToDo[] = $toDo;
+                    if($toDo->done)
+                        $item->doneCount++;
                 }
             }
+            $item->totalCount = count($item->plantsToDo);
+            $item->percent = 0;
+            if($item->totalCount > 0)
+                $item->percent = 100 * $item->doneCount / $item->totalCount;
             $date[] = $item;
             $begin->modify("+1 day");
         }
