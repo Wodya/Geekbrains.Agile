@@ -18087,3 +18087,7 @@ html.mm-opening .mm-slideout {
 .progress{
     margin-bottom: 0 !important;
 }
+
+.modal-backdrop{
+    z-index: 0 !important;
+}

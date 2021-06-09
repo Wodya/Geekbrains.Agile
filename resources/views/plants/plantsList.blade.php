@@ -51,7 +51,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </li>
+                        </div>
+                        </li>
                         @empty
                             <h2>Что-то сломалось =(</h2>
                         @endforelse
@@ -60,9 +61,13 @@
             </div>
         </div>
     </div>
-
 </div>
+
+<p><a href="#favorModal" class="btn btn-primary" data-toggle="modal">Открыть модальное окно 1</a></p>
+
 <script>
+    console.log($('#modalText').text());
+
     $('.add_to_wishlist').click(function (e){
         e.preventDefault();
         let isFavor = +$(this).data("isfavor");
@@ -76,6 +81,7 @@
         url = url.replace('plant_id_val', $(this).data("id"));
         let element = $(this);
         let child = $(this).children('i').first();
+        $('#modal-title').text("Избранные растения");
 
         $.ajax({
             url: url,
@@ -87,13 +93,15 @@
                 if (isFavor === 1) {
                     child.addClass("fa fa-heart-o");
                     element.data("isfavor",0);
-                    alert("Удалено из избранного");
+                    $('#modalText').text("Удалено из избранного");
+                    $('#favorModal').modal('show');
                 }
                 else {
                     child.addClass("fa fa-heart");
                     child.attr("aria-hidden","true");
                     element.data("isfavor",1);
-                    alert("Добавлено в избранное");
+                    $('#modalText').text("Добавлено в избранное");
+                    $('#favorModal').modal('show')
                 }
                 console.log(child);
             }

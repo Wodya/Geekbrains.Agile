@@ -17,6 +17,7 @@ class PlantsController extends Controller
         $tagsList = DbPlantTag::pluck('tag')->unique();
         $plantList = $dbPlant->getAllPlants();
         return view('plants.plantsList',['plantsList' => $plantList, 'tagsList'=>$tagsList]);
+//        return view('test.index',['plantsList' => $plantList, 'tagsList'=>$tagsList]);
     }
 
     public function onePlant($id, IDbPlantService $dbPlant)

@@ -77,5 +77,24 @@
 <script type="text/javascript" src="{{ asset('js/main.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/add_to_favor.js')}}"></script>
 
+<div id="favorModal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 id="modal-title" class="modal-title">Избранные растения</h4>
+            </div>
+            <div class="modal-body">
+                <p id="modalText">One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
