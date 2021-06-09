@@ -23,19 +23,28 @@
                     <tbody>
                     @forelse($dates as $date)
                         <tr class="{{$loop->iteration % 2 == 0 ? 'odd-row' : ''}}">
-                            <td class="calendar-td-center">{{$date->dayInfo}}</td>
-                            <td class="calendar-td">
-                                @foreach($date->plantsToDo as $do)
-                                <div class="calendar-td-item" title="{{$do->action->info}}">
-                                    <img src="/Images/Small/{{$do->plant->photoSmallPath}}" alt="slide" height="20px" width="40px"/>
-                                    <p class="calendar-td-name">{{$do->plant->name}}</p>
-                                    <label class="form-check">
-                                        <input class="calendar-td-check" type="checkbox" data-plantid="{{$do->plant->id}}" data-actionid="{{$do->action->id}}" data-date="{{$date->date}}" {{$do->done?"checked":""}}>
-                                        <p>{{$do->action->name}}</p>
-                                    </label>
-                                </div>
-                                @endforeach
+                            <td class="calendar-td-center">{{$date->dayInfo}}
+                                @if(count($date->plantsToDo) > 0)
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$date->percent}}" aria-valuemin="0"
+                                             aria-valuemax="100" style="width: {{$date->percent}}%"  data-total_count="{{$date->totalCount}}" data-done_count="{{$date->doneCount}}"></div>
+                                    </div>
+                                @endif
                             </td>
+                            @if(count($date->plantsToDo) > 0)
+                                <td class="calendar-td">
+                                    @foreach($date->plantsToDo as $do)
+                                    <div class="calendar-td-item" title="{{$do->action->info}}">
+                                        <img src="/Images/Small/{{$do->plant->photoSmallPath}}" alt="slide" height="20px" width="40px"/>
+                                        <p class="calendar-td-name">{{$do->plant->name}}</p>
+                                        <label class="form-check">
+                                            <input class="calendar-td-check" type="checkbox" data-plantid="{{$do->plant->id}}" data-actionid="{{$do->action->id}}" data-date="{{$date->date}}" {{$do->done?"checked":""}}>
+                                            <p>{{$do->action->name}}</p>
+                                        </label>
+                                    </div>
+                                    @endforeach
+                                </td>
+                            @endif
                         </tr>
                     @empty
                         <tr>
@@ -52,11 +61,18 @@
 <script>
   $('.calendar-td-check').click(function (e){
       let url = '';
-
-      if ($(this).is(':checked'))
+      let progress = $(this).parent().parent().parent().parent().find('.progress-bar').first();
+      let total = progress.data("total_count");
+      let done = progress.data("done_count");
+      console.log(total,done);
+      if ($(this).is(':checked')) {
           url = "{{route('plant.setUserPlantDone', ['userId'=>'user_id_val', 'plantId'=>'plant_id_val', 'actionId'=>'action_id_val', 'date'=>'date_val'])}}";
-      else
+          done++;
+      }
+      else {
           url = "{{route('plant.resetUserPlantDone', ['userId'=>1, 'plantId'=>'plant_id_val', 'actionId'=>'action_id_val', 'date'=>'date_val'])}}";
+          done--;
+      }
 
       url = url.replace('user_id_val', 1);
       url = url.replace('plant_id_val', $(this).data("plantid"));
@@ -65,6 +81,9 @@
       $.ajax({
           url: url,
           success: function(data) {
+              progress.data("done_count", done);
+              progress.attr("aria-valuenow", done);
+              progress.attr("style", "width: "+ 100*done/total + "%");
               console.log(url);
           }
       });

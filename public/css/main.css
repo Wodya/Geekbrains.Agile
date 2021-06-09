@@ -18073,3 +18073,7 @@ html.mm-opening .mm-slideout {
 .odd-row{
     background-color: lightcyan;
 }
+.progress-bar-animated {
+    -webkit-animation: progress-bar-stripes 1s linear infinite;
+    animation: progress-bar-stripes 1s linear infinite;
+}
