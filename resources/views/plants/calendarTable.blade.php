@@ -26,7 +26,7 @@
                             <td class="calendar-td-center">{{$date->dayInfo}}
                                 @if(count($date->plantsToDo) > 0)
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$date->percent}}" aria-valuemin="0"
+                                        <div id="progress_{{$date->dayNum}}" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$date->percent}}" aria-valuemin="0"
                                              aria-valuemax="100" style="width: {{$date->percent}}%"  data-total_count="{{$date->totalCount}}" data-done_count="{{$date->doneCount}}"></div>
                                     </div>
                                 @endif
@@ -38,7 +38,7 @@
                                         <img src="/Images/Small/{{$do->plant->photoSmallPath}}" alt="slide" height="20px" width="40px"/>
                                         <p class="calendar-td-name">{{$do->plant->name}}</p>
                                         <label class="form-check">
-                                            <input class="calendar-td-check" type="checkbox" data-plantid="{{$do->plant->id}}" data-actionid="{{$do->action->id}}" data-date="{{$date->date}}" {{$do->done?"checked":""}}>
+                                            <input class="calendar-td-check" data-date_id="{{$date->dayNum}}" type="checkbox" data-plantid="{{$do->plant->id}}" data-actionid="{{$do->action->id}}" data-date="{{$date->date}}" {{$do->done?"checked":""}}>
                                             <p>{{$do->action->name}}</p>
                                         </label>
                                     </div>
@@ -61,7 +61,8 @@
 <script>
   $('.calendar-td-check').click(function (e){
       let url = '';
-      let progress = $(this).parent().parent().parent().parent().find('.progress-bar').first();
+      console.log("#progress_" + $(this).data("date_id"));
+      let progress = $("#progress_" + $(this).data("date_id")).first();
       let total = progress.data("total_count");
       let done = progress.data("done_count");
       console.log(total,done);
