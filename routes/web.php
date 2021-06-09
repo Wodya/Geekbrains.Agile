@@ -34,7 +34,7 @@ Route::resource('/test', TestController::class);
 Route::group([
     'prefix' => '/admin',
     'as' => 'admin::plants::',
-//    'middleware' => ['auth']
+    'middleware' => ['auth']
 ], function () {
     Route::get('/plants', [AdminPlantsController::class, 'index'])
         ->name('plantList');
@@ -64,7 +64,7 @@ Route::get('/onePlant/{id}', [PlantsController::class, 'onePlant'])->name('onePl
 Route::get('catalog', [PlantsController::class, 'index'])->name('catalog');
 Route::resource('/myPlants',MyPlantsController::class);
 
- 
+
 Route::get('/plant/edit/{id}', [PlantsController::class, 'edit'])->name('plant.edit');
 Route::put('/plant/post', [PlantsController::class, 'update'])->name('plant.update');
 Route::get('/addFavor/{userId}/{plantId}', [MyPlantsController::class, 'addFavor'])->name('plant.addFavor');
@@ -92,10 +92,10 @@ Route::group(['middleware' => 'auth'],
     })->name('logout');
 
     Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'role:admin'],
-    function(){ 
+    function(){
     Route::resource('/plantList', AdminPlantsController::class);
     Route::resource('/users', AdminUserController::class);
-    
+
     });
 
 });

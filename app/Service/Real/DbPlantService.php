@@ -62,11 +62,11 @@ class DbPlantService implements IDbPlantService
     public function updatePlant(PlantFull $plant)
     {
         echo("<script>console.log('updatePlant');</script>");
-        $exists = DbPlant::where('name', $plant->name)->get();
-        foreach ($exists as $exist) {
-           if ($exist["id"] != $plant->id)
-               throw new \ErrorException('Растение с таким именем уже сущетсвует');
-        }
+//        $exists = DbPlant::where('name', $plant->name)->get();
+//        foreach ($exists as $exist) {
+//           if ($exist["id"] != $plant->id)
+//               throw new \ErrorException('Растение с таким именем уже сущетсвует');
+//        }
         $dbPlant = DbPlant::first('id', $plant->id);
         $dbPlant['name'] = $plant->name;
         $dbPlant['short_info'] = $plant->shortInfo;
@@ -102,6 +102,31 @@ class DbPlantService implements IDbPlantService
     public function insertPlant(PlantFull $plant): int
     {
         echo("<script>console.log('insertPlant');</script>");
+        $dbItem = DbPlant::where('name', $plant->name)->get();
+        foreach ($dbItem as $exist) {
+           if ($exist["id"] != $plant->id)
+               throw new \ErrorException('Растение с таким именем уже сущетсвует');
+        }
+
+        $item = new PlantFull();
+
+//        $item->id = $plant['veid'];
+        $item['name'] = $plant['name'];
+        $item->addDate = $plant['add_date'];
+        $item->shortInfo = $plant['short_info'];
+        $item->fullInfo = $plant['full_info'];
+        $item->photoSmallPath = $plant['photo_small_path'];
+        $item->photoBigPath = $plant['photo_big_path'];
+        $item->wateringDays = $plant['watering_days'];
+        $item->manuringDays = $plant['manuring_days'];
+//        $item->pestControlDays = $dbItem['pest_control_days'];
+        DbPlant::save($item);
+        $item->save();dd($item);
+//        $item->tags = [];
+//        foreach ($dbItem['tags'] as $dbTag)
+//            $item->tags[] = $dbTag['tag'];
+//        return $item;
+
     }
 
     /**
@@ -232,6 +257,12 @@ class DbPlantService implements IDbPlantService
     public function getTags()
     {
         return DbPlantTag::pluck('tag')->unique();
+    }
+
+    public function getTagById(int $plantId)
+    {
+        $dbPlantTag = DbPlantTag::where('plant_id',$plantId)->pluck('tag');
+        return $dbPlantTag;
     }
 
     public function setUserPlantDone(int $userId, int $plantId, int $actionId, string $date) : void

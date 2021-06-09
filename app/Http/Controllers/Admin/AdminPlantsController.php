@@ -36,7 +36,11 @@ class AdminPlantsController extends Controller
         $plant->photoBigPath = $request['photoBigPath'];
         $plant->photoSmallPath = $request['photoSmallPath'];
         $plant->shortInfo = $request['shortInfo'];
-        $plant->tags = $request['tags'];
+        $plant->tags = [];
+        $tagKey = preg_grep("/tag/", array_keys($request->all()));
+        foreach ($tagKey as $value) {
+            $plant->tags[] = $request[$value];
+        }
 
         $plant->wateringDays = $request['wateringDays'];
 
@@ -76,8 +80,6 @@ class AdminPlantsController extends Controller
     }
 
 
-
-
     /**
      * Update the specified resource in storage.
      *
@@ -86,34 +88,34 @@ class AdminPlantsController extends Controller
      */
 
     public function updateView(int $id, IDbPlantService $dbPlant)
-{
-    $plants =  $dbPlant->getPlant($id);
-    $tags = $dbPlant->getTags();
-    return view('admin.addPlant', [
-        'plants' => $plants,
-        'tags' => $tags
-    ]);
-}
+    {
+        $plants = $dbPlant->getPlant($id);
+        $tags = $dbPlant->getTags();
+        $plantTags = $dbPlant->getTagById($id);
+//        dd($plantTags);
+
+        return view('admin.addPlant', [
+            'plants' => $plants,
+            'tags' => $tags,
+            'plantTags' => $plantTags
+        ]);
+    }
+
     public function update(Request $request, $id, IDbPlantService $dbPlant)
     {
-
-
         $plant = $dbPlant->getPlant($id);
 
         $plant->name = $request['name'];
         $plant->fullInfo = $request['fullInfo'];
         $plant->shortInfo = $request['shortInfo'];
         $plant->tags = [];
-        for ($tag = 0; $tag == isNull($tag) ; $tag++){ // TODO
-            $keyTag = "tag".$tag;
-            $plant->tags[] = $request[$keyTag];
-
-        }
-
+        $tagKey = preg_grep("/tag/", array_keys($request->all()));
+        foreach ($tagKey as $value) {
+            $plant->tags[] = $request[$value];
+         }
         $plant->wateringDays = $request['wateringDays'];
-
         $dbPlant->updatePlant($plant);
-        return redirect()->route('admin::plants::updateView', ['id' => $plant-> id])
+        return redirect()->route('admin::plants::updateView', ['id' => $plant->id])
             ->with('success', "Растение обновлено");
     }
 
@@ -125,9 +127,9 @@ class AdminPlantsController extends Controller
      * @param IDbPlantService $dbPlant
      * @return void
      */
-    public function destroy(Request $request, IDbPlantService $dbPlant)
+    public function destroy(int $id, IDbPlantService $dbPlant)
     {
-        $dbPlant->deletePlant(1);
+        $dbPlant->deletePlant($id);
     }
 }
 

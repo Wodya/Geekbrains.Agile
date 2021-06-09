@@ -1,10 +1,5 @@
 @extends('layouts.admin')
 @section('content')
-    @if (session('success'))
-        <div class="alert alert-success" role="alert">
-            {{ session('success') }}
-        </div>
-    @endif
     <div class="col-md-4  offset-2">
         <form method="post"
               @if(empty($plants))
@@ -85,13 +80,19 @@
                                             Теги:
                                         </label>
                                             <ul>
-                                            @forelse($tags as $key => $tag)
+                                                @forelse($tags as $key => $tag)
+                                                    <li><input type="checkbox" name="tag{{$key}}" value="{{$tag}}"
+                                                               @if(is_null($plantTags ?? ''))
+                                                                    @foreach ($plantTags as $tagPlants)
+                                                                        @if($tag == $tagPlants)checked
+                                                                        @endif
+                                                                    @endforeach
+                                                               @endif
+                                                    >{{$tag}}</li>
+                                                @empty
+                                                    <p>Тегов нет</p>
+                                                @endforelse
 
-                                                <li><input type="checkbox" name="tag{{$key}}" value="{{$tag}}">{{$tag}}</li>
-                                            @empty
-                                                <p>Тегов нет</p>
-
-                                            @endforelse
                                             </ul>
                                     </span>
                                     </div>
@@ -132,12 +133,8 @@
                     </div>
                 </div>
                 <label>
-                    <h4>фото 180*130</h4>
+                    <h4>Добавить картинку</h4>
                     <input type="file" name="photoSmallPath">
-                </label>
-                <label>
-                    <h4>фото 1080*968</h4>
-                    <input type="file" name="photoBigPath">
                 </label>
             </div>
             <br/><input class="btn btn-primary" style="float: right" type="submit"
