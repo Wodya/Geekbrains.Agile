@@ -1,6 +1,7 @@
 <?php
 namespace App\Service\Mock;
 
+use App\Models\CalendarPlant;
 use App\Models\PlantFull;
 use App\Models\PlantShort;
 use App\Service\IDbPlantService;
@@ -74,8 +75,19 @@ class DbPlantServiceMock implements IDbPlantService
     {
         echo("<script>console.log('getFavorPlants');</script>");
     }
-    public function getFavorCalendar(int $userId): array
+
+    public function getFavorCalendar(int $userId): ?array
     {
-        echo("<script>console.log('getFavorCalendar');</script>");
+        // TODO: Implement getFavorCalendar() method.
+    }
+
+    public function setUserPlantDone(int $userId, int $plantId, int $actionId, string $date): void
+    {
+        // TODO: Implement setUserPlantDone() method.
+    }
+
+    public function resetUserPlantDone(int $userId, int $plantId, int $actionId, string $date): void
+    {
+        // TODO: Implement resetUserPlantDone() method.
     }
 }

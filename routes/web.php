@@ -76,8 +76,7 @@ Route::get('/deletePlant', [\App\Http\Controllers\TestController::class, 'delete
 Route::get('/addPlantToFavor/{userId}/{plantId}', [\App\Http\Controllers\TestController::class, 'addPlantToFavor'])->name('addPlantToFavor');
 Route::get('/removePlantFromFavor/{userId}/{plantId}', [\App\Http\Controllers\TestController::class, 'removePlantFromFavor'])->name('removePlantFromFavor');
 // Route::get('/getFavorPlants', [\App\Http\Controllers\TestController::class, 'getFavorPlants'])->name('getFavorPlants');
-Route::get('/getFavorCalendar', [\App\Http\Controllers\TestController::class, 'getFavorCalendar']);
-Route::get('/calendar', [\App\Http\Controllers\TestController::class, 'testCalendar'])->name('calendar');
+Route::get('/calendar', [\App\Http\Controllers\MyPlantsController::class, 'calendar'])->name('calendar');
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
