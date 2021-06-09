@@ -75,7 +75,7 @@
 <script type="text/javascript" src="{{ asset('libs/countdown-timer/js/kinetic.js')}}"></script>
 <script type="text/javascript" src="{{ asset('libs/owl.carousel.min/owl.carousel.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/main.js')}}"></script>
-<script type="text/javascript" src="{{ asset('js/add_to_favor.js')}}"></script>
+<!-- <script type="text/javascript" src="{{ asset('js/add_to_favor.js')}}"></script> -->
 
 </body>
 </html>
