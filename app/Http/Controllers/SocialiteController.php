@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Service\SocialiteService;
+use Auth;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -15,8 +16,14 @@ class SocialiteController extends Controller
 
     public function callback(SocialiteService $service)
     {
-        $user = Socialite::driver('vkontakte')->user();
-        $service->userLogin($user);
-        return redirect()->route('catalog');
+        $socialiteUser = Socialite::driver('vkontakte')->user();
+        $user = $service->findOrCreateUser($socialiteUser);
+        if($user) {
+            Auth::login($user);
+        return redirect()->route('catalog');  
+        }
+        return back(400);
+      
     }
 }
+

@@ -3,20 +3,29 @@ namespace App\Service;
 
 use App\Models\User as ModelsUser;
 use Auth;
+use Illuminate\Support\Str;
 use Laravel\Socialite\Contracts\User;
 
 class SocialiteService {
-    public function userLogin(User $user)
-    {
-        $email = $user->getEmail();
-        $userData = ModelsUser::where('email', $email)->first();
-        if($userData) {
-            $userData->fill([
-                'name'=>$user->getName(),
-                'avatar'=>$user->getAvatar()
-            ])->save();
-            Auth::loginUsingId($userData->id);
-        }
 
+    public function findOrCreateUser(User $socialiteUser)
+    {
+        $email = $socialiteUser->getEmail();
+        $name = $socialiteUser->getName();
+        $avatar = $socialiteUser->getAvatar();
+        $password = bcrypt(Str::random(25));
+        $data = ['email' => $email, 'password' => $password, 'name' => $name, 'avatar' => $avatar];
+
+        if ($user = $this->findUserByEmail($email)) {
+            return $user->fill(['name' => $name, 'avatar' => $avatar]);
+        }
+        return ModelsUser::create($data);
+    
     }
+    
+    public function findUserByEmail($email)
+    {
+        return !$email ? null : ModelsUser::where('email', $email)->first();
+    }
+    
 }
