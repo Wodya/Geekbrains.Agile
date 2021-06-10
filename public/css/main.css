@@ -18048,10 +18048,15 @@ html.mm-opening .mm-slideout {
 .calendar-td-center{
     text-align: center;
     vertical-align: center;
+    border-top: none !important;
+    border-bottom: none !important;
+    border-left: none !important;
+    border-right: #2aabd2 solid 1px !important;
 }
 .calendar-td{
     display: flex;
     flex-direction: column;
+    border: none !important;
 }
 
 .calendar-td-item{
@@ -18069,7 +18074,20 @@ html.mm-opening .mm-slideout {
 .calendar-td-check {
     margin: 0 10px 0 0 !important;
 }
-
+.calendar-row{
+    border: #2aabd2 solid 1px;
+}
 .odd-row{
     background-color: lightcyan;
+}
+.progress-bar-animated {
+    -webkit-animation: progress-bar-stripes 1s linear infinite;
+    animation: progress-bar-stripes 1s linear infinite;
+}
+.progress{
+    margin-bottom: 0 !important;
+}
+
+.modal-backdrop{
+    z-index: 0 !important;
 }
