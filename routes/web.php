@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\MyPlantsController;
 use \App\Http\Controllers\Admin\AdminPlantsController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\SocialiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,8 +77,8 @@ Route::get('/deletePlant', [\App\Http\Controllers\TestController::class, 'delete
 Route::get('/addPlantToFavor/{userId}/{plantId}', [\App\Http\Controllers\TestController::class, 'addPlantToFavor'])->name('addPlantToFavor');
 Route::get('/removePlantFromFavor/{userId}/{plantId}', [\App\Http\Controllers\TestController::class, 'removePlantFromFavor'])->name('removePlantFromFavor');
 // Route::get('/getFavorPlants', [\App\Http\Controllers\TestController::class, 'getFavorPlants'])->name('getFavorPlants');
-Route::get('/calendar', [\App\Http\Controllers\MyPlantsController::class, 'calendar'])->name('calendar');
 
+Route::get('/calendar', [\App\Http\Controllers\MyPlantsController::class, 'calendar'])->name('calendar');
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'],
@@ -85,6 +86,7 @@ Route::group(['middleware' => 'auth'],
 {   Route::get('/account', AccountController::class) // это как профиль
     ->name('account');
     Route::resource('/myPlants',MyPlantsController::class);
+    Route::get('/calendar', [\App\Http\Controllers\TestController::class, 'testCalendar'])->name('calendar');
     Route::get('/logout', function(){
         Auth::logout();
         return redirect()->route('login');
@@ -97,5 +99,10 @@ Route::group(['middleware' => 'auth'],
 
     });
 
+});
+
+Route::group(['middleware'=>'guest', 'prefix'=>'socialite'], function() {
+    Route::get('/auth/vk', [SocialiteController::class, 'init'])->name('vk.init');
+    Route::get('/auth/vk/callback', [SocialiteController::class, 'callback'])->name('vk.callback');
 });
 
