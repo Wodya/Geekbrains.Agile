@@ -15,7 +15,7 @@ class AdminPlantsController extends Controller
      *
      *
      */
-    public function index(Request $request, IDbPlantService $dbPlant)
+    public function index(IDbPlantService $dbPlant)
     {
         $plants = $dbPlant->getAllPlants();
         return view('admin.plants', ['plants' => $plants]);
@@ -30,7 +30,7 @@ class AdminPlantsController extends Controller
     {
 
         $plant = new PlantFull();
-        $plant->name = $request['namePlant'];
+        $plant->name = $request['name'];
         $plant->addDate = date("Y-m-d H:i:s");
         $plant->fullInfo = $request['fullInfo'];
         $plant->photoBigPath = $request['photoBigPath'];
@@ -104,16 +104,21 @@ class AdminPlantsController extends Controller
     public function update(Request $request, $id, IDbPlantService $dbPlant)
     {
         $plant = $dbPlant->getPlant($id);
-
         $plant->name = $request['name'];
-        $plant->fullInfo = $request['fullInfo'];
         $plant->shortInfo = $request['shortInfo'];
+        $plant->fullInfo = $request['fullInfo'];
+        $plant->photoSmallPath = $request['photoSmallPath'];
+        $plant->photoBigPath = $request['photoBigPath'];
+        $plant->wateringDays = $request['wateringDays'];
+        $plant->manuringDays = $request['manuringDays'];
+        $plant->pestControlDays = $request['pestControlDays'];
+
         $plant->tags = [];
         $tagKey = preg_grep("/tag/", array_keys($request->all()));
         foreach ($tagKey as $value) {
             $plant->tags[] = $request[$value];
          }
-        $plant->wateringDays = $request['wateringDays'];
+
         $dbPlant->updatePlant($plant);
         return redirect()->route('admin::plants::updateView', ['id' => $plant->id])
             ->with('success', "Растение обновлено");
@@ -125,11 +130,12 @@ class AdminPlantsController extends Controller
      *
      * @param Request $request
      * @param IDbPlantService $dbPlant
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(int $id, IDbPlantService $dbPlant)
+    public function delete($id, IDbPlantService $dbPlant)
     {
         $dbPlant->deletePlant($id);
+        return redirect()->route('admin::plants::plantList');
     }
 }
 
