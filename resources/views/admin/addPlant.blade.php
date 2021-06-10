@@ -103,7 +103,7 @@
                                             <ul>
                                                 @forelse($tags as $key => $tag)
                                                     <li><input type="checkbox" name="tag{{$key}}" value="{{$tag}}"
-                                                               @if(!is_null($plantTags ?? ''))
+                                                               @if(!empty($plantTags))
                                                                @foreach ($plantTags as $tagPlants)
                                                                @if($tag == $tagPlants)checked
                                                                         @endif

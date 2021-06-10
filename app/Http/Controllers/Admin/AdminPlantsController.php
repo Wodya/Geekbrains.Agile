@@ -33,17 +33,17 @@ class AdminPlantsController extends Controller
         $plant->name = $request['name'];
         $plant->addDate = date("Y-m-d H:i:s");
         $plant->fullInfo = $request['fullInfo'];
-        $plant->photoBigPath = $request['photoBigPath'];
-        $plant->photoSmallPath = $request['photoSmallPath'];
+//        $plant->photoBigPath = $request['photoBigPath'];
+//        $plant->photoSmallPath = $request['photoSmallPath'];
         $plant->shortInfo = $request['shortInfo'];
+        $plant->wateringDays = $request['wateringDays'];
+        $plant->manuringDays = $request['manuringDays'];
+        $plant->pestControlDays = $request['pestControlDays'];
         $plant->tags = [];
         $tagKey = preg_grep("/tag/", array_keys($request->all()));
         foreach ($tagKey as $value) {
             $plant->tags[] = $request[$value];
         }
-
-        $plant->wateringDays = $request['wateringDays'];
-
         $dbPlant->insertPlant($plant);
         return redirect()->route('admin::plants::createView')
             ->with('success', "Растение добавлено");

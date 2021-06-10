@@ -67,7 +67,7 @@ class DbPlantService implements IDbPlantService
 //           if ($exist["id"] != $plant->id)
 //               throw new \ErrorException('Растение с таким именем уже сущетсвует');
 //        }
-        $dbPlant = DbPlant::where('id', $plant->id)->first();
+        $dbPlant = DbPlant::find($plant->id);
         $dbPlant['name'] = $plant->name;
         $dbPlant['short_info'] = $plant->shortInfo;
         $dbPlant['full_info'] = $plant->fullInfo;
@@ -116,7 +116,8 @@ class DbPlantService implements IDbPlantService
         $dbPlant['manuring_days'] = $plant->manuringDays ?? 0;
         $dbPlant['pest_control_days'] = $plant->pestControlDays ?? 0;
         DbPlant::insert($dbPlant);
-        $newPlant = DbPlant::where('name', $plant->name)->get();
+        $newPlant = DbPlant::where  ('name', $plant->name)->first();
+
         foreach ($plant->tags as $tag){
             $newTag = [];
             $newTag["plant_id"] = $newPlant->id;
