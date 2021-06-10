@@ -6,7 +6,8 @@ use Auth;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Contracts\User;
 
-class SocialiteService {
+class SocialiteService
+{
 
     public function findOrCreateUser(User $socialiteUser)
     {
@@ -20,12 +21,14 @@ class SocialiteService {
             return $user->fill(['name' => $name, 'avatar' => $avatar]);
         }
         return ModelsUser::create($data);
-    
+
     }
-    
+
     public function findUserByEmail($email)
     {
         return !$email ? null : ModelsUser::where('email', $email)->first();
     }
-    
 }
+
+
+

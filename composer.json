@@ -13,6 +13,7 @@
         "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
+        "socialiteproviders/facebook": "^4.1",
         "socialiteproviders/vkontakte": "^4.2"
     },
     "require-dev": {
