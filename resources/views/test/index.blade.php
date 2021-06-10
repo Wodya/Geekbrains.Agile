@@ -1,118 +1,260 @@
-@extends('layouts.main')
-       
- @section('content')
-    <div class="container px-5 my-5">
-        <div class="text-center mb-5">
-            <h1 class="fw-bolder">Каталог товаров</h1>
-                <p class="lead fw-normal text-muted mb-0">каталог</p>
-        </div>
-        <div class="row gx-5">
-        @forelse($PlantList as $plant)
-            <div class="col-lg-6">
-                <div class="position-relative mb-5">
-                    <img class="img-fluid rounded-3 mb-3" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." />
-                        <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">{{ $plant->name }}</a>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tree Shop Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="{{asset('Images/icon/favicon.png')}}" type="image/x-icon">
+
+    <!-- Web Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Pacifico%7CSource+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i&amp;amp;subset=latin-ext,vietnamese"
+          rel="stylesheet">
+
+    <!-- Vendor CSS-->
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('libs/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('libs/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('libs/animate/animated.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('libs/owl.carousel.min/owl.carousel.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('libs/jquery.mmenu.all/jquery.mmenu.all.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('libs/pe-icon-7-stroke/css/pe-icon-7-stroke.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('libs/direction/css/noJS.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('libs/prettyphoto-master/css/prettyPhoto.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('libs/slick-sider/slick.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('libs/countdown-timer/css/demo.css')}}">
+
+
+    <!-- Template CSS-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css')}}">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
+    <!--if lt IE 9
+    script(src='https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')
+    script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+
+    -->
+</head>
+<body class="home tree-shop-home has-header-sidebar product single-product">
+
+<div class="yolo-site">
+    <header class="header yolo-header-style-4">
+        <div class="mobile-menu">
+            <div class="col-3 text-left"><a href="#primary-menu"><i class="fa fa-bars"></i></a></div>
+            <div class="col-3 text-center">
+                <div class="logo">
+                    <h1><a href="{{route('catalog')}}"><img src="images/logo/logo.png" alt="logo"/></a></h1>
                 </div>
-            </div> 
-        @empty
-            <h2>Растений нет</h2>
-        @endforelse
+            </div>
+            <div class="col-3 text-right">
+                <div class="header-right">
+                    <div class="search-button-wrapper header-customize-item style-default">
+                        <div class="icon-search-menu"><i class="wicon fa fa-search"></i></div>
+                        <div class="yolo-search-wrapper">
+                            <input id="search-ajax" placeholder="Enter keyword to search" type="search"/>
+                            <button class="search"><i class="fa fa-search"></i></button>
+                            <button class="close"><i class="pe-7s-close"></i></button>
+                        </div>
+                    </div>
+                    <div class="shopping-cart-wrapper header-customize-item with-price">
+                        <div class="widget_shopping_cart_content">
+                            <div class="widget_shopping_cart_icon"><i class="wicon fa fa-shopping-bag"></i><span
+                                    class="total">0</span></div>
+                            <div class="cart_list_wrapper">
+                                <div class="scroll-wrapper cart_list product_list_widget scrollbar-inner">
+                                    <ul class="cart_list product_list_widget scrollbar-inner scroll-content">
+                                        <li class="empty">
+                                            <h4>An empty cart</h4>
+                                            <p>You have no item in your shopping cart</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-sidebar">
+            <div class="header-bottom">
+                <div class="main-nav-wrapper">
+                    <div class="header-left">
+                        <nav id="primary-menu" class="main-nav">
+                            <ul class="nav">
+                                <li class="active menu-item menu-home">
+                                    <a href="{{url('/')}}">На главную</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="example-wrapper">
+        <p><a href="#favorModal" class="btn btn-primary" data-toggle="modal">Открыть модальное окно 1</a></p>
+        <script type="text/javascript" src="{{ asset('libs/jquery/jquery.min.js')}}"></script>
+        <div class="div-box">
+            <div class="home-4-new-collections">
+                <div class="container">
+                    <h2 class="title-style title-style-1 text-center"><span class="title-left">Каталог </span><span class="title-right"> Комнатных растений</span></h2>
+                    <div data-js-module="filtering-demo" class="big-demo go-wide">
+                        <div class="filter-button-group button-group js-radio-button-group container">
+                            <button data-filter="*" class="button is-checked" title='Показать все растения'>Все</button>
+                            @foreach($tagsList as $tag)
+                                <button data-filter=".{{$tag}}" class="button">{{$tag}}</button>
+                            @endforeach
+                        </div>
+                        <!-- Проверка на добавление -->
+                        @if(session()->has('success'))
+                            <div class="alert alert-success">{{session()->get('success')}}</div>
+                        @endif
+                        @if(session()->has('error'))
+                            <div class="alert alert-danger">{{session()->get('error')}}</div>
+                    @endif
+                    <!--  -->
+                        <ul class="grid shortcode-product-wrap product-begreen columns-4">
+                            @forelse ($plantsList as $plant)
+                                <li data-category="outdoor" class="element-item product-item-wrap product-style_1 {{$plant->tagsList}}">
+                                    <div class="product-item-inner">
+                                        <div class="product-thumb">
+                                            <div class="product-flash-wrap"></div>
+                                            <div class="style-img-div">
+                                                <img src="./Images/Small/{{$plant->photoSmallPath}}" alt="product1" class="style-img"/>
+                                            </div>
+                                            <a href="{{route('onePlant', ['id' => $plant->id])}}" class="product-link">
+                                                <div class="product-hover-sign">
+                                                    <hr/>
+                                                    <hr/>
+                                                </div></a>
+                                            <div class="product-info">
+                                                <div class="star-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div><a href="#">
+                                                    <h3>{{$plant->name}}</h3></a><span class="price"><span class="product-begreen-price-amount amount">{{$plant->shortInfo}}</span></span>
+                                            </div>
+                                            <div class="product-actions">
+                                                <div class="yith-wcwl-add-to-wishlist add-to-wishlist-17">
+                                                    <div class="yith-wcwl-add-button show">
+                                                        <a href="#" class="add_to_wishlist" data-id="{{$plant->id}}" data-isfavor="{{$plant->isFavor}}">
+                                                            <i @if($plant->isFavor)class="fa fa-heart" aria-hidden="true" @else class="fa fa-heart-o" @endif}}></i> Добавить в избранное</a>
+                                                    </div>
+                                                </div>
+                                                <div class="yith-wcwl-add-button show">
+                                                    <a href="{{route('onePlant', ['id' => $plant->id])}}" class="product-quick-view"><i class="fa fa-search"></i>Quick view</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            @empty
+                                <h2>Что-то сломалось =(</h2>
+                            @endforelse
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-       
-        <!-- Blog preview section-->
-            <section class="py-5">
-                <div class="container px-5 my-5">
-                    <div class="row gx-5 justify-content-center">
-                        <div class="col-lg-8 col-xl-6">
-                            <div class="text-center">
-                                <h2 class="fw-bolder">Наши пользователи делятся фотографиями и историями своих зеленых питомцев</h2>
-                                <p class="lead fw-normal text-muted mb-5">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque fugit ratione dicta mollitia. Officiis ad.</p>
-                            </div>
-                        </div>
-                    </div>
-                      
-                    <div class="row gx-5">
-                        <div class="col-lg-4 mb-5">
-                            <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
-                                <div class="card-body p-4">
-                                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">Blog post title</h5></a>
-                                    <p class="card-text mb-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                    <div class="d-flex align-items-end justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
-                                            <div class="small">
-                                                <div class="fw-bold">Kelly Rowan</div>
-                                                <div class="text-muted">March 12, 2021 &middot; 6 min read</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 mb-5">
-                            <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="https://dummyimage.com/600x350/adb5bd/495057" alt="..." />
-                                <div class="card-body p-4">
-                                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">Media</div>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">Another blog post title</h5></a>
-                                    <p class="card-text mb-0">This text is a bit longer to illustrate the adaptive height of each card. Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                    <div class="d-flex align-items-end justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
-                                            <div class="small">
-                                                <div class="fw-bold">Josiah Barclay</div>
-                                                <div class="text-muted">March 23, 2021 &middot; 4 min read</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 mb-5">
-                            <div class="card h-100 shadow border-0">
-                                <img class="card-img-top" src="https://dummyimage.com/600x350/6c757d/343a40" alt="..." />
-                                <div class="card-body p-4">
-                                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
-                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">The last blog post title is a little bit longer than the others</h5></a>
-                                    <p class="card-text mb-0">Some more quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                    <div class="d-flex align-items-end justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
-                                            <div class="small">
-                                                <div class="fw-bold">Evelyn Martinez</div>
-                                                <div class="text-muted">April 2, 2021 &middot; 10 min read</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Call to action-->
-                    <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
-                        <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
-                            <div class="mb-4 mb-xl-0">
-                                <div class="fs-3 fw-bold text-white">New products, delivered to you.</div>
-                                <div class="text-white-50">Sign up for our newsletter for the latest updates.</div>
-                            </div>
-                            <div class="ms-xl-4">
-                                <div class="input-group mb-2">
-                                    <input class="form-control" type="text" placeholder="Email address..." aria-label="Email address..." aria-describedby="button-newsletter" />
-                                    <button class="btn btn-outline-light" id="button-newsletter" type="button">Sign up</button>
-                                </div>
-                                <div class="small text-white-50">We care about privacy, and will never share your data.</div>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-            </section>
-@endsection
+
+
+    <script>
+        console.log($('#modalText').text());
+
+        $('.add_to_wishlist').click(function (e){
+            e.preventDefault();
+            let isFavor = +$(this).data("isfavor");
+            let url = '';
+
+            if(isFavor === 1)
+                url = "{{route('plant.removeFavor', ['userId'=>1, 'plantId'=>'plant_id_val'])}}";
+            else
+                url = "{{route('plant.addFavor', ['userId'=>1, 'plantId'=>'plant_id_val'])}}";
+
+            url = url.replace('plant_id_val', $(this).data("id"));
+            let element = $(this);
+            let child = $(this).children('i').first();
+
+            $.ajax({
+                url: url,
+                success: function(data) {
+                    console.log(url);
+                    child.removeAttr('class');
+                    child.removeAttr('aria-hidden');
+                    console.log(child);
+                    if (isFavor === 1) {
+                        child.addClass("fa fa-heart-o");
+                        element.data("isfavor",0);
+                        $('#modalText').text("Удалено из избранного");
+                        $('#favorModal').modal('show');
+                    }
+                    else {
+                        child.addClass("fa fa-heart");
+                        child.attr("aria-hidden","true");
+                        element.data("isfavor",1);
+                        $('#modalText').text("Добавлено в избранное");
+                        $('#favorModal').modal('show')
+                    }
+                    console.log(child);
+                }
+            });
+        });
+    </script>
+        <x-site-footer></x-site-footer>
+    </div>
+</div>
+<div class="popup-wrapper">
+</div>
+<!-- .popup-wrapper-->
+<div class="click-back-top-body">
+    <button type="button" class="sn-btn sn-btn-style-17 sn-back-to-top fixed-right-bottom"><i
+            class="btn-icon fa fa-angle-up"></i></button>
+</div>
+
+<!-- Vendor jQuery-->
+<script type="text/javascript" src="{{ asset('libs/jquery/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/bootstrap/js/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/animate/wow.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/jquery.mmenu.all/jquery.mmenu.all.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/countdown/jquery.countdown.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/jquery-appear/jquery.appear.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/jquery-countto/jquery.countTo.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/direction/js/jquery.hoverdir.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/direction/js/modernizr.custom.97074.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/isotope/isotope.pkgd.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/isotope/fit-columns.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/isotope/isotope-docs.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/mansory/mansory.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/prettyphoto-master/js/jquery.prettyPhoto.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/slick-sider/slick.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/countdown-timer/js/jquery.final-countdown.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/countdown-timer/js/kinetic.js')}}"></script>
+<script type="text/javascript" src="{{ asset('libs/owl.carousel.min/owl.carousel.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('js/main.js')}}"></script>
+<script type="text/javascript" src="{{ asset('js/add_to_favor.js')}}"></script>
+
+<div id="favorModal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Избранные растения</h4>
+            </div>
+            <div class="modal-body">
+                <p id="modalText">One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
