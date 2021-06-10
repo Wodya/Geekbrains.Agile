@@ -104,5 +104,7 @@ Route::group(['middleware' => 'auth'],
 Route::group(['middleware'=>'guest', 'prefix'=>'socialite'], function() {
     Route::get('/auth/vk', [SocialiteController::class, 'init'])->name('vk.init');
     Route::get('/auth/vk/callback', [SocialiteController::class, 'callback'])->name('vk.callback');
+    Route::get('/auth/fb', [SocialiteController::class, 'initFb'])->name('fb.init');
+    Route::get('/auth/fb/callback', [SocialiteController::class, 'callbackFb'])->name('fb.callback');
 });
 
