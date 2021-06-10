@@ -2,9 +2,11 @@
     <div class="mobile-menu">
         <div class="col-3 text-left"><a href="#primary-menu"><i class="fa fa-bars"></i></a></div>
         <div class="col-3 text-center">
+           
             <div class="logo">
-                <h1><a href="{{route('catalog')}}"><img src="images/logo/logo.png" alt="logo"/></a></h1>
+              <h1><a href="{{route('catalog')}}"><img src="images/logo/logo.png" alt="logo"/></a></h1>
             </div>
+            
         </div>
         <div class="col-3 text-right">
             <div class="header-right">
@@ -53,13 +55,16 @@
                             </li>
 
                             <li class="menu-item menu-blog">
-                            <a href="{{route('myPlants.index')}}">Личный кабинет</a>
+                            <a href="{{route('myPlants.index')}}">Личный кабинет <br>
+                            @auth 
+                            <small class="text-muted text-capitalize">{{ Auth::user()->name }}</small>
+                            
+                            </a>
                             </li>
                             <li class="menu-item menu-blog">
                             <a href="{{route('calendar')}}">Календарь работ</a>
                             </li>
 
-                            @auth
                             @if(\Auth::user()->hasRole('admin'))
                             <li class="menu-item menu-blog">
                                 <a href="#">Админка</a>

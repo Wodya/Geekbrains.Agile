@@ -39,19 +39,32 @@
                                     <div class="star-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div><a href="#">
                                         <h3>{{$plant->name}}</h3></a><span class="price"><span class="product-begreen-price-amount amount">{{$plant->shortInfo}}</span></span>
                                 </div>
+                                
                                 <div class="product-actions">
                                     <div class="yith-wcwl-add-to-wishlist add-to-wishlist-17">
                                         <div class="yith-wcwl-add-button show">
-                                            <a href="#" class="add_to_wishlist" data-id="{{$plant->id}}" data-isfavor="{{$plant->isFavor}}">
-                                                <i @if($plant->isFavor)class="fa fa-heart" aria-hidden="true" @else class="fa fa-heart-o" @endif}}></i> Добавить в избранное</a>
+                                        
+                                            <a href="#" class="add_to_wishlist"
+                                             data-id="{{$plant->id}}"
+                                             data-isfavor="{{$plant->isFavor}}"
+                                             @auth
+                                             data-isauth="1" 
+                                             @else
+                                             data-isauth="0" 
+                                             @endauth
+                                             >
+                                                <i @if($plant->isFavor) class="fa fa-heart" aria-hidden="true" @else class="fa fa-heart-o" @endif}}></i> Добавить в избранное</a>
                                         </div>
                                     </div>
                                         <div class="yith-wcwl-add-button show">
                                             <a href="{{route('onePlant', ['id' => $plant->id])}}" class="product-quick-view"><i class="fa fa-search"></i>Quick view</a>
                                         </div>
-                                    </div>
+                                    
                                 </div>
+
+                               
                             </li>
+
                         @empty
                             <h2>Что-то сломалось =(</h2>
                         @endforelse
@@ -60,14 +73,21 @@
             </div>
         </div>
     </div>
-
 </div>
+
+<p><a href="#favorModal" class="btn btn-primary" data-toggle="modal">Открыть модальное окно 1</a></p>
+
 <script>
+    console.log($('#modalText').text());
+
     $('.add_to_wishlist').click(function (e){
         e.preventDefault();
+        let isAuth = $(this).data("isauth");
+        if(isAuth == 0)
+        alert("Вам необходимо зарегистрироваться на сайте, чтобы добавлять растения");
+        else{
         let isFavor = +$(this).data("isfavor");
         let url = '';
-
         if(isFavor === 1)
             url = "{{route('plant.removeFavor', ['userId'=>1, 'plantId'=>'plant_id_val'])}}";
         else
@@ -77,27 +97,32 @@
         let element = $(this);
         let child = $(this).children('i').first();
 
+        $('#modal-title').text("Избранные растения");
+
         $.ajax({
             url: url,
             success: function(data) {
                 console.log(url);
                 child.removeAttr('class');
                 child.removeAttr('aria-hidden');
-                console.log(child);
+                
                 if (isFavor === 1) {
                     child.addClass("fa fa-heart-o");
                     element.data("isfavor",0);
-                    alert("Удалено из избранного");
+                    $('#modalText').text("Удалено из избранного");
+                    $('#favorModal').modal('show');
                 }
                 else {
                     child.addClass("fa fa-heart");
                     child.attr("aria-hidden","true");
                     element.data("isfavor",1);
-                    alert("Добавлено в избранное");
+                    $('#modalText').text("Добавлено в избранное");
+                    $('#favorModal').modal('show')
                 }
-                console.log(child);
+                
             }
         });
+        }
     });
 </script>
 @endsection
