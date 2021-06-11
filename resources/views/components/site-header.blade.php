@@ -67,7 +67,7 @@
 
                             @if(\Auth::user()->hasRole('admin'))
                             <li class="menu-item menu-blog">
-                                <a href="#">Админка</a>
+                                <a href="{{route('admin::plants::plantList')}}">Админка</a>
                             </li>
                            @endif
                            @endauth
