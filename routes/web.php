@@ -89,7 +89,7 @@ Route::group(['middleware' => 'auth'],
     Route::get('/calendar', [\App\Http\Controllers\TestController::class, 'testCalendar'])->name('calendar');
     Route::get('/logout', function(){
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('catalog');
     })->name('logout');
 
     Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'role:admin'],

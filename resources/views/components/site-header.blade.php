@@ -73,7 +73,7 @@
                                     </li>
                             @else
                                 <li class="menu-item menu-blog">
-                                    <a href="{{route('register')}}">Зарегистрироваться</a>
+                                    <a href="{{route('register')}}">Регистрация</a>
                                 </li>
                                 <li class="menu-item menu-blog">
                                     <a href="{{route('login')}}">Войти</a>
