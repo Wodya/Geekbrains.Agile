@@ -15,7 +15,7 @@ class AdminPlantsController extends Controller
      *
      *
      */
-    public function index(Request $request, IDbPlantService $dbPlant)
+    public function index(IDbPlantService $dbPlant)
     {
         $plants = $dbPlant->getAllPlants();
         return view('admin.plants', ['plants' => $plants]);
@@ -30,16 +30,20 @@ class AdminPlantsController extends Controller
     {
 
         $plant = new PlantFull();
-        $plant->name = $request['namePlant'];
+        $plant->name = $request['name'];
         $plant->addDate = date("Y-m-d H:i:s");
         $plant->fullInfo = $request['fullInfo'];
-        $plant->photoBigPath = $request['photoBigPath'];
-        $plant->photoSmallPath = $request['photoSmallPath'];
+//        $plant->photoBigPath = $request['photoBigPath'];
+//        $plant->photoSmallPath = $request['photoSmallPath'];
         $plant->shortInfo = $request['shortInfo'];
-        $plant->tags = $request['tags'];
-
         $plant->wateringDays = $request['wateringDays'];
-
+        $plant->manuringDays = $request['manuringDays'];
+        $plant->pestControlDays = $request['pestControlDays'];
+        $plant->tags = [];
+        $tagKey = preg_grep("/tag/", array_keys($request->all()));
+        foreach ($tagKey as $value) {
+            $plant->tags[] = $request[$value];
+        }
         $dbPlant->insertPlant($plant);
         return redirect()->route('admin::plants::createView')
             ->with('success', "Растение добавлено");
@@ -76,8 +80,6 @@ class AdminPlantsController extends Controller
     }
 
 
-
-
     /**
      * Update the specified resource in storage.
      *
@@ -86,34 +88,39 @@ class AdminPlantsController extends Controller
      */
 
     public function updateView(int $id, IDbPlantService $dbPlant)
-{
-    $plants =  $dbPlant->getPlant($id);
-    $tags = $dbPlant->getTags();
-    return view('admin.addPlant', [
-        'plants' => $plants,
-        'tags' => $tags
-    ]);
-}
+    {
+        $plants = $dbPlant->getPlant($id);
+        $tags = $dbPlant->getTags();
+        $plantTags = $dbPlant->getTagById($id);
+//        dd($plantTags);
+
+        return view('admin.addPlant', [
+            'plants' => $plants,
+            'tags' => $tags,
+            'plantTags' => $plantTags
+        ]);
+    }
+
     public function update(Request $request, $id, IDbPlantService $dbPlant)
     {
-
-
         $plant = $dbPlant->getPlant($id);
-
         $plant->name = $request['name'];
-        $plant->fullInfo = $request['fullInfo'];
         $plant->shortInfo = $request['shortInfo'];
-        $plant->tags = [];
-        for ($tag = 0; $tag == isNull($tag) ; $tag++){ // TODO
-            $keyTag = "tag".$tag;
-            $plant->tags[] = $request[$keyTag];
-
-        }
-
+        $plant->fullInfo = $request['fullInfo'];
+        $plant->photoSmallPath = $request['photoSmallPath'];
+        $plant->photoBigPath = $request['photoBigPath'];
         $plant->wateringDays = $request['wateringDays'];
+        $plant->manuringDays = $request['manuringDays'];
+        $plant->pestControlDays = $request['pestControlDays'];
+
+        $plant->tags = [];
+        $tagKey = preg_grep("/tag/", array_keys($request->all()));
+        foreach ($tagKey as $value) {
+            $plant->tags[] = $request[$value];
+         }
 
         $dbPlant->updatePlant($plant);
-        return redirect()->route('admin::plants::updateView', ['id' => $plant-> id])
+        return redirect()->route('admin::plants::updateView', ['id' => $plant->id])
             ->with('success', "Растение обновлено");
     }
 
@@ -123,11 +130,12 @@ class AdminPlantsController extends Controller
      *
      * @param Request $request
      * @param IDbPlantService $dbPlant
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Request $request, IDbPlantService $dbPlant)
+    public function delete($id, IDbPlantService $dbPlant)
     {
-        $dbPlant->deletePlant(1);
+        $dbPlant->deletePlant($id);
+        return redirect()->route('admin::plants::plantList');
     }
 }
 

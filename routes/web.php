@@ -35,7 +35,7 @@ Route::resource('/test', TestController::class);
 Route::group([
     'prefix' => '/admin',
     'as' => 'admin::plants::',
-//    'middleware' => ['auth']
+    'middleware' => ['auth']
 ], function () {
     Route::get('/plants', [AdminPlantsController::class, 'index'])
         ->name('plantList');

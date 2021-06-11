@@ -62,17 +62,15 @@ class DbPlantService implements IDbPlantService
     public function updatePlant(PlantFull $plant)
     {
         echo("<script>console.log('updatePlant');</script>");
-        $exists = DbPlant::where('name', $plant->name)->get();
-        foreach ($exists as $exist) {
-           if ($exist["id"] != $plant->id)
-               throw new \ErrorException('Растение с таким именем уже сущетсвует');
-        }
-        $dbPlant = DbPlant::first('id', $plant->id);
+//        $exists = DbPlant::where('name', $plant->name)->get();
+//        foreach ($exists as $exist) {
+//           if ($exist["id"] != $plant->id)
+//               throw new \ErrorException('Растение с таким именем уже сущетсвует');
+//        }
+        $dbPlant = DbPlant::find($plant->id);
         $dbPlant['name'] = $plant->name;
         $dbPlant['short_info'] = $plant->shortInfo;
         $dbPlant['full_info'] = $plant->fullInfo;
-        $dbPlant['photo_small_path'] = $plant->photoSmallPath;
-        $dbPlant['photo_big_path'] = $plant->photoBigPath;
         $dbPlant['watering_days'] = $plant->wateringDays;
         $dbPlant['manuring_days'] = $plant->manuringDays;
         $dbPlant['pest_control_days'] = $plant->pestControlDays;
@@ -99,9 +97,33 @@ class DbPlantService implements IDbPlantService
             $dbTag->delete();
         }
     }
-    public function insertPlant(PlantFull $plant): int
+    public function insertPlant(PlantFull $plant)
     {
         echo("<script>console.log('insertPlant');</script>");
+        $dbItem = DbPlant::where('name', $plant->name)->get();
+        foreach ($dbItem as $exist) {
+           if ($exist["id"] != $plant->id)
+               throw new \ErrorException('Растение с таким именем уже сущетсвует');
+        }
+        $dbPlant = [];
+        $dbPlant['name'] = $plant->name;
+        $dbPlant['add_date'] = $plant->addDate;
+        $dbPlant['short_info'] = $plant->shortInfo;
+        $dbPlant['full_info'] = $plant->fullInfo;
+        $dbPlant['photo_small_path'] = $plant->photoSmallPath ?? NULL;
+        $dbPlant['photo_big_path'] = $plant->photoBigPath ?? NULL;
+        $dbPlant['watering_days'] = $plant->wateringDays ?? 0;
+        $dbPlant['manuring_days'] = $plant->manuringDays ?? 0;
+        $dbPlant['pest_control_days'] = $plant->pestControlDays ?? 0;
+        DbPlant::insert($dbPlant);
+        $newPlant = DbPlant::where  ('name', $plant->name)->first();
+
+        foreach ($plant->tags as $tag){
+            $newTag = [];
+            $newTag["plant_id"] = $newPlant->id;
+            $newTag["tag"] = $tag;
+            DbPlantTag::insert($newTag);
+        }
     }
 
     /**
@@ -110,13 +132,15 @@ class DbPlantService implements IDbPlantService
     public function deletePlant(int $plantId)
     {
         echo("<script>console.log('deletePlant');</script>");
+
         if (DbUserPlant::where('plant_id', $plantId)->count() > 1)
             throw new \ErrorException('Растение используется пользователями');
         $dbTags = DbPlantTag::where('plant_id', $plantId)->get();
+
         foreach ($dbTags as $dbTag)
             $dbTag->delete();
 
-        $dbPlant = DbPlant::first('id', $plantId);
+        $dbPlant = DbPlant::find($plantId);
         $dbPlant->delete();
     }
 
@@ -245,6 +269,12 @@ class DbPlantService implements IDbPlantService
     public function getTags()
     {
         return DbPlantTag::pluck('tag')->unique();
+    }
+
+    public function getTagById(int $plantId)
+    {
+        $dbPlantTag = DbPlantTag::where('plant_id',$plantId)->pluck('tag');
+        return $dbPlantTag;
     }
 
     public function setUserPlantDone(int $userId, int $plantId, int $actionId, string $date) : void

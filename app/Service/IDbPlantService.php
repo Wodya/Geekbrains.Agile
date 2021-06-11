@@ -28,7 +28,7 @@ interface IDbPlantService
      * Вставляет подробную информацию о растении, которого нет в БД
      * @return int - Id вставленного растения
      */
-    public function insertPlant(PlantFull $plant): int;
+    public function insertPlant(PlantFull $plant);
 
     /**
      * Удаляет растение
@@ -82,4 +82,6 @@ interface IDbPlantService
      * @param string $date
      */
     public function resetUserPlantDone(int $userId, int $plantId, int $actionId, string $date): void;
+
+    public function getTagById(int $plantId);
 }

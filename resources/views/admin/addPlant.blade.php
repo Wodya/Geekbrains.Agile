@@ -1,10 +1,5 @@
 @extends('layouts.admin')
 @section('content')
-    @if (session('success'))
-        <div class="alert alert-success" role="alert">
-            {{ session('success') }}
-        </div>
-    @endif
     <div class="col-md-4  offset-2">
         <form method="post"
               @if(empty($plants))
@@ -26,10 +21,10 @@
                             <div class="single-product-slider">
                                 <div id="sync1" class="owl-carousel owl-template">
                                     @if(!empty($plants->photoSmallPath))
-                                        <div class="item">
-                                            <figure><img src="/Images/Big/{{$plants->photoBigPath ?? ''}}" alt="slide"
-                                                         width="1080" height="768"/></figure>
-                                        </div>
+                                        {{--                                        <div class="item">--}}
+                                        {{--                                            <figure><img src="/Images/Big/{{$plants->photoBigPath ?? ''}}" alt="slide"--}}
+                                        {{--                                                         width="1080" height="768"/></figure>--}}
+                                        {{--                                        </div>--}}
                                 </div>
                                 <div id="sync2" class="owl-carousel owl-template">
                                     <div class="item">
@@ -42,6 +37,11 @@
                                     @endif
                                 </div>
                             </div>
+                            <h2>Добавить фото</h2>
+{{--                            <form action="" enctype="multipart/form-data" method="post">  <!--обязательно должно быть прописано-->--}}
+                                <input type="file" name = 'new_image'>
+{{--                                <input type="submit">--}}
+{{--                            </form>--}}
                         </div>
                         <div class="col-md-7">
                             <div class="single-product-content">
@@ -79,19 +79,41 @@
                                             <input id="wateringDays" type="number"
                                                    value="{{$plants->wateringDays ?? ''}}" name="wateringDays">
 
-                                    </span>
+                                        </span>
+
+                                        <span class="posted_in" style="display: flex;">
+                                        <label for="manuringDays" style="align-self: center; width: 100%;">
+                                            Период подкормки (дн.):
+                                        </label>
+                                            <input id="wateringDays" type="number"
+                                                   value="{{$plants->manuringDays ?? ''}}" name="manuringDays">
+                                        </span>
+                                        <span class="posted_in" style="display: flex;">
+                                        <label for="pestControlDays" style="align-self: center; width: 100%;">
+                                            Период обработки от вредителей (дн.):
+                                        </label>
+                                            <input id="wateringDays" type="number"
+                                                   value="{{$plants->pestControlDays ?? ''}}" name="pestControlDays">
+                                        </span>
+
                                         <span class="posted_in" style="display: flex;">
                                         <label for="tags" style="align-self: center; width: 100%;">
                                             Теги:
                                         </label>
                                             <ul>
-                                            @forelse($tags as $key => $tag)
+                                                @forelse($tags as $key => $tag)
+                                                    <li><input type="checkbox" name="tag{{$key}}" value="{{$tag}}"
+                                                               @if(!empty($plantTags))
+                                                               @foreach ($plantTags as $tagPlants)
+                                                               @if($tag == $tagPlants)checked
+                                                                        @endif
+                                                            @endforeach
+                                                            @endif
+                                                    >{{$tag}}</li>
+                                                @empty
+                                                    <p>Тегов нет</p>
+                                                @endforelse
 
-                                                <li><input type="checkbox" name="tag{{$key}}" value="{{$tag}}">{{$tag}}</li>
-                                            @empty
-                                                <p>Тегов нет</p>
-
-                                            @endforelse
                                             </ul>
                                     </span>
                                     </div>
@@ -132,12 +154,8 @@
                     </div>
                 </div>
                 <label>
-                    <h4>фото 180*130</h4>
+                    <h4>Добавить картинку</h4>
                     <input type="file" name="photoSmallPath">
-                </label>
-                <label>
-                    <h4>фото 1080*968</h4>
-                    <input type="file" name="photoBigPath">
                 </label>
             </div>
             <br/><input class="btn btn-primary" style="float: right" type="submit"
