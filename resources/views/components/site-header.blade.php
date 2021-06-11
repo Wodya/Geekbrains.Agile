@@ -2,11 +2,11 @@
     <div class="mobile-menu">
         <div class="col-3 text-left"><a href="#primary-menu"><i class="fa fa-bars"></i></a></div>
         <div class="col-3 text-center">
-           
+
             <div class="logo">
-              <h1><a href="{{route('catalog')}}"><img src="images/logo/logo.png" alt="logo"/></a></h1>
+                <h1><a href="{{route('catalog')}}"><img src="images/logo/logo.png" alt="logo"/></a></h1>
             </div>
-            
+
         </div>
         <div class="col-3 text-right">
             <div class="header-right">
@@ -48,29 +48,37 @@
                     <nav id="primary-menu" class="main-nav">
                         <ul class="nav">
                             <li class="active menu-item menu-home">
-                                <a href="{{url('/')}}">На главную</a>
-                            </li>
-                            <li class="active menu-item menu-home">
                                 <a href="{{route('catalog')}}">Каталог</a>
                             </li>
+                            @auth
+                                @if(\Auth::user()->hasRole('admin'))
+                                    <li class="menu-item menu-blog">
+                                        <a href="{{route('admin::plants::plantList')}}">Админка</a>
+                                    </li>
+                                @endif
+                                    <li class="menu-item menu-blog">
+                                    <a href="{{route('myPlants.index')}}">Личный кабинет <br>
+                                        <small class="text-muted text-capitalize">{{ Auth::user()->name }}</small>
 
-                            <li class="menu-item menu-blog">
-                            <a href="{{route('myPlants.index')}}">Личный кабинет <br>
-                            @auth 
-                            <small class="text-muted text-capitalize">{{ Auth::user()->name }}</small>
-                            
-                            </a>
-                            </li>
-                            <li class="menu-item menu-blog">
-                            <a href="{{route('calendar')}}">Календарь работ</a>
-                            </li>
-
-                            @if(\Auth::user()->hasRole('admin'))
-                            <li class="menu-item menu-blog">
-                                <a href="{{route('admin::plants::plantList')}}">Админка</a>
-                            </li>
-                           @endif
-                           @endauth
+                                    </a>
+                                    </li>
+                                    <li class="menu-item menu-blog">
+                                        <a href="{{route('calendar')}}">Календарь работ</a>
+                                    </li>
+                                    <li class="menu-item menu-blog">
+                                        <a href="{{route('logout')}}">
+                                            <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
+                                            Выход
+                                        </a>
+                                    </li>
+                            @else
+                                <li class="menu-item menu-blog">
+                                    <a href="{{route('register')}}">Зарегистрироваться</a>
+                                </li>
+                                <li class="menu-item menu-blog">
+                                    <a href="{{route('login')}}">Войти</a>
+                                </li>
+                            @endauth
                         </ul>
                     </nav>
                     <!-- .header-main-nav-->
@@ -78,7 +86,7 @@
 
 
                 <div class="form-input">
-                    <input type="text" placeholder="Search"/><a href="#"><i class="fa fa-search"></i></a>
+                    <input type="text" placeholder="Поиск"/><a href="#"><i class="fa fa-search"></i></a>
                 </div>
             </div>
         </div>

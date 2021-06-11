@@ -5,7 +5,7 @@
     <title>Tree Shop Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="{{asset('Images/icon/favicon.png')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset('Images/icon/favicon.ico')}}" type="image/x-icon">
 
     <!-- Web Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Pacifico%7CSource+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i&amp;amp;subset=latin-ext,vietnamese"
