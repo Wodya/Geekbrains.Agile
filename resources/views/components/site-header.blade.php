@@ -2,16 +2,18 @@
     <div class="mobile-menu">
         <div class="col-3 text-left"><a href="#primary-menu"><i class="fa fa-bars"></i></a></div>
         <div class="col-3 text-center">
+
             <div class="logo">
-                <h1><a href="{{route('catalog')}}"><img src="images/logo/logo.png" alt="logo"/></a></h1>
+                <h1><a href="{{route('catalog')}}"><img src="images/logo/logo.png" alt="logo" /></a></h1>
             </div>
+
         </div>
         <div class="col-3 text-right">
             <div class="header-right">
                 <div class="search-button-wrapper header-customize-item style-default">
                     <div class="icon-search-menu"><i class="wicon fa fa-search"></i></div>
                     <div class="yolo-search-wrapper">
-                        <input id="search-ajax" placeholder="Enter keyword to search" type="search"/>
+                        <input id="search-ajax" placeholder="Enter keyword to search" type="search" />
                         <button class="search"><i class="fa fa-search"></i></button>
                         <button class="close"><i class="pe-7s-close"></i></button>
                     </div>
@@ -37,7 +39,7 @@
     </div>
     <div class="header-sidebar">
         <div class="header-logo">
-            <h1><a href="{{route('catalog')}}"><img src="{{ asset('Images/logo/logo-footer.png')}}" alt="logo"/></a>
+            <h1><a href="{{route('catalog')}}"><img src="{{ asset('Images/logo/logo-footer.png')}}" alt="logo" /></a>
             </h1>
         </div>
         <div class="header-bottom">
@@ -46,34 +48,38 @@
                     <nav id="primary-menu" class="main-nav">
                         <ul class="nav">
                             <li class="active menu-item menu-home">
-                                <a href="{{route('catalog')}}">На главную</a>
+                                <a href="{{url('/')}}">На главную</a>
                             </li>
-                            <li class="mega-menu menu-item">
-                                <a href="{{route('myPlants.index')}}">Мои растения</a>
+                            <li class="active menu-item menu-home">
+                                <a href="{{route('catalog')}}">Каталог</a>
+                            </li>
+
+                            <li class="menu-item menu-blog">
+                                <a href="{{route('myPlants.index')}}">Личный кабинет <br>
+                                    @auth
+                                    <small class="text-muted text-capitalize">{{ Auth::user()->name }}</small>
+
+                                </a>
                             </li>
                             <li class="menu-item menu-blog">
-                                <a href="#">Личный кабинет</a>
+                                <a href="{{route('calendar')}}">Календарь работ</a>
                             </li>
+
+                            @if(\Auth::user()->hasRole('admin'))
                             <li class="menu-item menu-blog">
-                                <a href="#">Ещё один пункт меню</a>
+                                <a href="{{route('admin.plantList.index')}}">Админка</a>
                             </li>
-                            <li class="menu-item menu-blog">
-                                <a href="#">Пункт меню с подменю</a>
-                                <ul class="sub-menu">
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li><a href="contact-us.html">Contact Us</a></li>
-                                    <li><a href="book-service.html">Book Service</a></li>
-                                    <li><a href="page-404.html">404 Page</a></li>
-                                </ul>
-                            </li>
+                            @endif
+                            @endauth
                         </ul>
                     </nav>
+                    <br>
                     <!-- .header-main-nav-->
                 </div>
 
 
                 <div class="form-input">
-                    <input type="text" placeholder="Search"/><a href="#"><i class="fa fa-search"></i></a>
+                    <input type="text" placeholder="Search" /><a href="#"><i class="fa fa-search"></i></a>
                 </div>
             </div>
         </div>

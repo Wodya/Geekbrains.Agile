@@ -20,6 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'avatar',
     ];
 
     /**
@@ -30,6 +32,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+
     ];
 
     /**
@@ -39,5 +42,11 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'role' => 'string',
     ];
+
+    public function hasRole(string $role)
+    {
+        return $this->role == $role;
+    }
 }

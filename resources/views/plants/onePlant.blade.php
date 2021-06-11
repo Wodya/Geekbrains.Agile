@@ -175,8 +175,9 @@
                     </div>
                 </div>
             </div>
-            <br><br><br><a href="{{route('plant.edit', ['id' => $onePlant->id])}}" class="btn btn-primary"
-                style="float: right">Редактировать</a><br><br><br>
+            <br><br><br>
+            <!-- <a href="{{route('plant.edit', ['id' => $onePlant->id])}}" class="btn btn-primary"
+                style="float: right">Редактировать</a><br><br><br> -->
         </div>
     </div>
 </div>

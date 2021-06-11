@@ -39,16 +39,6 @@ class TestController extends Controller
             echo "{$item->id}  ; {$item->name}  ; {$item->addDate}  ; {$item->photoSmallPath}  ; {$item->shortInfo}  ; {$item->wateringDays}  ; {$item->tags}  <BR>";
     }
 
-    public function getFavorCalendar(Request $request, IDbPlantService $dbPlant)
-    {
-        $calendar = $dbPlant->getFavorCalendar(1);
-//        foreach ($calendar as $item) {
-//            $plants = implode(',', $item->plantsToWatering);
-//            echo "{$item->dayNum}  ; {$plants} <BR>";
-//        }
-        return view('plants.calendarTable', ['dates' => $calendar]);
-    }
-
     public function testCalendar(IDbPlantService $dbPlant)
     {
         $calendar = $dbPlant->getFavorCalendar(1);

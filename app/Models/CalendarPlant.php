@@ -8,9 +8,27 @@ class CalendarPlant extends ModelCommon
      */
     public $dayNum;
     /**
-     * @var string[]
+     * @var string
      */
-    public $plantsToWatering;
-    public $plantsToManuring;
-    public $plantsToPesting;
+    public $date;
+    /**
+     * @var string
+     */
+    public $dayInfo;
+    /**
+     * @var CalendarPlantRow[]
+     */
+    public $plantsToDo;
+    /**
+     * @var int
+     */
+    public $totalCount;
+    /**
+     * @var int
+     */
+    public $doneCount;
+    /**
+     * @var int
+     */
+    public $percent;
 }

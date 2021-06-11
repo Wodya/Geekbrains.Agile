@@ -1,5 +1,11 @@
 <?php
+
 namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+
 /**
  * Класс "Растение"
  */
@@ -25,7 +31,7 @@ class PlantFull extends ModelCommon
      * @var string
      */
     public $fullInfo;
-//    как ухаживать, грунт, цветение, опасное или нет
+
     /**
      * @var string
      */
