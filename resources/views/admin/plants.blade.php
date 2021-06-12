@@ -29,7 +29,7 @@
                                     <td>{{$plant->id}}</td>
                                     <td>{{$plant->name}}</td>
                                     <td>{{$plant->shortInfo}}</td>
-                                    <td>{{$plant->photoSmallPath}}</td>
+                                    <td><img src="/Images/Small/{{$plant->photoSmallPath}}" alt="slide" height="60px" width="120px"/></td>
                                     <td>{{$plant->tags}}</td>
                                     <td>
                                         <a href="{{route('admin::plants::updateView', ['id'=>$plant->id])}}" class="btn btn-7">Ред. </a>

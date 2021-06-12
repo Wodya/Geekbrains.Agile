@@ -14,6 +14,7 @@ use App\Models\PlantFull;
 use App\Models\PlantShort;
 use App\Service\IDbPlantService;
 use DateTime;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class DbPlantService
@@ -70,6 +71,7 @@ class DbPlantService implements IDbPlantService
         $dbPlant = DbPlant::find($plant->id);
         $dbPlant['name'] = $plant->name;
         $dbPlant['short_info'] = $plant->shortInfo;
+        $dbPlant['photo_small_path'] = $plant->photoSmallPath;
         $dbPlant['full_info'] = $plant->fullInfo;
         $dbPlant['watering_days'] = $plant->wateringDays;
         $dbPlant['manuring_days'] = $plant->manuringDays;
@@ -140,7 +142,10 @@ class DbPlantService implements IDbPlantService
         foreach ($dbTags as $dbTag)
             $dbTag->delete();
 
+
+
         $dbPlant = DbPlant::find($plantId);
+        unlink(public_path('/Images/Small/' . $dbPlant->photo_small_path));
         $dbPlant->delete();
     }
 

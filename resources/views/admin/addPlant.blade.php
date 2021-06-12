@@ -39,7 +39,7 @@
                             </div>
                             <h2>Добавить фото</h2>
 {{--                            <form action="" enctype="multipart/form-data" method="post">  <!--обязательно должно быть прописано-->--}}
-                                <input type="file" name = 'new_image'>
+                                <input type="file" name = 'photo'>
 {{--                                <input type="submit">--}}
 {{--                            </form>--}}
                         </div>
@@ -147,10 +147,7 @@
                         </div>
                     </div>
                 </div>
-                <label>
-                    <h4>Добавить картинку</h4>
-                    <input type="file" name="photoSmallPath">
-                </label>
+
             </div>
             <br/><input class="btn btn-primary" style="float: right" type="submit"
                         value="Сохранить"><br><br><br><br>
