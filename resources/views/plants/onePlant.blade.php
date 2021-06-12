@@ -49,22 +49,11 @@
                     <div class="summary-product entry-summary">
                         <h2 class="product_title mb-45">{{$onePlant->name}}</h2>
                         <div>
-                            <p class="price"><span class="product-begreen-price-amount amount"><span
-                                        class="product-begreen-price-currencysymbol">$</span>38.00</span></p>
+                            <p class="price">Краткое описание</p>
                         </div>
                         <div class="product-single-short-description">
                             <p>{{$onePlant->shortInfo}}</p>
                         </div>
-                        <form class="cart">
-                            <div class="quantity">
-                                <label>Quantity:</label>
-                                <div class="quantity-inner">
-                                    <input step="1" min="1" name="quantity" value="1" title="Qty" size="4" type="number"
-                                        class="input-text qty text" />
-                                </div>
-                            </div>
-                            <button type="submit" class="single_add_to_cart_button button alt">Add to cart</button>
-                        </form>
                         <div class="yith-wcwl-add-to-wishlist">
                             <div class="yith-wcwl-add-button show">
                                 <a href="{{route('addPlantToFavor', ['userId'=>1, 'plantId'=>$onePlant->id])}}"
@@ -73,31 +62,14 @@
                                     Добавить в избранное
                                 </a>
                             </div>
-                        </div><a href="#" class="compare button"> <i class="fa fa-signal"></i>Compare</a>
+                        </div>
                         <div class="product_meta"><span class="product-stock-status-wrapper">
-                                <label>Availability:</label><span class="product-stock-status in-stock">In
-                                    stock</span></span><span class="posted_in">
-                                <label>Categories:</label><a href="#">New /</a><a href="#">Outdoor /</a><a href="#">Pots
-                                    /</a><a href="#">Seeds</a></span>
                             <span class="tagged_as">
                                 <label>Теги:</label>
                                 @foreach($onePlant->tags as $tag)
                                 <a href="#">{{$tag}}</a>
                                 @endforeach
                             </span>
-                        </div>
-                        <div class="social-share-wrap">
-                            <label><i class="fa fa-share-alt"></i>Share:</label>
-                            <ul class="social-share">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-tumblr"></i></a></li>
-                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                            </ul>
-
-
                         </div>
                     </div>
                 </div>
@@ -110,12 +82,6 @@
     <div class="product-begreen-tabs">
         <div class="container">
             <div class="row">
-                <div class="col-md-2 col-sm-12">
-                    <ul class="nav nav-pills">
-                        <li class="active"><a href="#tab-description" data-toggle="tab">Description</a></li>
-                        <li><a href="#tab-reviews" data-toggle="tab">Reviews (0)</a></li>
-                    </ul>
-                </div>
 
                 <div class="col-md-10 col-sm-12">
                     <div class="desc-review-content tab-content clearfix">

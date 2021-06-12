@@ -127,12 +127,6 @@
                 <div class="product-begreen-tabs">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-2 col-sm-12">
-                                <ul class="nav nav-pills">
-                                    <li class="active"><a href="#tab-description" data-toggle="tab">Description</a>
-                                    </li>
-                                </ul>
-                            </div>
                             <div class="col-md-10 col-sm-12">
                                 <div class="desc-review-content tab-content clearfix">
                                     <div id="tab-description" class="tab-pane active">

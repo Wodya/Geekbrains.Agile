@@ -6,13 +6,15 @@
     <ul class="nav navbar-top-links navbar-right">
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                Имя администратора{{--{{Auth::user()->name}}--}}<i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                <img class="img-profile rounded-circle" src="Ссылка на аватар{{--{{Auth::user()->avatar}}--}}" width="20" height="20" alt="">
+                {{Auth::user()->name}}
+                <img class="img-profile rounded-circle" src="{{Auth::user()->avatar}}" width="25" height="25" alt="">
+                <i class="fa fa-caret-down"></i>
+
             </a>
             <ul class="dropdown-menu dropdown-user">
                 <li><a href="#">
                         <i class="fa fa-user fa-fw"></i>
-{{--                        {{Auth::user()->name}}--}}Имя администратора
+                        {{Auth::user()->name}}
                     </a>
                 </li>
                 <li><a href="#"><i class="fa fa-gear fa-fw"></i> Настройки</a>

@@ -36,21 +36,32 @@
                                         <hr/>
                                     </div></a>
                                 <div class="product-info">
-                                    <div class="star-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div><a href="#">
-                                        <h3>{{$plant->name}}</h3></a><span class="price"><span class="product-begreen-price-amount amount">{{$plant->shortInfo}}</span></span>
+                                    <div class="star-rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                    <a href="#">
+                                        <h3>{{$plant->name}}</h3>
+                                    </a>
+                                    <span class="price">
+                                        <span class="product-begreen-price-amount amount">{{$plant->shortInfo}}</span>
+                                    </span>
                                 </div>
-                                
+
                                 <div class="product-actions">
                                     <div class="yith-wcwl-add-to-wishlist add-to-wishlist-17">
                                         <div class="yith-wcwl-add-button show">
-                                        
+
                                             <a href="#" class="add_to_wishlist"
                                              data-id="{{$plant->id}}"
                                              data-isfavor="{{$plant->isFavor}}"
                                              @auth
-                                             data-isauth="1" 
+                                             data-isauth="1"
                                              @else
-                                             data-isauth="0" 
+                                             data-isauth="0"
                                              @endauth
                                              >
                                                 <i @if($plant->isFavor) class="fa fa-heart" aria-hidden="true" @else class="fa fa-heart-o" @endif}}></i> Добавить в избранное</a>
@@ -59,10 +70,10 @@
                                         <div class="yith-wcwl-add-button show">
                                             <a href="{{route('onePlant', ['id' => $plant->id])}}" class="product-quick-view"><i class="fa fa-search"></i>Quick view</a>
                                         </div>
-                                    
+
                                 </div>
 
-                               
+
                             </li>
 
                         @empty
@@ -105,7 +116,7 @@
                 console.log(url);
                 child.removeAttr('class');
                 child.removeAttr('aria-hidden');
-                
+
                 if (isFavor === 1) {
                     child.addClass("fa fa-heart-o");
                     element.data("isfavor",0);
@@ -119,7 +130,7 @@
                     $('#modalText').text("Добавлено в избранное");
                     $('#favorModal').modal('show')
                 }
-                
+
             }
         });
         }

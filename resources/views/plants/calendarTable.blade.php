@@ -7,7 +7,7 @@
     <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4 calendar-head">
             <h1 class="h3 mb-0 text-gray-800">Календарь ухода за растениями</h1>
-            <a href="{{route('catalog')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"> Добавить растение</a>
+            <a href="{{route('catalog')}}" class="btn btn-3"> Добавить растение</a>
         </div>
         @if($dates === null)
             <div class="alert alert-warning" role="alert">

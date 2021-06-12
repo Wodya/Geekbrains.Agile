@@ -17,7 +17,7 @@
     <link href="{{asset('assets/js/dataTables/dataTables.bootstrap.css')}}" rel="stylesheet"/>
 
 
-    <link rel="shortcut icon" href="{{asset('Images/icon/favicon.png')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset('Images/icon/favicon.ico')}}" type="image/x-icon">
 
     <!-- Web Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Pacifico%7CSource+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i&amp;amp;subset=latin-ext,vietnamese"
@@ -39,6 +39,8 @@
     <!-- Template CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css')}}">
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/sadTest.css')}}">
 
 </head>
 <body>
@@ -109,6 +111,8 @@
 <script type="text/javascript" src="{{ asset('libs/countdown-timer/js/kinetic.js')}}"></script>
 <script type="text/javascript" src="{{ asset('libs/owl.carousel.min/owl.carousel.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/main.js')}}"></script>
+
+<script type="text/javascript" src="{{ asset('js/sadTest.js')}}"></script>
 
 </body>
 </html>

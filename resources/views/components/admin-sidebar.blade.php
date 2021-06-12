@@ -1,34 +1,47 @@
 <nav class="navbar-default navbar-side" role="navigation">
     <div class="sidebar-collapse">
-        <ul class="nav" id="main-menu">
-
+        <ul class="nav main-nav" id="main-menu">
             <li>
-                <a href="{{route('catalog')}}"><i class="fa fa-dashboard"></i>Каталог</a>
+                <a href="{{route('catalog')}}">
+                    <img src="{{ asset('Images/logo/logo-footer.png')}}" alt="logo"/> В каталог
+                </a>
             </li>
             <li>
-                <a href="{{route('admin::plants::plantList')}}"><i class="fa fa-dashboard"></i> Список растений</a>
+                <h2 class="title-style title-style-1 text-center"><span class="title-left">Управление </span></h2>
             </li>
             <li>
-                <a href="#"><i class="fa fa-sitemap"></i> Выпадающее меню<span class="fa arrow"></span></a>
+                <a href="{{route('admin::plants::plantList')}}"><i class="fa fa-leaf"></i> Список растений</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-user"></i> Список пользователей</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-cogs"></i>Логи</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-paper-plane"></i>Уведомления</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-sitemap"></i> Статистика<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><p>Базовые категории</p></li>
+                    {{--                    <li><h1>Базовые категории</h1></li>--}}
                     <li>
-                        <a href="#">Пункт меню</a>
+                        <a href="#">Посещения</a>
                     </li>
                     <li>
-                        <a href="#">Пункт меню</a>
+                        <a href="#">Регистрации</a>
                     </li>
                     <li>
-                        <a href="#">Пункт меню</a>
+                        <a href="#">Добавления в избранное</a>
                     </li>
                     <li>
-                        <a href="#">Дополнительная панель<span class="fa arrow"></span></a>
+                        <a href="#">Действия пользователей<span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
                             <li>
-                                <a href="#">Здесь будут ещё инструменты</a>
+                                <a href="#">Выполненные</a>
                             </li>
                             <li>
-                                <a href="#">Здесь будут ещё инструменты</a>
+                                <a href="#">Просроченные</a>
                             </li>
                         </ul>
 
