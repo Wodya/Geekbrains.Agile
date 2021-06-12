@@ -66,8 +66,11 @@ class AdminPlantsController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store($file): string
+    public function store( $file, $exist = null): string
     {
+        if ($exist != null) {
+            unlink(public_path('/Images/Small/' . $exist));
+        }
         $path = $file->getClientOriginalName();
         $file->move(public_path() . '/Images/Small/', $path);
         return $path;
@@ -123,7 +126,7 @@ class AdminPlantsController extends Controller
             $plant->tags[] = $request[$value];
          }
         if ($request->hasFile('photo')) {
-            $plant->photoSmallPath = $this->store($request->file('photo'));
+            $plant->photoSmallPath = $this->store($request->file('photo'), $plant->photoSmallPath);
         }
 //        dd($plant);
         $dbPlant->updatePlant($plant);

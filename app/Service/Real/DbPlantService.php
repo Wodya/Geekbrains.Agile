@@ -71,6 +71,7 @@ class DbPlantService implements IDbPlantService
         $dbPlant = DbPlant::find($plant->id);
         $dbPlant['name'] = $plant->name;
         $dbPlant['short_info'] = $plant->shortInfo;
+        unlink(public_path('/Images/Small/' . $dbPlant['photo_small_path']));
         $dbPlant['photo_small_path'] = $plant->photoSmallPath;
         $dbPlant['full_info'] = $plant->fullInfo;
         $dbPlant['watering_days'] = $plant->wateringDays;
@@ -141,8 +142,6 @@ class DbPlantService implements IDbPlantService
 
         foreach ($dbTags as $dbTag)
             $dbTag->delete();
-
-
 
         $dbPlant = DbPlant::find($plantId);
         unlink(public_path('/Images/Small/' . $dbPlant->photo_small_path));
