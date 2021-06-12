@@ -57,7 +57,7 @@
                                     </li>
                                 @endif
                                 <li class="menu-item menu-blog">
-                                    <a href="{{route('myPlants.index')}}">
+                                    <a href="{{route('favorPlants')}}">
                                         <p>Избранные растения</p>
                                         <img class="img-profile rounded-circle " src="{{Auth::user()->avatar}}"
                                              height="40px" width="40px">

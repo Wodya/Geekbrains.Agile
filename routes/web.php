@@ -24,13 +24,8 @@ use App\Http\Controllers\SocialiteController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(\route('catalog'));
 });
-
-
-Route::resource('/test', TestController::class);
-
-//Route::get('/onePlant', [TestController::class, 'onePlant']) ->name('onePlant');
 
 Route::group([
     'prefix' => '/admin',
@@ -57,28 +52,28 @@ Route::group([
 
     Route::get('/delete/{id}', [AdminPlantsController::class, 'delete'])
         ->name('delete');
-
-
 });
 
 Route::get('/onePlant/{id}', [PlantsController::class, 'onePlant'])->name('onePlant');
 Route::get('catalog', [PlantsController::class, 'index'])->name('catalog');
-Route::resource('/myPlants',MyPlantsController::class);
-
-
-Route::get('/plant/edit/{id}', [PlantsController::class, 'edit'])->name('plant.edit');
 Route::put('/plant/post', [PlantsController::class, 'update'])->name('plant.update');
+Route::get('/plant/edit/{id}', [PlantsController::class, 'edit'])->name('plant.edit');
+
+
+Route::get('/favorPlants', [MyPlantsController::class, 'favorPlants'])->name('favorPlants');
 Route::get('/addFavor/{userId}/{plantId}', [MyPlantsController::class, 'addFavor'])->name('plant.addFavor');
 Route::get('/removeFavor/{userId}/{plantId}', [MyPlantsController::class, 'removeFavor'])->name('plant.removeFavor');
 Route::get('/setUserPlantDone/{userId}/{plantId}/{actionId}/{date}', [MyPlantsController::class, 'setUserPlantDone'])->name('plant.setUserPlantDone');
 Route::get('/resetUserPlantDone/{userId}/{plantId}/{actionId}/{date}', [MyPlantsController::class, 'resetUserPlantDone'])->name('plant.resetUserPlantDone');
+Route::get('/calendar', [MyPlantsController::class, 'calendar'])->name('calendar');
 
-Route::get('/deletePlant', [\App\Http\Controllers\TestController::class, 'deletePlant']);
-Route::get('/addPlantToFavor/{userId}/{plantId}', [\App\Http\Controllers\TestController::class, 'addPlantToFavor'])->name('addPlantToFavor');
-Route::get('/removePlantFromFavor/{userId}/{plantId}', [\App\Http\Controllers\TestController::class, 'removePlantFromFavor'])->name('removePlantFromFavor');
+
+Route::get('/deletePlant', [TestController::class, 'deletePlant']);
+Route::get('/addPlantToFavor/{userId}/{plantId}', [TestController::class, 'addPlantToFavor'])->name('addPlantToFavor');
+Route::get('/removePlantFromFavor/{userId}/{plantId}', [TestController::class, 'removePlantFromFavor'])->name('removePlantFromFavor');
 // Route::get('/getFavorPlants', [\App\Http\Controllers\TestController::class, 'getFavorPlants'])->name('getFavorPlants');
 
-Route::get('/calendar', [\App\Http\Controllers\MyPlantsController::class, 'calendar'])->name('calendar');
+
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'],
@@ -86,7 +81,7 @@ Route::group(['middleware' => 'auth'],
 {   Route::get('/account', AccountController::class) // это как профиль
     ->name('account');
     Route::resource('/myPlants',MyPlantsController::class);
-    Route::get('/calendar', [\App\Http\Controllers\TestController::class, 'testCalendar'])->name('calendar');
+    Route::get('/calendar', [TestController::class, 'testCalendar'])->name('calendar');
     Route::get('/logout', function(){
         Auth::logout();
         return redirect()->route('catalog');
