@@ -29,6 +29,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css')}}">
 
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/sadTest.css')}}">
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
 
     <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
@@ -41,7 +44,7 @@
 <body class="home tree-shop-home has-header-sidebar product single-product">
 
 <div class="yolo-site">
-    <x-site-header></x-site-header>
+    <x-site-sidebar></x-site-sidebar>
     <div id="example-wrapper">
         @yield('content')
         <x-site-footer></x-site-footer>
@@ -77,6 +80,8 @@
 <script type="text/javascript" src="{{ asset('js/main.js')}}"></script>
 <!-- <script type="text/javascript" src="{{ asset('js/add_to_favor.js')}}"></script> -->
 
+<script type="text/javascript" src="{{ asset('js/sadTest.js')}}"></script>
+
 <div id="favorModal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -95,6 +100,7 @@
         </div>
     </div>
 </div>
+
 
 </body>
 </html>

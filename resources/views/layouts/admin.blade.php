@@ -40,6 +40,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css')}}">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/sadTest.css')}}">
+
 </head>
 <body>
 <div id="wrapper">
@@ -109,6 +111,8 @@
 <script type="text/javascript" src="{{ asset('libs/countdown-timer/js/kinetic.js')}}"></script>
 <script type="text/javascript" src="{{ asset('libs/owl.carousel.min/owl.carousel.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/main.js')}}"></script>
+
+<script type="text/javascript" src="{{ asset('js/sadTest.js')}}"></script>
 
 </body>
 </html>

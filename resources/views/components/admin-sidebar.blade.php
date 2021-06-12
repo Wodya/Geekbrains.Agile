@@ -1,9 +1,10 @@
 <nav class="navbar-default navbar-side" role="navigation">
     <div class="sidebar-collapse">
-        <ul class="nav" id="main-menu">
-
+        <ul class="nav main-nav" id="main-menu">
             <li>
-                    <a href="{{route('catalog')}}"><img src="{{ asset('Images/logo/logo-footer.png')}}" alt="logo"/> В каталог</a>
+                <a href="{{route('catalog')}}">
+                    <img src="{{ asset('Images/logo/logo-footer.png')}}" alt="logo"/> В каталог
+                </a>
             </li>
             <li>
                 <h2 class="title-style title-style-1 text-center"><span class="title-left">Управление </span></h2>
@@ -23,7 +24,7 @@
             <li>
                 <a href="#"><i class="fa fa-sitemap"></i> Статистика<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-{{--                    <li><h1>Базовые категории</h1></li>--}}
+                    {{--                    <li><h1>Базовые категории</h1></li>--}}
                     <li>
                         <a href="#">Посещения</a>
                     </li>

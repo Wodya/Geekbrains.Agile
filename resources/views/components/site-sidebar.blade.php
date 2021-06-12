@@ -47,7 +47,7 @@
                 <div class="header-left">
                     <nav id="primary-menu" class="main-nav">
                         <ul class="nav">
-                            <li class="active menu-item menu-home">
+                            <li class="menu-item">
                                 <a href="{{route('catalog')}}">Каталог</a>
                             </li>
                             @auth
@@ -56,21 +56,23 @@
                                         <a href="{{route('admin::plants::plantList')}}">Админка</a>
                                     </li>
                                 @endif
-                                    <li class="menu-item menu-blog">
-                                    <a href="{{route('myPlants.index')}}">Личный кабинет <br>
+                                <li class="menu-item menu-blog">
+                                    <a href="{{route('myPlants.index')}}">
+                                        <p>Избранные растения</p>
+                                        <img class="img-profile rounded-circle " src="{{Auth::user()->avatar}}"
+                                             height="40px" width="40px">
                                         <small class="text-muted text-capitalize">{{ Auth::user()->name }}</small>
-
                                     </a>
-                                    </li>
-                                    <li class="menu-item menu-blog">
-                                        <a href="{{route('calendar')}}">Календарь работ</a>
-                                    </li>
-                                    <li class="menu-item menu-blog">
-                                        <a href="{{route('logout')}}">
-                                            <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
-                                            Выход
-                                        </a>
-                                    </li>
+                                </li>
+                                <li class="menu-item menu-blog">
+                                    <a href="{{route('calendar')}}">Календарь работ</a>
+                                </li>
+                                <li class="menu-item menu-blog">
+                                    <a href="{{route('logout')}}">
+                                        <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
+                                        Выход
+                                    </a>
+                                </li>
                             @else
                                 <li class="menu-item menu-blog">
                                     <a href="{{route('register')}}">Регистрация</a>
@@ -92,3 +94,4 @@
         </div>
     </div>
 </header>
+
