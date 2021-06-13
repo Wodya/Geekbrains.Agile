@@ -66,6 +66,7 @@
       let actionFail = $("#action_fail_" + $(this).data("date_id") + $(this).data("plantid")).first();
       let total = progress.data("total_count");
       let done = progress.data("done_count");
+      let date = new Date();
       console.log(total,done);
       if ($(this).is(':checked')) {
           url = "{{route('plant.setUserPlantDone', ['userId'=>'user_id_val', 'plantId'=>'plant_id_val', 'actionId'=>'action_id_val', 'date'=>'date_val'])}}";
@@ -75,7 +76,9 @@
       else {
           url = "{{route('plant.resetUserPlantDone', ['userId'=>1, 'plantId'=>'plant_id_val', 'actionId'=>'action_id_val', 'date'=>'date_val'])}}";
           done--;
-          actionFail.addClass('alert-danger');
+          if($(this).data("date_id") <= date.getDate()) {
+              actionFail.addClass('alert-danger');
+          }
       }
 
       url = url.replace('user_id_val', 1);
