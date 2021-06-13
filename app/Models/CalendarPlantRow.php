@@ -18,4 +18,8 @@ class CalendarPlantRow
      * @var bool
      */
     public $done;
+    /**
+     * @var string
+     */
+    public $status;
 }

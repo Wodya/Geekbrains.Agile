@@ -30,7 +30,7 @@ class TestController extends Controller
     public function removePlantFromFavor($userId, $plantId, Request $request, IDbPlantService $dbPlant)
     {
         $dbPlant->removePlantFromFavor($userId, $plantId);
-        return Redirect::route('myPlants.index')->with('success', "Растение успешно удалено из Избранного");
+        return Redirect::route('favorPlants')->with('success', "Растение успешно удалено из Избранного");
     }
 
     public function getFavorPlants(Request $request, IDbPlantService $dbPlant)

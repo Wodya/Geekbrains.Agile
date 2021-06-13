@@ -9,9 +9,10 @@
 
     <!-- Web Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Pacifico%7CSource+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i&amp;amp;subset=latin-ext,vietnamese"
-        rel="stylesheet">
+    rel="stylesheet">
 
-   <!-- Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/sadTest.css')}}">
+    <!-- Vendor CSS-->
 
     <link rel="stylesheet" type="text/css" href="{{ asset('libs/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('libs/font-awesome/css/font-awesome.min.css')}}">
@@ -30,7 +31,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css')}}">
 
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/sadTest.css')}}">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
 
