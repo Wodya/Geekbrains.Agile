@@ -41,7 +41,8 @@
                                             <p class="calendar-td-name">{{$do->plant->name}}</p>
                                             <label class="form-check">
                                                 <input class="calendar-td-check" data-date_id="{{$date->dayNum}}" type="checkbox" data-plantid="{{$do->plant->id}}" data-actionid="{{$do->action->id}}" data-date="{{$date->date}}" {{$do->done?"checked":""}}>
-                                                <p>{{$do->action->name}}</p>
+{{--                                                <p @if($do->status == 'fail')class="failed-action"@endif> @if($do->status == 'fail') Вы забыли про @else Выполнено @endif {{$do->action->name}}</p>--}}
+                                                <p @if($do->status == 'fail')class="alert-danger"@endif> @if($do->status == 'fail') Вы забыли про@endif {{$do->action->name}}</p>
                                             </label>
                                         </div>
                                         @endforeach

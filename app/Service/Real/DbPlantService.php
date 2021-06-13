@@ -213,6 +213,9 @@ class DbPlantService implements IDbPlantService
                     $toDo->plant = $plant;
                     $toDo->action = $actionWatering;
                     $toDo->done = DbPlantUserDone::where('user_id', $userId)->where('plant_id',$plant->id)->where('action_id',1)->where('date',$begin)->first() !== null;
+                    if(!$toDo->done && now() > $begin) {
+                        $toDo->status = 'fail';
+                    }
                     $item->plantsToDo[] = $toDo;
                     if($toDo->done)
                         $item->doneCount++;
@@ -222,6 +225,9 @@ class DbPlantService implements IDbPlantService
                     $toDo->plant = $plant;
                     $toDo->action = $actionManuring;
                     $toDo->done = DbPlantUserDone::where('user_id', $userId)->where('plant_id',$plant->id)->where('action_id',2)->where('date',$begin)->first() !== null;
+                    if(!$toDo->done && now() > $begin) {
+                        $toDo->status = 'fail';
+                    }
                     $item->plantsToDo[] = $toDo;
                     if($toDo->done)
                         $item->doneCount++;
@@ -231,7 +237,9 @@ class DbPlantService implements IDbPlantService
                     $toDo->plant = $plant;
                     $toDo->action = $actionPesting;
                     $toDo->done = DbPlantUserDone::where('user_id', $userId)->where('plant_id',$plant->id)->where('action_id',3)->where('date',$begin)->first() !== null;
-                    $item->plantsToDo[] = $toDo;
+                    if(!$toDo->done && now() > $begin) {
+                        $toDo->status = 'fail';
+                    }
                     if($toDo->done)
                         $item->doneCount++;
                 }
