@@ -41,8 +41,7 @@
                                             <p class="calendar-td-name">{{$do->plant->name}}</p>
                                             <label class="form-check">
                                                 <input class="calendar-td-check" data-date_id="{{$date->dayNum}}" type="checkbox" data-plantid="{{$do->plant->id}}" data-actionid="{{$do->action->id}}" data-date="{{$date->date}}" {{$do->done?"checked":""}}>
-{{--                                                <p @if($do->status == 'fail')class="failed-action"@endif> @if($do->status == 'fail') Вы забыли про @else Выполнено @endif {{$do->action->name}}</p>--}}
-                                                <p @if($do->status == 'fail')class="alert-danger"@endif> @if($do->status == 'fail') Вы забыли про@endif {{$do->action->name}}</p>
+                                                <p id="action_fail_{{$date->dayNum}}{{$do->plant->id}}" @if($do->status == 'fail')class="alert-danger"@endif>{{$do->action->name}}</p>
                                             </label>
                                         </div>
                                         @endforeach
@@ -63,18 +62,23 @@
 <script>
   $('.calendar-td-check').click(function (e){
       let url = '';
-      console.log("#progress_" + $(this).data("date_id"));
       let progress = $("#progress_" + $(this).data("date_id")).first();
+      let actionFail = $("#action_fail_" + $(this).data("date_id") + $(this).data("plantid")).first();
       let total = progress.data("total_count");
       let done = progress.data("done_count");
+      let date = new Date();
       console.log(total,done);
       if ($(this).is(':checked')) {
           url = "{{route('plant.setUserPlantDone', ['userId'=>'user_id_val', 'plantId'=>'plant_id_val', 'actionId'=>'action_id_val', 'date'=>'date_val'])}}";
           done++;
+          actionFail.removeClass('alert-danger');
       }
       else {
           url = "{{route('plant.resetUserPlantDone', ['userId'=>1, 'plantId'=>'plant_id_val', 'actionId'=>'action_id_val', 'date'=>'date_val'])}}";
           done--;
+          if($(this).data("date_id") <= date.getDate()) {
+              actionFail.addClass('alert-danger');
+          }
       }
 
       url = url.replace('user_id_val', 1);
