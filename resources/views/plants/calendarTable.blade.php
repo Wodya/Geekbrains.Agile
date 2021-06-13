@@ -41,7 +41,7 @@
                                             <p class="calendar-td-name">{{$do->plant->name}}</p>
                                             <label class="form-check">
                                                 <input class="calendar-td-check" data-date_id="{{$date->dayNum}}" type="checkbox" data-plantid="{{$do->plant->id}}" data-actionid="{{$do->action->id}}" data-date="{{$date->date}}" {{$do->done?"checked":""}}>
-                                                <p id="action_fail_{{$date->dayNum}}" @if($do->status == 'fail')class="alert-danger"@endif>{{$do->action->name}}</p>
+                                                <p id="action_fail_{{$date->dayNum}}{{$do->plant->id}}" @if($do->status == 'fail')class="alert-danger"@endif>{{$do->action->name}}</p>
                                             </label>
                                         </div>
                                         @endforeach
@@ -61,11 +61,9 @@
 </div>
 <script>
   $('.calendar-td-check').click(function (e){
-      console.log(e);
       let url = '';
-      console.log("#progress_" + $(this).data("date_id"));
       let progress = $("#progress_" + $(this).data("date_id")).first();
-      let actionFail = $("#action_fail_" + $(this).data("date_id")).first();
+      let actionFail = $("#action_fail_" + $(this).data("date_id") + $(this).data("plantid")).first();
       let total = progress.data("total_count");
       let done = progress.data("done_count");
       console.log(total,done);
