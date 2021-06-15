@@ -20,8 +20,11 @@
                     @endif
                     @if(session()->has('error'))
                         <div class="alert alert-danger">{{session()->get('error')}}</div>
-                @endif
-                <!--  -->
+                    @endif
+                    @if($search !== null)
+                        <h1>Результаты поиска для "{{$search}}"</h1>
+                        <BR>
+                    @endif
                     <ul class="grid shortcode-product-wrap product-begreen columns-4">
                         @forelse ($plantsList as $plant)
                             <li data-category="outdoor"
@@ -30,7 +33,7 @@
                                     <div class="product-thumb">
                                         <div class="product-flash-wrap"></div>
                                         <div class="style-img-div">
-                                            <img src="./Images/Small/{{$plant->photoSmallPath}}" alt="product1"
+                                            <img src="/Images/Small/{{$plant->photoSmallPath}}" alt="product1"
                                                  class="style-img"/>
                                         </div>
                                         <a href="{{route('onePlant', ['id' => $plant->id])}}" class="product-link">
@@ -93,8 +96,6 @@
         </div>
     </div>
     </div>
-
-    <p><a href="#favorModal" class="btn btn-primary" data-toggle="modal">Открыть модальное окно 1</a></p>
 
     <script>
         console.log($('#modalText').text());

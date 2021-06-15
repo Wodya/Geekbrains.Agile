@@ -55,7 +55,7 @@ Route::group([
 });
 
 Route::get('/onePlant/{id}', [PlantsController::class, 'onePlant'])->name('onePlant');
-Route::get('catalog', [PlantsController::class, 'index'])->name('catalog');
+Route::get('catalog/{search?}', [PlantsController::class, 'index'])->name('catalog');
 Route::put('/plant/post', [PlantsController::class, 'update'])->name('plant.update');
 Route::get('/plant/edit/{id}', [PlantsController::class, 'edit'])->name('plant.edit');
 

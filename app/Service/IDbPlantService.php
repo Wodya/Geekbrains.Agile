@@ -10,7 +10,7 @@ interface IDbPlantService
      * Возвращает список растений
      * @return PlantShort[]
      */
-    public function getAllPlants(): array;
+    public function getAllPlants(?string $search): array;
 
     /**
      * Возвращает подробную информацию об одном растении

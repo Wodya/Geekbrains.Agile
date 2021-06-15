@@ -13,7 +13,7 @@ use App\Service\IDbPlantService;
 class DbPlantServiceMock implements IDbPlantService
 {
 
-    public function getAllPlants(): array
+    public function getAllPlants(?string $search): array
     {
         $plant1 = new PlantShort();
         $plant1->id = 1;
@@ -89,5 +89,10 @@ class DbPlantServiceMock implements IDbPlantService
     public function resetUserPlantDone(int $userId, int $plantId, int $actionId, string $date): void
     {
         // TODO: Implement resetUserPlantDone() method.
+    }
+
+    public function getTagById(int $plantId)
+    {
+        // TODO: Implement getTagById() method.
     }
 }
