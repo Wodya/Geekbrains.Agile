@@ -63,7 +63,7 @@
                                                        data-id="{{$plant->id}}"
                                                        data-isfavor="{{$plant->isFavor}}"
                                                        @auth
-                                                       data-isauth="1"
+                                                       data-isauth="{{Auth::user()->id}}"
                                                        @else
                                                        data-isauth="0"
                                                         @endauth
@@ -102,17 +102,18 @@
         $('.add_to_wishlist').click(function (e) {
             e.preventDefault();
             let isAuth = $(this).data("isauth");
-            if (isAuth == 0) {
+            if (isAuth === 0) {
                 $('#registerModal').modal('show');
             }
             else {
                 let isFavor = +$(this).data("isfavor");
                 let url = '';
                 if (isFavor === 1)
-                    url = "{{route('plant.removeFavor', ['userId'=>1, 'plantId'=>'plant_id_val'])}}";
+                    url = "{{route('plant.removeFavor', ['userId'=> 'user_id_val', 'plantId'=>'plant_id_val'])}}";
                 else
-                    url = "{{route('plant.addFavor', ['userId'=>1, 'plantId'=>'plant_id_val'])}}";
+                    url = "{{route('plant.addFavor', ['userId'=> 'user_id_val', 'plantId'=>'plant_id_val'])}}";
 
+                url = url.replace('user_id_val', isAuth);
                 url = url.replace('plant_id_val', $(this).data("id"));
                 let element = $(this);
                 let child = $(this).children('i').first();

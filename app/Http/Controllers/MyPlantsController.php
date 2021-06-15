@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Service\IDbPlantService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class MyPlantsController extends Controller
 {
     public function favorPlants(Request $request, IDbPlantService $dbPlant)
     {
-        $plants = $dbPlant->getFavorPlants(1);
+        $userId = Auth::user()->id;
+        $plants = $dbPlant->getFavorPlants($userId);
         return view('plants.chosenTable',['plants' => $plants]);
     }
     public function addFavor($userId, $plantId, Request $request, IDbPlantService $dbPlant)
@@ -34,7 +36,7 @@ class MyPlantsController extends Controller
     }
     public function calendar(Request $request, IDbPlantService $dbPlant)
     {
-        $calendar = $dbPlant->getFavorCalendar(1);
+        $calendar = $dbPlant->getFavorCalendar(Auth::user()->id);
         return view('plants.calendarTable', ['dates' => $calendar]);
     }
 }

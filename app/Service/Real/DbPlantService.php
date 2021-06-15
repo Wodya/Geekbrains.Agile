@@ -14,6 +14,7 @@ use App\Models\PlantFull;
 use App\Models\PlantShort;
 use App\Service\IDbPlantService;
 use DateTime;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -257,6 +258,8 @@ class DbPlantService implements IDbPlantService
 
     private function getPlantFromDbPlant(DbPlant $dbPlant): PlantShort
     {
+        $userId = Auth::check() ? Auth::user()->id : false;
+        
         $item = new PlantShort();
         $item->id = $dbPlant['id'];
         $item->name = $dbPlant['name'];
@@ -270,7 +273,9 @@ class DbPlantService implements IDbPlantService
         foreach ($dbPlant['tags'] as $dbTag)
             $tags[] = $dbTag['tag'];
         $item->tags = implode(", ", $tags);
-        $item->isFavor = DbUserPlant::where('user_id', 1)->where('plant_id', $item->id)->first() !== null;
+        $item->isFavor = DbUserPlant::where('user_id', $userId)
+        ->where('plant_id', $item->id)
+        ->first() !== null;
         $tagsList = '';
         foreach ($dbPlant['tags'] as $dbTag)
             $tagsList .= $dbTag['tag'] . " ";
@@ -304,7 +309,9 @@ class DbPlantService implements IDbPlantService
     public function resetUserPlantDone(int $userId, int $plantId, int $actionId, string $date): void
     {
         echo("<script>console.log('resetUserPlantDone');</script>");
-        $dbUserPlantDone = DbPlantUserDone::where('user_id',$userId)->where('plant_id',$plantId)->where('action_id',$actionId)->where('date',$date)->first();
+        $dbUserPlantDone = DbPlantUserDone::where('user_id',$userId)->where('plant_id',$plantId)
+        ->where('action_id',$actionId)
+        ->where('date',$date)->first();
         if($dbUserPlantDone === null)
             return;
         $dbUserPlantDone->delete();
