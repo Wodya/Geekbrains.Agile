@@ -59,8 +59,10 @@
                                 <li class="menu-item menu-blog">
                                     <a href="{{route('favorPlants')}}">
                                         <p>Избранные растения</p>
+                                        @if(isset(Auth::user()->avatar))
                                         <img class="img-profile rounded-circle " src="{{Auth::user()->avatar}}"
-                                             height="40px" width="40px">
+                                            height="40px" width="40px">
+                                        @endif
                                         <small class="text-muted text-capitalize">{{ Auth::user()->name }}</small>
                                     </a>
                                 </li>

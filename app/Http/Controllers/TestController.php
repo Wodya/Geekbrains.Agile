@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Service\IDbPlantService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class TestController extends Controller
@@ -41,7 +42,7 @@ class TestController extends Controller
 
     public function testCalendar(IDbPlantService $dbPlant)
     {
-        $calendar = $dbPlant->getFavorCalendar(1);
+        $calendar = $dbPlant->getFavorCalendar(Auth::user()->id);
         return view('plants.calendarTable', ['dates' => $calendar]);
     }
 }

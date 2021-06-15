@@ -69,19 +69,18 @@
       let date = new Date();
       console.log(total,done);
       if ($(this).is(':checked')) {
-          url = "{{route('plant.setUserPlantDone', ['userId'=>'user_id_val', 'plantId'=>'plant_id_val', 'actionId'=>'action_id_val', 'date'=>'date_val'])}}";
+          url = "{{route('plant.setUserPlantDone', ['userId'=> Auth::user()->id, 'plantId'=>'plant_id_val', 'actionId'=>'action_id_val', 'date'=>'date_val'])}}";
           done++;
           actionFail.removeClass('alert-danger');
       }
       else {
-          url = "{{route('plant.resetUserPlantDone', ['userId'=>1, 'plantId'=>'plant_id_val', 'actionId'=>'action_id_val', 'date'=>'date_val'])}}";
+          url = "{{route('plant.resetUserPlantDone', ['userId'=> Auth::user()->id, 'plantId'=>'plant_id_val', 'actionId'=>'action_id_val', 'date'=>'date_val'])}}";
           done--;
           if($(this).data("date_id") <= date.getDate()) {
               actionFail.addClass('alert-danger');
           }
       }
 
-      url = url.replace('user_id_val', 1);
       url = url.replace('plant_id_val', $(this).data("plantid"));
       url = url.replace('action_id_val', $(this).data("actionid"));
       url = url.replace('date_val', $(this).data("date"));
