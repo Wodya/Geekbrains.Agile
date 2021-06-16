@@ -65,6 +65,7 @@ Route::get('/addFavor/{userId}/{plantId}', [MyPlantsController::class, 'addFavor
 Route::get('/removeFavor/{userId}/{plantId}', [MyPlantsController::class, 'removeFavor'])->name('plant.removeFavor');
 Route::get('/setUserPlantDone/{userId}/{plantId}/{actionId}/{date}', [MyPlantsController::class, 'setUserPlantDone'])->name('plant.setUserPlantDone');
 Route::get('/resetUserPlantDone/{userId}/{plantId}/{actionId}/{date}', [MyPlantsController::class, 'resetUserPlantDone'])->name('plant.resetUserPlantDone');
+Route::get('/getNotifications', [MyPlantsController::class, 'getNotifications'])->name('getNotifications');
 // Route::get('/calendar', [MyPlantsController::class, 'calendar'])->name('calendar');
 
 

@@ -2,6 +2,7 @@
 @section('content')
 
     <script type="text/javascript" src="{{ asset('libs/jquery/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('libs/bootstrap/js/bootstrap.min.js')}}"></script>
     <div class="div-box">
         <div class="home-4-new-collections">
             <div class="container">
@@ -98,8 +99,6 @@
     </div>
 
     <script>
-        console.log($('#modalText').text());
-
         $('.add_to_wishlist').click(function (e) {
             e.preventDefault();
             let isAuth = $(this).data("isauth");

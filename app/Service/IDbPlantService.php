@@ -82,6 +82,5 @@ interface IDbPlantService
      * @param string $date
      */
     public function resetUserPlantDone(int $userId, int $plantId, int $actionId, string $date): void;
-
     public function getTagById(int $plantId);
 }
