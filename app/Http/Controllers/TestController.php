@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Redirect;
 
 class TestController extends Controller
 {
+    public function index(Request $request)
+    {
+        return view('test.index', ['list' => ["1","2","3"]]);
+    }
+
     public function deletePlant(Request $request)
     {
         $dbPlant = App::make(IDbPlantService::class);

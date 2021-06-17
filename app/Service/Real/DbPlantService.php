@@ -24,11 +24,14 @@ use Illuminate\Support\Facades\Storage;
 class DbPlantService implements IDbPlantService
 {
 
-    public function getAllPlants(): array
+    public function getAllPlants(?string $search): array
     {
         echo("<script>console.log('getAllPlants');</script>");
 
-        $dbData = DbPlant::with('tags')->orderBy('name')->get();
+        $dbData = $search === null ?
+            DbPlant::with('tags')->orderBy('name')->get():
+            DbPlant::with('tags')->where('name', 'like',"%$search%")
+                ->orwhere('short_info', 'like',"%$search%")->orderBy('name')->get();
         $data = [];
         foreach ($dbData as $dbItem) {
             $data[] = $this->getPlantFromDbPlant($dbItem);
@@ -184,7 +187,6 @@ class DbPlantService implements IDbPlantService
 
     public function getFavorCalendar(int $userId): ?array
     {
-        echo("<script>console.log('getFavorCalendar');</script>");
         $dbData = DbUserPlant::with("plant")->where('user_id', $userId)->get();
         if(count($dbData) === 0)
             return null;
@@ -259,7 +261,7 @@ class DbPlantService implements IDbPlantService
     private function getPlantFromDbPlant(DbPlant $dbPlant): PlantShort
     {
         $userId = Auth::check() ? Auth::user()->id : false;
-        
+
         $item = new PlantShort();
         $item->id = $dbPlant['id'];
         $item->name = $dbPlant['name'];

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Service\IDbPlantService;
+use Facade\FlareClient\Http\Response;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -39,4 +41,19 @@ class MyPlantsController extends Controller
         $calendar = $dbPlant->getFavorCalendar(Auth::user()->id);
         return view('plants.calendarTable', ['dates' => $calendar]);
     }
+    public function getNotifications(Request $request, IDbPlantService $dbPlant) : JsonResponse
+    {
+        $calendar = $dbPlant->getFavorCalendar(Auth::user()->id);
+        $notifications = [];
+        foreach ($calendar as $item){
+            if($item->dayNum == date('d')){
+                foreach ($item->plantsToDo as $row){
+                    if(!$row->done)
+                        $notifications[] = "Необходимо произвести {$row->action->name} с растением {$row->plant->name}";
+                }
+            }
+        }
+        return response()->json($notifications);
+    }
+
 }

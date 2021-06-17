@@ -73,11 +73,27 @@
 <script type="text/javascript" src="{{ asset('libs/countdown-timer/js/kinetic.js')}}"></script>
 <script type="text/javascript" src="{{ asset('libs/owl.carousel.min/owl.carousel.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/main.js')}}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.3/bootstrap-notify.min.js"></script>
+
 <!-- <script type="text/javascript" src="{{ asset('js/add_to_favor.js')}}"></script> -->
 
 <script type="text/javascript" src="{{ asset('js/sadTest.js')}}"></script>
 
+<script>
+    $.ajax({
+        url: "{{route('getNotifications')}}",
+        success: function (data) {
+            data.forEach(function(item, i, arr){
+                $.notify({
+                    message: item
+                },{
+                    type: 'danger'
+                });
 
+            });
+        }
+    });
+</script>
 
 </body>
 </html>

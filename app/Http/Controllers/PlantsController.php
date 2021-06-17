@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\App;
 class PlantsController extends Controller
 {
 
-    public function index(Request $request, IDbPlantService $dbPlant)
+    public function index(Request $request,  IDbPlantService $dbPlant, $search = null)
     {
         $tagsList = DbPlantTag::pluck('tag')->unique();
-        $plantList = $dbPlant->getAllPlants();
-        return view('plants.plantsList',['plantsList' => $plantList, 'tagsList'=>$tagsList]);
+        $plantList = $dbPlant->getAllPlants($search);
+        return view('plants.plantsList',['plantsList' => $plantList, 'tagsList'=>$tagsList, 'search'=>$search]);
 //        return view('test.index',['plantsList' => $plantList, 'tagsList'=>$tagsList]);
     }
 

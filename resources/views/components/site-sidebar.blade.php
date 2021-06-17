@@ -1,3 +1,4 @@
+<script type="text/javascript" src="{{ asset('libs/jquery/jquery.min.js')}}"></script>
 <header class="header yolo-header-style-4">
     <div class="mobile-menu">
         <div class="col-3 text-left"><a href="#primary-menu"><i class="fa fa-bars"></i></a></div>
@@ -90,10 +91,28 @@
 
 
                 <div class="form-input">
-                    <input type="text" placeholder="Поиск"/><a href="#"><i class="fa fa-search"></i></a>
+                    <input id="searchText" type="text" placeholder="Поиск"/><a id="search" href="#"><i class="fa fa-search"></i></a>
                 </div>
             </div>
         </div>
     </div>
 </header>
+<script>
+
+    $('#searchText').keypress(function (e) {
+        if (e.which == 13) {
+            search();
+        }
+    });
+    $('#search').click(function (e){
+        e.preventDefault();
+        search();
+    });
+
+    function search(){
+        let url = "{{route('catalog','searchTxt')}}";
+        url = url.replace('searchTxt', $('#searchText').val());
+        window.location.href = url;
+    }
+</script>
 

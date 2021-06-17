@@ -10,7 +10,7 @@ interface IDbPlantService
      * Возвращает список растений
      * @return PlantShort[]
      */
-    public function getAllPlants(): array;
+    public function getAllPlants(?string $search): array;
 
     /**
      * Возвращает подробную информацию об одном растении
@@ -82,6 +82,5 @@ interface IDbPlantService
      * @param string $date
      */
     public function resetUserPlantDone(int $userId, int $plantId, int $actionId, string $date): void;
-
     public function getTagById(int $plantId);
 }

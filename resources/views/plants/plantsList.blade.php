@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('content')
     <script type="text/javascript" src="{{ asset('libs/jquery/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('libs/bootstrap/js/bootstrap.min.js')}}"></script>
     <div class="div-box">
         <div class="home-4-new-collections">
             <div class="container">
@@ -19,8 +20,11 @@
                     @endif
                     @if(session()->has('error'))
                         <div class="alert alert-danger">{{session()->get('error')}}</div>
-                @endif
-                <!--  -->
+                    @endif
+                    @if($search !== null)
+                        <h1>Результаты поиска для "{{$search}}"</h1>
+                        <BR>
+                    @endif
                     <ul class="grid shortcode-product-wrap product-begreen columns-4">
                         @forelse ($plantsList as $plant)
                             <li data-category="outdoor"
@@ -29,7 +33,7 @@
                                     <div class="product-thumb">
                                         <div class="product-flash-wrap"></div>
                                         <div class="style-img-div">
-                                            <img src="./Images/Small/{{$plant->photoSmallPath}}" alt="product1"
+                                            <img src="/Images/Small/{{$plant->photoSmallPath}}" alt="product1"
                                                  class="style-img"/>
                                         </div>
                                         <a href="{{route('onePlant', ['id' => $plant->id])}}" class="product-link">
@@ -93,11 +97,7 @@
     </div>
     </div>
 
-    <p><a href="#favorModal" class="btn btn-primary" data-toggle="modal">Открыть модальное окно 1</a></p>
-
     <script>
-        console.log($('#modalText').text());
-
         $('.add_to_wishlist').click(function (e) {
             e.preventDefault();
             let isAuth = $(this).data("isauth");
