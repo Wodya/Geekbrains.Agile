@@ -101,6 +101,7 @@ class SeederPlant extends Seeder
                 'role' => 'admin',
                 'email' => 'admin@admin.ru',
                 'password' => Hash::make('adminadmin'),
+                'telegram_user_id' =>513318812
             ],
             [
                 'id' => 2,
@@ -108,6 +109,7 @@ class SeederPlant extends Seeder
                 'role' => 'user',
                 'email' => 'user@user.ru',
                 'password' =>  Hash::make('useruser'),
+                'telegram_user_id' =>522575015
             ]
         ];
         return $data;

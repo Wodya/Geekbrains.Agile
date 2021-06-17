@@ -103,3 +103,5 @@ Route::group(['middleware'=>'guest', 'prefix'=>'socialite'], function() {
     Route::get('/auth/fb/callback', [SocialiteController::class, 'callbackFb'])->name('fb.callback');
 });
 
+Route::get('/notifyMe/{id}', [TestController::class, 'notifyMe']);
+

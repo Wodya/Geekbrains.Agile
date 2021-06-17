@@ -4,6 +4,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\User;
+use App\Notifications\PlantsActionsNotification;
 use App\Service\IDbPlantService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -44,5 +46,12 @@ class TestController extends Controller
     {
         $calendar = $dbPlant->getFavorCalendar(Auth::user()->id);
         return view('plants.calendarTable', ['dates' => $calendar]);
+    }
+
+    public function notifyMe(int $id) {
+        $user = User::all()->find($id);
+        echo 'уведомляю пользователя '. $user->id;
+        $data = '123';
+        $user->notify((new PlantsActionsNotification($data)));
     }
 }
