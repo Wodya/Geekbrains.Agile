@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\MyPlantsController;
 use \App\Http\Controllers\Admin\AdminPlantsController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\SendController;
 use App\Http\Controllers\SocialiteController;
 
 /*
@@ -103,4 +104,5 @@ Route::group(['middleware'=>'guest', 'prefix'=>'socialite'], function() {
     Route::get('/auth/fb', [SocialiteController::class, 'initFb'])->name('fb.init');
     Route::get('/auth/fb/callback', [SocialiteController::class, 'callbackFb'])->name('fb.callback');
 });
+
 
