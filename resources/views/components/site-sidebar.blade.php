@@ -5,7 +5,7 @@
         <div class="col-3 text-center">
 
             <div class="logo">
-                <h1><a href="{{route('catalog')}}"><img src="images/logo/logo.png" alt="logo"/></a></h1>
+                <h1><a href="{{route('catalog')}}"><img src="images/logo/logo.png" alt="logo" /></a></h1>
             </div>
 
         </div>
@@ -14,7 +14,7 @@
                 <div class="search-button-wrapper header-customize-item style-default">
                     <div class="icon-search-menu"><i class="wicon fa fa-search"></i></div>
                     <div class="yolo-search-wrapper">
-                        <input id="search-ajax" placeholder="Enter keyword to search" type="search"/>
+                        <input id="search-ajax" placeholder="Enter keyword to search" type="search" />
                         <button class="search"><i class="fa fa-search"></i></button>
                         <button class="close"><i class="pe-7s-close"></i></button>
                     </div>
@@ -40,7 +40,7 @@
     </div>
     <div class="header-sidebar">
         <div class="header-logo">
-            <h1><a href="{{route('catalog')}}"><img src="{{ asset('Images/logo/logo-footer.png')}}" alt="logo"/></a>
+            <h1><a href="{{route('catalog')}}"><img src="{{ asset('Images/logo/logo-footer.png')}}" alt="logo" /></a>
             </h1>
         </div>
         <div class="header-bottom">
@@ -52,37 +52,37 @@
                                 <a href="{{route('catalog')}}">Каталог</a>
                             </li>
                             @auth
-                                @if(\Auth::user()->hasRole('admin'))
-                                    <li class="menu-item menu-blog">
-                                        <a href="{{route('admin::plants::plantList')}}">Админка</a>
-                                    </li>
-                                @endif
-                                <li class="menu-item menu-blog">
-                                    <a href="{{route('favorPlants')}}">
-                                        <p>Избранные растения</p>
-                                        @if(isset(Auth::user()->avatar))
-                                        <img class="img-profile rounded-circle " src="{{Auth::user()->avatar}}"
-                                            height="40px" width="40px">
-                                        @endif
-                                        <small class="text-muted text-capitalize">{{ Auth::user()->name }}</small>
-                                    </a>
-                                </li>
-                                <li class="menu-item menu-blog">
-                                    <a href="{{route('calendar')}}">Календарь работ</a>
-                                </li>
-                                <li class="menu-item menu-blog">
-                                    <a href="{{route('logout')}}">
-                                        <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
-                                        Выход
-                                    </a>
-                                </li>
+                            @if(\Auth::user()->hasRole('admin'))
+                            <li class="menu-item menu-blog">
+                                <a href="{{route('admin::plants::plantList')}}">Админка</a>
+                            </li>
+                            @endif
+                            <li class="menu-item menu-blog">
+                                <a href="{{route('favorPlants')}}">
+                                    <p>Избранные растения</p>
+                                    @if(isset(Auth::user()->avatar))
+                                    <img class="img-profile rounded-circle " src="{{Auth::user()->avatar}}"
+                                        height="40px" width="40px">
+                                    @endif
+                                    <small class="text-muted text-capitalize">{{ Auth::user()->name }}</small>
+                                </a>
+                            </li>
+                            <li class="menu-item menu-blog">
+                                <a href="{{route('calendar')}}">Календарь работ</a>
+                            </li>
+                            <li class="menu-item menu-blog">
+                                <a href="{{route('logout')}}">
+                                    <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
+                                    Выход
+                                </a>
+                            </li>
                             @else
-                                <li class="menu-item menu-blog">
-                                    <a href="{{route('register')}}">Регистрация</a>
-                                </li>
-                                <li class="menu-item menu-blog">
-                                    <a href="{{route('login')}}">Войти</a>
-                                </li>
+                            <li class="menu-item menu-blog">
+                                <a href="{{route('register')}}">Регистрация</a>
+                            </li>
+                            <li class="menu-item menu-blog">
+                                <a href="{{route('login')}}">Войти</a>
+                            </li>
                             @endauth
                         </ul>
                     </nav>
@@ -91,28 +91,27 @@
 
 
                 <div class="form-input">
-                    <input id="searchText" type="text" placeholder="Поиск"/><a id="search" href="#"><i class="fa fa-search"></i></a>
+                    <input id="searchText" type="text" placeholder="Поиск" /><a id="search" href="#"><i
+                            class="fa fa-search"></i></a>
                 </div>
             </div>
         </div>
     </div>
 </header>
 <script>
-
-    $('#searchText').keypress(function (e) {
-        if (e.which == 13) {
-            search();
-        }
-    });
-    $('#search').click(function (e){
-        e.preventDefault();
+$('#searchText').keypress(function(e) {
+    if (e.which == 13) {
         search();
-    });
-
-    function search(){
-        let url = "{{route('catalog','searchTxt')}}";
-        url = url.replace('searchTxt', $('#searchText').val());
-        window.location.href = url;
     }
-</script>
+});
+$('#search').click(function(e) {
+    e.preventDefault();
+    search();
+});
 
+function search() {
+    let url = "{{route('catalog','searchTxt')}}";
+    url = url.replace('searchTxt', $('#searchText').val());
+    window.location.href = url;
+}
+</script>
