@@ -17,9 +17,9 @@ class AdminPlantsController extends Controller
      *
      *
      */
-    public function index(IDbPlantService $dbPlant)
+    public function index(IDbPlantService $dbPlant, $search = null)
     {
-        $plants = $dbPlant->getAllPlants();
+        $plants = $dbPlant->getAllPlants($search);
         return view('admin.plants', ['plants' => $plants]);
     }
 
@@ -149,4 +149,3 @@ class AdminPlantsController extends Controller
         return redirect()->route('admin::plants::plantList');
     }
 }
-
