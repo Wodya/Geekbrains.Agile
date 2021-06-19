@@ -5,6 +5,7 @@ use App\Http\Controllers\PlantsController;
 
 use App\Http\Controllers\ShowController;
 
+use App\Http\Controllers\TelegramController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\MyPlantsController;
@@ -103,4 +104,15 @@ Route::group(['middleware'=>'guest', 'prefix'=>'socialite'], function() {
     Route::get('/auth/fb', [SocialiteController::class, 'initFb'])->name('fb.init');
     Route::get('/auth/fb/callback', [SocialiteController::class, 'callbackFb'])->name('fb.callback');
 });
+
+Route::group([
+    'prefix' => '/telegram',
+    'middleware' => ['auth']
+], function() {
+    Route::get('/register', [TelegramController::class, 'register'])->name('telegram.register');
+    Route::get('/testMessage', [TelegramController::class, 'testMessage'])->name('telegram.testMessage');
+    Route::get('/notifyMe', [TelegramController::class, 'notifyMe'])->name('telegram.notifyMe');
+    Route::get('/telegram/{id}', [TelegramController::class, 'telegram']);
+});
+
 

@@ -22,6 +22,7 @@ class User extends Authenticatable
         'password',
         'role',
         'avatar',
+        'telegram_user_id'
     ];
 
     /**
@@ -48,5 +49,10 @@ class User extends Authenticatable
     public function hasRole(string $role)
     {
         return $this->role == $role;
+    }
+
+    public function routeNotificationForTelegram()
+    {
+        return $this->telegram_user_id;
     }
 }
