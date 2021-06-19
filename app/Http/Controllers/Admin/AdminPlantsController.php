@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\PlantFull;
 use App\Service\IDbPlantService;
+use Faker\Provider\Image;
 use Illuminate\Http\Request;
+use Ramsey\Collection\Collection;
 use function PHPUnit\Framework\isNull;
 
 class AdminPlantsController extends Controller
@@ -15,9 +17,9 @@ class AdminPlantsController extends Controller
      *
      *
      */
-    public function index(IDbPlantService $dbPlant)
+    public function index(IDbPlantService $dbPlant, $search = null)
     {
-        $plants = $dbPlant->getAllPlants();
+        $plants = $dbPlant->getAllPlants($search);
         return view('admin.plants', ['plants' => $plants]);
     }
 
@@ -34,7 +36,6 @@ class AdminPlantsController extends Controller
         $plant->addDate = date("Y-m-d H:i:s");
         $plant->fullInfo = $request['fullInfo'];
 //        $plant->photoBigPath = $request['photoBigPath'];
-//        $plant->photoSmallPath = $request['photoSmallPath'];
         $plant->shortInfo = $request['shortInfo'];
         $plant->wateringDays = $request['wateringDays'];
         $plant->manuringDays = $request['manuringDays'];
@@ -44,10 +45,12 @@ class AdminPlantsController extends Controller
         foreach ($tagKey as $value) {
             $plant->tags[] = $request[$value];
         }
+        if ($request->hasFile('photo')) {
+            $plant->photoSmallPath = $this->store($request->file('photo'));
+        }
         $dbPlant->insertPlant($plant);
         return redirect()->route('admin::plants::createView')
             ->with('success', "Растение добавлено");
-
     }
 
     public function createView(IDbPlantService $dbPlant)
@@ -63,9 +66,14 @@ class AdminPlantsController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store( $file, $exist = null): string
     {
-        //
+        if ($exist != null) {
+            unlink(public_path('/Images/Small/' . $exist));
+        }
+        $path = $file->getClientOriginalName();
+        $file->move(public_path() . '/Images/Small/', $path);
+        return $path;
     }
 
     /**
@@ -108,17 +116,19 @@ class AdminPlantsController extends Controller
         $plant->shortInfo = $request['shortInfo'];
         $plant->fullInfo = $request['fullInfo'];
         $plant->photoSmallPath = $request['photoSmallPath'];
-        $plant->photoBigPath = $request['photoBigPath'];
+//        $plant->photoBigPath = $request['photoBigPath'];
         $plant->wateringDays = $request['wateringDays'];
         $plant->manuringDays = $request['manuringDays'];
         $plant->pestControlDays = $request['pestControlDays'];
-
         $plant->tags = [];
         $tagKey = preg_grep("/tag/", array_keys($request->all()));
         foreach ($tagKey as $value) {
             $plant->tags[] = $request[$value];
          }
-
+        if ($request->hasFile('photo')) {
+            $plant->photoSmallPath = $this->store($request->file('photo'), $plant->photoSmallPath);
+        }
+//        dd($plant);
         $dbPlant->updatePlant($plant);
         return redirect()->route('admin::plants::updateView', ['id' => $plant->id])
             ->with('success', "Растение обновлено");
@@ -134,8 +144,8 @@ class AdminPlantsController extends Controller
      */
     public function delete($id, IDbPlantService $dbPlant)
     {
+
         $dbPlant->deletePlant($id);
         return redirect()->route('admin::plants::plantList');
     }
 }
-

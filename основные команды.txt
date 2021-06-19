@@ -24,3 +24,6 @@ php artisan config:clear
 
 Установка barryvdh/laravel-debugbar
 composer require barryvdh/laravel-debugbar --dev
+
+Список роутов
+php artisan route:list

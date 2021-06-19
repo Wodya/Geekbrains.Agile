@@ -7,10 +7,16 @@ namespace App\Http\Controllers;
 use App\Service\IDbPlantService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class TestController extends Controller
 {
+    public function index(Request $request)
+    {
+        return view('test.index', ['list' => ["1","2","3"]]);
+    }
+
     public function deletePlant(Request $request)
     {
         $dbPlant = App::make(IDbPlantService::class);
@@ -30,7 +36,7 @@ class TestController extends Controller
     public function removePlantFromFavor($userId, $plantId, Request $request, IDbPlantService $dbPlant)
     {
         $dbPlant->removePlantFromFavor($userId, $plantId);
-        return Redirect::route('myPlants.index')->with('success', "Растение успешно удалено из Избранного");
+        return Redirect::route('favorPlants')->with('success', "Растение успешно удалено из Избранного");
     }
 
     public function getFavorPlants(Request $request, IDbPlantService $dbPlant)
@@ -41,7 +47,7 @@ class TestController extends Controller
 
     public function testCalendar(IDbPlantService $dbPlant)
     {
-        $calendar = $dbPlant->getFavorCalendar(1);
+        $calendar = $dbPlant->getFavorCalendar(Auth::user()->id);
         return view('plants.calendarTable', ['dates' => $calendar]);
     }
 }

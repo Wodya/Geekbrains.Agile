@@ -3,19 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Service\IDbPlantService;
+use Facade\FlareClient\Http\Response;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class MyPlantsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, IDbPlantService $dbPlant)
+    public function favorPlants(Request $request, IDbPlantService $dbPlant)
     {
-        $plants = $dbPlant->getFavorPlants(1);
+        $userId = Auth::user()->id;
+        $plants = $dbPlant->getFavorPlants($userId);
         return view('plants.chosenTable',['plants' => $plants]);
     }
     public function addFavor($userId, $plantId, Request $request, IDbPlantService $dbPlant)
@@ -25,64 +24,6 @@ class MyPlantsController extends Controller
         echo('$plantId = ' . $plantId);
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param $userId
-     * @param $plantId
-     * @param \Illuminate\Http\Request $request
-     * @param IDbPlantService $dbPlant
-     * @return void
-     */
-    public function store()
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id, IDbPlantService $dbPlant)
-    {
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id, IDbPlantService $dbPlant)
-    {
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, IDbPlantService $dbPlant)
-    {
-      //
-    }
     public function removeFavor($userId, $plantId, Request $request, IDbPlantService $dbPlant)
     {
         $dbPlant->removePlantFromFavor($userId, $plantId);
@@ -97,7 +38,22 @@ class MyPlantsController extends Controller
     }
     public function calendar(Request $request, IDbPlantService $dbPlant)
     {
-        $calendar = $dbPlant->getFavorCalendar(1);
+        $calendar = $dbPlant->getFavorCalendar(Auth::user()->id);
         return view('plants.calendarTable', ['dates' => $calendar]);
     }
+    public function getNotifications(Request $request, IDbPlantService $dbPlant) : JsonResponse
+    {
+        $calendar = $dbPlant->getFavorCalendar(Auth::user()->id);
+        $notifications = [];
+        foreach ($calendar as $item){
+            if($item->dayNum == date('d')){
+                foreach ($item->plantsToDo as $row){
+                    if(!$row->done)
+                        $notifications[] = "Необходимо произвести {$row->action->name} с растением {$row->plant->name}";
+                }
+            }
+        }
+        return response()->json($notifications);
+    }
+
 }

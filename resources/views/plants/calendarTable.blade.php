@@ -7,7 +7,7 @@
     <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4 calendar-head">
             <h1 class="h3 mb-0 text-gray-800">Календарь ухода за растениями</h1>
-            <a href="{{route('catalog')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"> Добавить растение</a>
+            <a href="{{route('catalog')}}" class="btn btn-3"> Добавить растение</a>
         </div>
         @if($dates === null)
             <div class="alert alert-warning" role="alert">
@@ -41,7 +41,7 @@
                                             <p class="calendar-td-name">{{$do->plant->name}}</p>
                                             <label class="form-check">
                                                 <input class="calendar-td-check" data-date_id="{{$date->dayNum}}" type="checkbox" data-plantid="{{$do->plant->id}}" data-actionid="{{$do->action->id}}" data-date="{{$date->date}}" {{$do->done?"checked":""}}>
-                                                <p>{{$do->action->name}}</p>
+                                                <p id="action_fail_{{$date->dayNum}}{{$do->plant->id}}" @if($do->status == 'fail')class="alert-danger"@endif>{{$do->action->name}}</p>
                                             </label>
                                         </div>
                                         @endforeach
@@ -62,21 +62,25 @@
 <script>
   $('.calendar-td-check').click(function (e){
       let url = '';
-      console.log("#progress_" + $(this).data("date_id"));
       let progress = $("#progress_" + $(this).data("date_id")).first();
+      let actionFail = $("#action_fail_" + $(this).data("date_id") + $(this).data("plantid")).first();
       let total = progress.data("total_count");
       let done = progress.data("done_count");
+      let date = new Date();
       console.log(total,done);
       if ($(this).is(':checked')) {
-          url = "{{route('plant.setUserPlantDone', ['userId'=>'user_id_val', 'plantId'=>'plant_id_val', 'actionId'=>'action_id_val', 'date'=>'date_val'])}}";
+          url = "{{route('plant.setUserPlantDone', ['userId'=> Auth::user()->id, 'plantId'=>'plant_id_val', 'actionId'=>'action_id_val', 'date'=>'date_val'])}}";
           done++;
+          actionFail.removeClass('alert-danger');
       }
       else {
-          url = "{{route('plant.resetUserPlantDone', ['userId'=>1, 'plantId'=>'plant_id_val', 'actionId'=>'action_id_val', 'date'=>'date_val'])}}";
+          url = "{{route('plant.resetUserPlantDone', ['userId'=> Auth::user()->id, 'plantId'=>'plant_id_val', 'actionId'=>'action_id_val', 'date'=>'date_val'])}}";
           done--;
+          if($(this).data("date_id") <= date.getDate()) {
+              actionFail.addClass('alert-danger');
+          }
       }
 
-      url = url.replace('user_id_val', 1);
       url = url.replace('plant_id_val', $(this).data("plantid"));
       url = url.replace('action_id_val', $(this).data("actionid"));
       url = url.replace('date_val', $(this).data("date"));

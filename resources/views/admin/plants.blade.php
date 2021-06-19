@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     Список растений
-                    <a href="{{route('admin::plants::createView')}}" class="btn btn-primary"><i
+                    <a href="{{route('admin::plants::createView')}}" class="btn btn-4"><i
                             class="fa fa-plus fa-sm text-white-50"></i> Добавить растение</a>
                 </div>
                 <div class="panel-body">
@@ -17,10 +17,8 @@
                             <tr>
                                 <th>#ID</th>
                                 <th>Name</th>
-                                <th>AddDate</th>
                                 <th>ShortInfo</th>
                                 <th>PhotoSmallPath</th>
-                                <th>WateringDays</th>
                                 <th>tags</th>
                                 <th>Действия</th>
                             </tr>
@@ -30,14 +28,12 @@
                                 <tr>
                                     <td>{{$plant->id}}</td>
                                     <td>{{$plant->name}}</td>
-                                    <td>{{$plant->addDate}}</td>
                                     <td>{{$plant->shortInfo}}</td>
-                                    <td>{{$plant->photoSmallPath}}</td>
-                                    <td>{{$plant->wateringDays}}</td>
+                                    <td><img src="/Images/Small/{{$plant->photoSmallPath}}" alt="slide" height="60px" width="120px"/></td>
                                     <td>{{$plant->tags}}</td>
                                     <td>
-                                        <a href="{{route('admin::plants::updateView', ['id'=>$plant->id])}}">Ред. </a>
-                                        <a href="{{route('admin::plants::delete', ['id'=>$plant->id])}}"> Уд.</a>
+                                        <a href="{{route('admin::plants::updateView', ['id'=>$plant->id])}}" class="btn btn-7">Ред. </a>
+                                        <a href="{{route('admin::plants::delete', ['id'=>$plant->id])}}"class="btn btn-danger"> Уд.</a>
                                     </td>
                                 </tr>
                             @empty

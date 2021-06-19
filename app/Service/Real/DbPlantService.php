@@ -14,6 +14,8 @@ use App\Models\PlantFull;
 use App\Models\PlantShort;
 use App\Service\IDbPlantService;
 use DateTime;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class DbPlantService
@@ -22,11 +24,14 @@ use DateTime;
 class DbPlantService implements IDbPlantService
 {
 
-    public function getAllPlants(): array
+    public function getAllPlants(?string $search): array
     {
         echo("<script>console.log('getAllPlants');</script>");
 
-        $dbData = DbPlant::with('tags')->orderBy('name')->get();
+        $dbData = $search === null ?
+            DbPlant::with('tags')->orderBy('name')->get():
+            DbPlant::with('tags')->where('name', 'like',"%$search%")
+                ->orwhere('short_info', 'like',"%$search%")->orderBy('name')->get();
         $data = [];
         foreach ($dbData as $dbItem) {
             $data[] = $this->getPlantFromDbPlant($dbItem);
@@ -70,6 +75,8 @@ class DbPlantService implements IDbPlantService
         $dbPlant = DbPlant::find($plant->id);
         $dbPlant['name'] = $plant->name;
         $dbPlant['short_info'] = $plant->shortInfo;
+        unlink(public_path('/Images/Small/' . $dbPlant['photo_small_path']));
+        $dbPlant['photo_small_path'] = $plant->photoSmallPath;
         $dbPlant['full_info'] = $plant->fullInfo;
         $dbPlant['watering_days'] = $plant->wateringDays;
         $dbPlant['manuring_days'] = $plant->manuringDays;
@@ -141,6 +148,7 @@ class DbPlantService implements IDbPlantService
             $dbTag->delete();
 
         $dbPlant = DbPlant::find($plantId);
+        unlink(public_path('/Images/Small/' . $dbPlant->photo_small_path));
         $dbPlant->delete();
     }
 
@@ -179,7 +187,6 @@ class DbPlantService implements IDbPlantService
 
     public function getFavorCalendar(int $userId): ?array
     {
-        echo("<script>console.log('getFavorCalendar');</script>");
         $dbData = DbUserPlant::with("plant")->where('user_id', $userId)->get();
         if(count($dbData) === 0)
             return null;
@@ -209,6 +216,9 @@ class DbPlantService implements IDbPlantService
                     $toDo->plant = $plant;
                     $toDo->action = $actionWatering;
                     $toDo->done = DbPlantUserDone::where('user_id', $userId)->where('plant_id',$plant->id)->where('action_id',1)->where('date',$begin)->first() !== null;
+                    if(!$toDo->done && now() > $begin) {
+                        $toDo->status = 'fail';
+                    }
                     $item->plantsToDo[] = $toDo;
                     if($toDo->done)
                         $item->doneCount++;
@@ -218,6 +228,9 @@ class DbPlantService implements IDbPlantService
                     $toDo->plant = $plant;
                     $toDo->action = $actionManuring;
                     $toDo->done = DbPlantUserDone::where('user_id', $userId)->where('plant_id',$plant->id)->where('action_id',2)->where('date',$begin)->first() !== null;
+                    if(!$toDo->done && now() > $begin) {
+                        $toDo->status = 'fail';
+                    }
                     $item->plantsToDo[] = $toDo;
                     if($toDo->done)
                         $item->doneCount++;
@@ -227,7 +240,9 @@ class DbPlantService implements IDbPlantService
                     $toDo->plant = $plant;
                     $toDo->action = $actionPesting;
                     $toDo->done = DbPlantUserDone::where('user_id', $userId)->where('plant_id',$plant->id)->where('action_id',3)->where('date',$begin)->first() !== null;
-                    $item->plantsToDo[] = $toDo;
+                    if(!$toDo->done && now() > $begin) {
+                        $toDo->status = 'fail';
+                    }
                     if($toDo->done)
                         $item->doneCount++;
                 }
@@ -245,6 +260,8 @@ class DbPlantService implements IDbPlantService
 
     private function getPlantFromDbPlant(DbPlant $dbPlant): PlantShort
     {
+        $userId = Auth::check() ? Auth::user()->id : false;
+
         $item = new PlantShort();
         $item->id = $dbPlant['id'];
         $item->name = $dbPlant['name'];
@@ -258,7 +275,9 @@ class DbPlantService implements IDbPlantService
         foreach ($dbPlant['tags'] as $dbTag)
             $tags[] = $dbTag['tag'];
         $item->tags = implode(", ", $tags);
-        $item->isFavor = DbUserPlant::where('user_id', 1)->where('plant_id', $item->id)->first() !== null;
+        $item->isFavor = DbUserPlant::where('user_id', $userId)
+        ->where('plant_id', $item->id)
+        ->first() !== null;
         $tagsList = '';
         foreach ($dbPlant['tags'] as $dbTag)
             $tagsList .= $dbTag['tag'] . " ";
@@ -292,7 +311,9 @@ class DbPlantService implements IDbPlantService
     public function resetUserPlantDone(int $userId, int $plantId, int $actionId, string $date): void
     {
         echo("<script>console.log('resetUserPlantDone');</script>");
-        $dbUserPlantDone = DbPlantUserDone::where('user_id',$userId)->where('plant_id',$plantId)->where('action_id',$actionId)->where('date',$date)->first();
+        $dbUserPlantDone = DbPlantUserDone::where('user_id',$userId)->where('plant_id',$plantId)
+        ->where('action_id',$actionId)
+        ->where('date',$date)->first();
         if($dbUserPlantDone === null)
             return;
         $dbUserPlantDone->delete();

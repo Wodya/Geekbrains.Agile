@@ -5,13 +5,14 @@
     <title>Tree Shop Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="{{asset('Images/icon/favicon.png')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset('Images/icon/favicon.ico')}}" type="image/x-icon">
 
     <!-- Web Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Pacifico%7CSource+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i&amp;amp;subset=latin-ext,vietnamese"
-        rel="stylesheet">
+    rel="stylesheet">
 
-   <!-- Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/sadTest.css')}}">
+    <!-- Vendor CSS-->
 
     <link rel="stylesheet" type="text/css" href="{{ asset('libs/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('libs/font-awesome/css/font-awesome.min.css')}}">
@@ -29,6 +30,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css')}}">
 
+
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
 
     <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
@@ -41,19 +44,14 @@
 <body class="home tree-shop-home has-header-sidebar product single-product">
 
 <div class="yolo-site">
-    <x-site-header></x-site-header>
+    <x-site-sidebar></x-site-sidebar>
     <div id="example-wrapper">
         @yield('content')
         <x-site-footer></x-site-footer>
     </div>
+    <x-site-modals></x-site-modals>
 </div>
-<div class="popup-wrapper">
-</div>
-<!-- .popup-wrapper-->
-<div class="click-back-top-body">
-    <button type="button" class="sn-btn sn-btn-style-17 sn-back-to-top fixed-right-bottom"><i
-            class="btn-icon fa fa-angle-up"></i></button>
-</div>
+
 
 <!-- Vendor jQuery-->
 <script type="text/javascript" src="{{ asset('libs/jquery/jquery.min.js')}}"></script>
@@ -75,26 +73,27 @@
 <script type="text/javascript" src="{{ asset('libs/countdown-timer/js/kinetic.js')}}"></script>
 <script type="text/javascript" src="{{ asset('libs/owl.carousel.min/owl.carousel.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/main.js')}}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.3/bootstrap-notify.min.js"></script>
+
 <!-- <script type="text/javascript" src="{{ asset('js/add_to_favor.js')}}"></script> -->
 
-<div id="favorModal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 id="modal-title" class="modal-title">Избранные растения</h4>
-            </div>
-            <div class="modal-body">
-                <p id="modalText">One fine body&hellip;</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-            </div>
-        </div>
-    </div>
-</div>
+<script type="text/javascript" src="{{ asset('js/sadTest.js')}}"></script>
+
+<script>
+    $.ajax({
+        url: "{{route('getNotifications')}}",
+        success: function (data) {
+            data.forEach(function(item, i, arr){
+                $.notify({
+                    message: item
+                },{
+                    type: 'danger'
+                });
+
+            });
+        }
+    });
+</script>
 
 </body>
 </html>

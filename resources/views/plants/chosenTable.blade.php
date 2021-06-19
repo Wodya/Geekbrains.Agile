@@ -1,12 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.main')
 @section('content')
-    <div class="container container-fluid">
+    <div class="container container-fluid chosen-table-container">
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4 calendar-head">
             <h1 class="h3 mb-0 text-gray-800">Список избранных растений</h1>
-            <a href="{{route('catalog')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"> Добавить растение</a>
-            <a href="{{route('calendar')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Посмотреть календарь</a>
+            <a href="{{route('catalog')}}" class="btn btn-3"> Добавить растение</a>
+            <a href="{{route('calendar')}}" class="btn btn-3">Посмотреть календарь</a>
         <!-- Проверка на удаление -->
         @if(session()->has('success'))
                     <div class="alert alert-success">{{session()->get('success')}}</div>
@@ -17,7 +17,7 @@
 
         <div class="row">
 
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hover">
                 <thead>
                 <tr>
                     <th>Название растения</th>
@@ -44,7 +44,7 @@
                         <td>{{$plant->pestControlDays}}</td>
                         <td>{{$plant->tags}}</td>
                         <td>
-                            <a href="{{route('removePlantFromFavor', ['userId'=>1, 'plantId'=>$plant->id])}}">Удалить из избранного </a>
+                            <a href="{{route('removePlantFromFavor', ['userId'=>1, 'plantId'=>$plant->id])}}" class="btn btn-danger">Удалить из избранного </a>
                         </td>
                     </tr>
                 @empty

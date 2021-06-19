@@ -1,3 +1,4 @@
+<script type="text/javascript" src="{{ asset('libs/jquery/jquery.min.js')}}"></script>
 <header class="header yolo-header-style-4">
     <div class="mobile-menu">
         <div class="col-3 text-left"><a href="#primary-menu"><i class="fa fa-bars"></i></a></div>
@@ -47,41 +48,70 @@
                 <div class="header-left">
                     <nav id="primary-menu" class="main-nav">
                         <ul class="nav">
-                            <li class="active menu-item menu-home">
-                                <a href="{{url('/')}}">На главную</a>
-                            </li>
-                            <li class="active menu-item menu-home">
+                            <li class="menu-item">
                                 <a href="{{route('catalog')}}">Каталог</a>
                             </li>
-
+                            @auth
+                            @if(\Auth::user()->hasRole('admin'))
                             <li class="menu-item menu-blog">
-                                <a href="{{route('myPlants.index')}}">Личный кабинет <br>
-                                    @auth
+                                <a href="{{route('admin::plants::plantList')}}">Админка</a>
+                            </li>
+                            @endif
+                            <li class="menu-item menu-blog">
+                                <a href="{{route('favorPlants')}}">
+                                    <p>Избранные растения</p>
+                                    @if(isset(Auth::user()->avatar))
+                                    <img class="img-profile rounded-circle " src="{{Auth::user()->avatar}}"
+                                        height="40px" width="40px">
+                                    @endif
                                     <small class="text-muted text-capitalize">{{ Auth::user()->name }}</small>
-
                                 </a>
                             </li>
                             <li class="menu-item menu-blog">
                                 <a href="{{route('calendar')}}">Календарь работ</a>
                             </li>
-
-                            @if(\Auth::user()->hasRole('admin'))
                             <li class="menu-item menu-blog">
-                                <a href="{{route('admin.plantList.index')}}">Админка</a>
+                                <a href="{{route('logout')}}">
+                                    <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
+                                    Выход
+                                </a>
                             </li>
-                            @endif
+                            @else
+                            <li class="menu-item menu-blog">
+                                <a href="{{route('register')}}">Регистрация</a>
+                            </li>
+                            <li class="menu-item menu-blog">
+                                <a href="{{route('login')}}">Войти</a>
+                            </li>
                             @endauth
                         </ul>
                     </nav>
-                    <br>
                     <!-- .header-main-nav-->
                 </div>
 
 
                 <div class="form-input">
-                    <input type="text" placeholder="Search" /><a href="#"><i class="fa fa-search"></i></a>
+                    <input id="searchText" type="text" placeholder="Поиск" /><a id="search" href="#"><i
+                            class="fa fa-search"></i></a>
                 </div>
             </div>
         </div>
     </div>
 </header>
+<script>
+$('#searchText').keypress(function(e) {
+    if (e.which == 13) {
+        search();
+    }
+});
+$('#search').click(function(e) {
+    e.preventDefault();
+    search();
+});
+
+function search() {
+    let url = "{{route('catalog','searchTxt')}}";
+    url = url.replace('searchTxt', $('#searchText').val());
+    window.location.href = url;
+}
+</script>
