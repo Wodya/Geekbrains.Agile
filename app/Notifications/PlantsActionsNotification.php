@@ -12,16 +12,17 @@ use NotificationChannels\Telegram\TelegramMessage;
 class PlantsActionsNotification extends Notification implements ShouldQueue
 {
     use Queueable;
-    private $data;
+
+    private $message;
 
     /**
      * Create a new notification instance.
      *
      * @param $data
      */
-    public function __construct()
+    public function __construct($message)
     {
-//        $this->data = $data;
+        $this->message = $message;
     }
 
     /**
@@ -41,7 +42,7 @@ class PlantsActionsNotification extends Notification implements ShouldQueue
 
         return TelegramMessage::create()
             // Markdown supported.
-            ->content('Ghbdtn\n ssf')
+            ->content($this->message)
 
             // (Optional) Blade template for the content.
 //             ->view('PlantActionNotification', ['data' => $this->data])

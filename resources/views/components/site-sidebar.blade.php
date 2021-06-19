@@ -70,6 +70,9 @@
                                 <li class="menu-item menu-blog">
                                     <a href="{{route('calendar')}}">Календарь работ</a>
                                 </li>
+                                    <li class="menu-item menu-blog">
+                                        <a href="{{route('telegram.register')}}">Уведомления Телеграм</a>
+                                    </li>
                                 <li class="menu-item menu-blog">
                                     <a href="{{route('logout')}}">
                                         <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>

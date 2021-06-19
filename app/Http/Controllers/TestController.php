@@ -52,11 +52,4 @@ class TestController extends Controller
         $calendar = $dbPlant->getFavorCalendar(Auth::user()->id);
         return view('plants.calendarTable', ['dates' => $calendar]);
     }
-
-    public function notifyMe(int $id) {
-        $user = User::all()->find($id);
-        echo 'уведомляю пользователя '. $user->id;
-        $data = '123';
-        $user->notify((new PlantsActionsNotification($data)));
-    }
 }
