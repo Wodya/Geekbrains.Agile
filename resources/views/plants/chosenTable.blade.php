@@ -44,9 +44,7 @@
                         <td>{{$plant->pestControlDays}}</td>
                         <td>{{$plant->tags}}</td>
                         <td>
-
                             <a href="{{route('removePlantFromFavor', ['userId'=>Auth::user()->id, 'plantId'=>$plant->id])}}" class="btn btn-danger">Удалить из избранного </a>
-
                         </td>
                     </tr>
                 @empty

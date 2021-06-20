@@ -84,9 +84,4 @@
     <!--End Advanced Tables -->
 </div>
 </div>
-
-
-
-
-
 @endsection

@@ -101,8 +101,6 @@ class SeederPlant extends Seeder
                 'role' => 'admin',
                 'email' => 'admin@admin.ru',
                 'password' => Hash::make('adminadmin'),
-                'avatar' => 'http://placehold.it/120x120',
-
                 'telegram_user_id' =>513318812
             ],
             [
@@ -111,10 +109,7 @@ class SeederPlant extends Seeder
                 'role' => 'user',
                 'email' => 'user@user.ru',
                 'password' =>  Hash::make('useruser'),
-                'avatar' => 'http://placehold.it/120x120',
-
                 'telegram_user_id' =>522575015
-
             ]
         ];
         return $data;

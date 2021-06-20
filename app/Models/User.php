@@ -22,7 +22,6 @@ class User extends Authenticatable
         'password',
         'role',
         'avatar',
-
         'telegram_user_id'
     ];
 
@@ -62,7 +61,7 @@ class User extends Authenticatable
     {
         return User::find($id);
     }
-  
+
     public function routeNotificationForTelegram()
     {
         return $this->telegram_user_id;
