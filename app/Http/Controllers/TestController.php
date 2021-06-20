@@ -4,6 +4,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\User;
+use App\Notifications\PlantsActionsNotification;
 use App\Service\IDbPlantService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
