@@ -82,7 +82,7 @@ Route::group(['middleware' => 'auth'],
      function()
 {   Route::get('/account', AccountController::class) // это как профиль
     ->name('account');
-    Route::resource('/myPlants',MyPlantsController::class);
+    Route::resource('/myPlants', MyPlantsController::class);
     Route::get('/calendar', [TestController::class, 'testCalendar'])->name('calendar');
     Route::get('/logout', function(){
         Auth::logout();
@@ -114,5 +114,3 @@ Route::group([
     Route::get('/notifyMe', [TelegramController::class, 'notifyMe'])->name('telegram.notifyMe');
     Route::get('/telegram/{id}', [TelegramController::class, 'telegram']);
 });
-
-
