@@ -82,6 +82,7 @@ Route::group(['middleware' => 'auth'],
      function()
 {   Route::get('/account', AccountController::class) // это как профиль
     ->name('account');
+    Route::put('/account/post', [AccountController::class, 'update'])->name('account.update');
     Route::resource('/myPlants', MyPlantsController::class);
     Route::get('/calendar', [TestController::class, 'testCalendar'])->name('calendar');
     Route::get('/logout', function(){

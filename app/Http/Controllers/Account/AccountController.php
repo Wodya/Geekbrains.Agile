@@ -16,4 +16,16 @@ class AccountController extends Controller
 //        return view('plants.lk');
         return view('plants.lk', ['user' => User::findOrFail(Auth::user()->id)]);
     }
+
+    public function update(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        $user->avatar = $request['avatar'];
+        if ($request->hasFile('photo')) {
+            $user->avatar = $this->store($request->file('photo'), $user->avatar);
+        }
+        $user->update($request->all());
+
+        return redirect('/catalog');
+    }
 }

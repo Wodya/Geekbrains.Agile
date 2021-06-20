@@ -86,7 +86,7 @@
             <!-- @yield('content') -->
             <div class="row">
                 <div class="col-md-12">
-                    <form method="post" action="{{route('admin.users.update', ['user' => $user->id])}}">
+                    <form method="post" action="{{route('account.update')}}">
                         @csrf
                         @method('PUT')
                         <!-- Advanced Tables -->
