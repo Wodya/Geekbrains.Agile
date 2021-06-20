@@ -44,11 +44,11 @@
                                 <tr>
                                     <td>{{$user->id}}</td>
                                     <td>
-                                        <input type="text" class="form-control" name="name" placeholder="name"
+                                        <input type="text" class="form-control" name="name" placeholder="name" id="name"
                                             value="{{$user->name}}">
                                     </td>
                                     <td>
-                                        <select class="role_edit" name="role" placeholder="role">
+                                        <select class="role_edit" name="role" placeholder="role" id="role">
                                             <option selected="selected">
                                                 {{$user->role}}
                                             </option>
@@ -57,7 +57,7 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" name="email" placeholder="email"
+                                        <input type="text" class="form-control" name="email" placeholder="email" id="email"
                                             value="{{$user->email}}">
                                     </td>
                                     <td><img src="{{$user->avatar}}" alt="slide" height="60px" width="120px" /></td>

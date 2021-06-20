@@ -131,12 +131,20 @@
                             element.data("isfavor", 0);
                             $('#modalText').text("Удалено из избранного");
                             $('#favorModal').modal('show');
+                            setTimeout(function(){
+                                $('#favorModal').modal('hide');
+                            }, 1500);
+
+
                         } else {
                             child.addClass("fa fa-heart");
                             child.attr("aria-hidden", "true");
                             element.data("isfavor", 1);
                             $('#modalText').text("Добавлено в избранное");
                             $('#favorModal').modal('show')
+                            setTimeout(function(){
+                                $('#favorModal').modal('hide');
+                            }, 1500);
                         }
 
                     }

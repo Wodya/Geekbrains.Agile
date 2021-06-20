@@ -10,7 +10,8 @@ class AccountController extends Controller
 {
     public function __invoke()
     {
-        $name = Auth::check() ? Auth::user()->name : "guest";
-        return "Hi, " . $name . "<br><a href=' ".route('catalog')."'>Go to catalog</a>";
+//        $name = Auth::check() ? Auth::user()->name : "guest";
+//        return "Hi, " . $name . "<br><a href=' ".route('catalog')."'>Go to catalog</a>";
+        return view('plants.lk');
     }
 }

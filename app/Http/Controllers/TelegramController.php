@@ -18,7 +18,7 @@ class TelegramController extends Controller
 
     public function testMessage()
     {
-        $getUpdates = file_get_contents("https://api.telegram.org/bot1872770975:AAFTmbYgIrKQxgAdTQY60pcORNral2H-oLg/getUpdates");
+        $getUpdates = file_get_contents("https://api.telegram.org/bot" . env('TELEGRAM_BOT_TOKEN') . "/getUpdates");
         $json = json_decode($getUpdates, true);
         $telegramId = $json["result"][count($json["result"]) - 1]["message"]["from"]["id"];
         $user = \Auth::user();

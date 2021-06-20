@@ -10,9 +10,6 @@
             <div class="modal-body">
                 <p id="modalText">One fine body&hellip;</p>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-            </div>
         </div>
     </div>
 </div>

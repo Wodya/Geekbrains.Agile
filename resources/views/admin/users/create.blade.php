@@ -47,11 +47,11 @@
 
                                 <tr>
                                     <td>
-                                        <input type="text" class="form-control" name="name"
+                                        <input type="text" class="form-control" name="name" id="name"
                                             placeholder="Имя пользователя" value="">
                                     </td>
                                     <td>
-                                        <select class="role_edit" name="role" placeholder="роль">
+                                        <select class="role_edit" name="role" placeholder="роль" id="'role">
                                             </option>
                                             <option>admin</option>
                                             <option>user</option>
@@ -59,15 +59,16 @@
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" name="email" placeholder="email"
-                                            value="">
+                                            value="" id="email">
                                     </td>
                                     <td>
                                         <input type="password" maxlength="25" size="40" name="password"
-                                            placeholder="пароль">
+                                            placeholder="пароль" id="password">
                                     </td>
                                     <td>
-                                        <img src="http://placehold.it/120x120" alt="slide" height="60px"
-                                            width="120px" />
+{{--                                        <img src="http://placehold.it/120x120" alt="slide" height="60px"--}}
+{{--                                            width="120px" />--}}
+                                        <input type="file" name = 'photo'>
                                     </td>
                                     <td>
                                         <input class="btn btn-primary" style="float: right" type="submit"
