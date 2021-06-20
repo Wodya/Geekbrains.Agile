@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -16,16 +17,17 @@
     <!-- TABLE STYLES-->
     <link href="{{asset('assets/js/dataTables/dataTables.bootstrap.css')}}" rel="stylesheet"/>
 
-
     <link rel="shortcut icon" href="{{asset('Images/icon/favicon.ico')}}" type="image/x-icon">
 
     <!-- Web Fonts-->
+
     <link href="https://fonts.googleapis.com/css?family=Pacifico%7CSource+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i&amp;amp;subset=latin-ext,vietnamese"
           rel="stylesheet">
 
     <!-- Vendor CSS-->
 
 {{--    <link rel="stylesheet" type="text/css" href="{{ asset('libs/bootstrap/css/bootstrap.min.css')}}">--}}
+
     <link rel="stylesheet" type="text/css" href="{{ asset('libs/font-awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('libs/animate/animated.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('libs/owl.carousel.min/owl.carousel.min.css')}}">
@@ -43,6 +45,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/sadTest.css')}}">
 
 </head>
+
 <body>
 <div id="wrapper">
     <x-admin-topbar></x-admin-topbar>

@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('content')
+
     <script type="text/javascript" src="{{ asset('libs/jquery/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('libs/bootstrap/js/bootstrap.min.js')}}"></script>
     <div class="div-box">
