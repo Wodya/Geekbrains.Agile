@@ -60,7 +60,10 @@
                                         <input type="text" class="form-control" name="email" placeholder="email" id="email"
                                             value="{{$user->email}}">
                                     </td>
-                                    <td><img src="{{$user->avatar}}" alt="slide" height="60px" width="120px" /></td>
+                                    <td>
+                                        <img src="/Images/avatars/{{$user->avatar}}" alt="slide" height="50px" width="50px">
+                                        <input type="file" name = 'avatar'>
+                                    </td>
                                     <td>
                                         <input class="btn btn-primary" style="float: right" type="submit"
                                             value="Сохранить">
@@ -71,6 +74,7 @@
                         </table>
                     </div>
                 </div>
+            </div>
         </form>
     </div>
     <!--End Advanced Tables -->

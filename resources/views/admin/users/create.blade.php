@@ -68,7 +68,7 @@
                                     <td>
 {{--                                        <img src="http://placehold.it/120x120" alt="slide" height="60px"--}}
 {{--                                            width="120px" />--}}
-                                        <input type="file" name = 'photo'>
+                                        <input type="file" name = 'avatar'>
                                     </td>
                                     <td>
                                         <input class="btn btn-primary" style="float: right" type="submit"
