@@ -18,7 +18,7 @@ class CreatePlant extends Migration
             $table->timestamps();
             $table->string("name");
             $table->string("short_info");
-            $table->string("full_info");
+            $table->text("full_info");
             $table->string("photo_small_path");
             $table->string("photo_big_path");
         });
