@@ -57,12 +57,13 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" name="email" placeholder="email" id="email"
-                                            value="{{$user->email}}">
+                                        <input type="email" class="form-control" name="email" placeholder="email"
+                                            id="email" value="{{$user->email}}">
                                     </td>
                                     <td>
-                                        <img src="/Images/avatars/{{$user->avatar}}" alt="slide" height="50px" width="50px">
-                                        <input type="file" name = 'avatar'>
+                                        <img src="{{$user->avatar}}" alt="slide" height="50px" width="50px">
+                                        <input type="url" class="form-control" name='avatar'
+                                            placeholder="ссылка на аватарку" id="file">
                                     </td>
                                     <td>
                                         <input class="btn btn-primary" style="float: right" type="submit"

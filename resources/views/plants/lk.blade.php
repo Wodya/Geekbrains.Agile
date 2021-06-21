@@ -92,7 +92,7 @@
                         <!-- Advanced Tables -->
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Редактирование пользователя
+                                <h2>Редактирование пользователя</h2>
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
@@ -141,13 +141,10 @@
                                                         placeholder="email" id="email" value="{{$user->email}}">
                                                 </td>
                                                 <td>
-                                                    <div id="sync2" class="owl-carousel owl-template">
-                                                        <div class="item">
-                                                            <figure><img src="{{$user->avatar}}" alt="slide" width="180"
-                                                                    height="130" /></figure>
-                                                        </div>
-                                                    </div>
-                                                    <input type="file" name='photo'>
+                                                    <img src="{{$user->avatar}}" alt="slide" height="150px"
+                                                        width="150px"><br><br>
+                                                    <input type="url" class="form-control" name='avatar'
+                                                        placeholder="ссылка на аватарку" id="file">
                                                 </td>
                                                 <td>
                                                     <input type="time" id="time" name="time" />

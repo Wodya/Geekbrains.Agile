@@ -58,7 +58,7 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" name="email" placeholder="email"
+                                        <input type="email" class="form-control" name="email" placeholder="email"
                                             value="" id="email">
                                     </td>
                                     <td>
@@ -66,9 +66,10 @@
                                             placeholder="пароль" id="password">
                                     </td>
                                     <td>
-{{--                                        <img src="http://placehold.it/120x120" alt="slide" height="60px"--}}
-{{--                                            width="120px" />--}}
-                                        <input type="file" name = 'avatar'>
+                                        <img src="http://placehold.it/120x120" alt="slide" height="60px"
+                                            width="120px" />
+                                        <input type="url" class="form-control" name='avatar'
+                                            placeholder="ссылка на аватарку" id="file">
                                     </td>
                                     <td>
                                         <input class="btn btn-primary" style="float: right" type="submit"
