@@ -30,7 +30,9 @@
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->role}}</td>
                                 <td>{{$user->email}}</td>
-                                <td><img src="{{$user->avatar}}" alt="slide" height="60px" width="120px" /></td>
+                                <td>
+                                    <img src="{{$user->avatar}}" alt="slide" height="60px" width="120px" />
+                                </td>
                                 <td>
                                     <div>
                                         <a href="{{route('admin.users.edit', ['user'=>$user->id])}}"

@@ -18,7 +18,7 @@ class TelegramController extends Controller
 
     public function testMessage()
     {
-        $getUpdates = file_get_contents("https://api.telegram.org/bot1872770975:AAFTmbYgIrKQxgAdTQY60pcORNral2H-oLg/getUpdates");
+        $getUpdates = file_get_contents("https://api.telegram.org/bot" . env('TELEGRAM_BOT_TOKEN') . "/getUpdates");
         $json = json_decode($getUpdates, true);
         $telegramId = $json["result"][count($json["result"]) - 1]["message"]["from"]["id"];
         $user = \Auth::user();
@@ -32,15 +32,23 @@ class TelegramController extends Controller
     public function notifyMe(Request $request, IDbPlantService $dbPlant)
     {
         $calendar = $dbPlant->getFavorCalendar(Auth::user()->id);
-        $notifications = [];
-        foreach ($calendar as $item) {
-            if ($item->dayNum == date('d')) {
-                foreach ($item->plantsToDo as $row) {
-                    if (!$row->done)
-                        $user = \Auth::user();
-                    $user->notify((new PlantsActionsNotification("Необходимо произвести {$row->action->name} с растением {$row->plant->name}")));
+        $user = \Auth::user();
+        $notified = 0;
+        if($calendar) {
+            foreach ($calendar as $item) {
+                if ($item->dayNum == date('d')) {
+                    foreach ($item->plantsToDo as $row) {
+                        if (!$row->done)
+                        $user->notify((new PlantsActionsNotification("Необходимо произвести {$row->action->name} с растением {$row->plant->name}")));
+                        $notified = 1;
+                    }
                 }
             }
+            if($notified == 0) {
+                $user->notify((new PlantsActionsNotification("На сегодня всё сделано, ваши питомцы в порядке")));
+            }
+        } else {
+            $user->notify((new PlantsActionsNotification("У вас пока нет избранных растений")));
         }
         return redirect()->back();
     }

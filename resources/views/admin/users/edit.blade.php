@@ -44,11 +44,11 @@
                                 <tr>
                                     <td>{{$user->id}}</td>
                                     <td>
-                                        <input type="text" class="form-control" name="name" placeholder="name"
+                                        <input type="text" class="form-control" name="name" placeholder="name" id="name"
                                             value="{{$user->name}}">
                                     </td>
                                     <td>
-                                        <select class="role_edit" name="role" placeholder="role">
+                                        <select class="role_edit" name="role" placeholder="role" id="role">
                                             <option selected="selected">
                                                 {{$user->role}}
                                             </option>
@@ -57,10 +57,14 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" name="email" placeholder="email"
-                                            value="{{$user->email}}">
+                                        <input type="email" class="form-control" name="email" placeholder="email"
+                                            id="email" value="{{$user->email}}">
                                     </td>
-                                    <td><img src="{{$user->avatar}}" alt="slide" height="60px" width="120px" /></td>
+                                    <td>
+                                        <img src="{{$user->avatar}}" alt="slide" height="50px" width="50px">
+                                        <input type="url" class="form-control" name='avatar'
+                                            placeholder="ссылка на аватарку" id="file">
+                                    </td>
                                     <td>
                                         <input class="btn btn-primary" style="float: right" type="submit"
                                             value="Сохранить">
@@ -71,6 +75,7 @@
                         </table>
                     </div>
                 </div>
+            </div>
         </form>
     </div>
     <!--End Advanced Tables -->

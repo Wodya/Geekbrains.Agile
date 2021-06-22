@@ -6,7 +6,6 @@ use App\Http\Controllers\PlantsController;
 use App\Http\Controllers\ShowController;
 
 use App\Http\Controllers\TelegramController;
-
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\MyPlantsController;
@@ -76,13 +75,15 @@ Route::get('/addPlantToFavor/{userId}/{plantId}', [TestController::class, 'addPl
 Route::get('/removePlantFromFavor/{userId}/{plantId}', [TestController::class, 'removePlantFromFavor'])->name('removePlantFromFavor');
 // Route::get('/getFavorPlants', [\App\Http\Controllers\TestController::class, 'getFavorPlants'])->name('getFavorPlants');
 
+
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'],
      function()
 {   Route::get('/account', AccountController::class) // это как профиль
     ->name('account');
-    Route::resource('/myPlants',MyPlantsController::class);
+    Route::put('/account/post', [AccountController::class, 'update'])->name('account.update');
+    Route::resource('/myPlants', MyPlantsController::class);
     Route::get('/calendar', [TestController::class, 'testCalendar'])->name('calendar');
     Route::get('/logout', function(){
         Auth::logout();
@@ -93,36 +94,9 @@ Route::group(['middleware' => 'auth'],
     function(){
     Route::resource('/plantList', AdminPlantsController::class);
     Route::resource('/users', AdminUserController::class);
+
     });
 
-// Auth::routes();
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::group(['middleware' => 'auth'],
-//      function()
-// {   Route::get('/account', AccountController::class) // это как профиль
-//     ->name('account');
-//     Route::resource('/myPlants',MyPlantsController::class);
-//     Route::get('/calendar', [TestController::class, 'testCalendar'])->name('calendar');
-//     Route::get('/logout', function(){
-//         Auth::logout();
-//         return redirect()->route('catalog');
-//     })->name('logout');
-
-//     Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middleware' => 'role:admin'],
-//     function(){
-//     Route::resource('/plantList', AdminPlantsController::class);
-//     Route::resource('/users', AdminUserController::class);
-
-//     });
-
-// });
-
-// Route::group(['middleware'=>'guest', 'prefix'=>'socialite'], function() {
-//     Route::get('/auth/vk', [SocialiteController::class, 'init'])->name('vk.init');
-//     Route::get('/auth/vk/callback', [SocialiteController::class, 'callback'])->name('vk.callback');
-//     Route::get('/auth/fb', [SocialiteController::class, 'initFb'])->name('fb.init');
-//     Route::get('/auth/fb/callback', [SocialiteController::class, 'callbackFb'])->name('fb.callback');
-// });
 });
 
 Route::group(['middleware'=>'guest', 'prefix'=>'socialite'], function() {
@@ -141,4 +115,3 @@ Route::group([
     Route::get('/notifyMe', [TelegramController::class, 'notifyMe'])->name('telegram.notifyMe');
     Route::get('/telegram/{id}', [TelegramController::class, 'telegram']);
 });
-

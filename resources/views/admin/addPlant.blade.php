@@ -39,7 +39,8 @@
                             </div>
                             <h2>Добавить фото</h2>
 {{--                            <form action="" enctype="multipart/form-data" method="post">  <!--обязательно должно быть прописано-->--}}
-                                <input type="file" name = 'photo'>
+                                <input type="file" name = 'photo' id="file">
+                            <span id="newFile"></span>
 {{--                                <input type="submit">--}}
 {{--                            </form>--}}
                         </div>
