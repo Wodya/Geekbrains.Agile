@@ -103,9 +103,11 @@ CREATE TABLE IF NOT EXISTS `plant` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `add_date` date NOT NULL DEFAULT '2021-06-21',
   `short_info` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `full_info` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `photo_small_path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `photo_big_path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+
+  `full_info` varchar(255) COLLATE utf8mb4_unicode_ci  NOT NULL,
+  `photo_small_path` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `photo_big_path` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+
   `watering_days` int NOT NULL,
   `manuring_days` int NOT NULL,
   `pest_control_days` int NOT NULL,
@@ -319,10 +321,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+
+  `avatar` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `telegram_user_id` int DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 -- Дамп данных таблицы geek_agile.users: ~3 rows (приблизительно)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;

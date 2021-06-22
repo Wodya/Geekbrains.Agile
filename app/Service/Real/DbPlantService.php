@@ -2,6 +2,7 @@
 
 namespace App\Service\Real;
 
+use App\Events\PlantEvent;
 use App\Models\Action;
 use App\Models\CalendarPlant;
 use App\Models\CalendarPlantRow;
@@ -131,6 +132,8 @@ class DbPlantService implements IDbPlantService
             $newTag["tag"] = $tag;
             DbPlantTag::insert($newTag);
         }
+
+        
     }
 
     /**

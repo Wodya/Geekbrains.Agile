@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\PlantEvent;
 use App\Http\Controllers\Controller;
 use App\Models\PlantFull;
 use App\Service\IDbPlantService;
+use App\Service\Real\DbPlantService;
 use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use Ramsey\Collection\Collection;
@@ -49,11 +51,15 @@ class AdminPlantsController extends Controller
             $plant->photoSmallPath = $this->store($request->file('photo'));
         }
         $dbPlant->insertPlant($plant);
+       
+        event(new PlantEvent($plant));
+
+
         return redirect()->route('admin::plants::createView')
             ->with('success', "Растение добавлено");
     }
 
-    public function createView(IDbPlantService $dbPlant)
+    public function createView(DbPlantService $dbPlant)
     {
 
         $tags = $dbPlant->getTags();
@@ -95,7 +101,7 @@ class AdminPlantsController extends Controller
      * @param int $id
      */
 
-    public function updateView(int $id, IDbPlantService $dbPlant)
+    public function updateView(int $id, DbPlantService $dbPlant)
     {
         $plants = $dbPlant->getPlant($id);
         $tags = $dbPlant->getTags();
