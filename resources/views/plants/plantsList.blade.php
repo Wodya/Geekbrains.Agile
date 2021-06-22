@@ -1,6 +1,5 @@
 @extends('layouts.main')
 @section('content')
-
     <script type="text/javascript" src="{{ asset('libs/jquery/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('libs/bootstrap/js/bootstrap.min.js')}}"></script>
     <div class="div-box">
@@ -132,12 +131,20 @@
                             element.data("isfavor", 0);
                             $('#modalText').text("Удалено из избранного");
                             $('#favorModal').modal('show');
+                            setTimeout(function(){
+                                $('#favorModal').modal('hide');
+                            }, 1500);
+
+
                         } else {
                             child.addClass("fa fa-heart");
                             child.attr("aria-hidden", "true");
                             element.data("isfavor", 1);
                             $('#modalText').text("Добавлено в избранное");
                             $('#favorModal').modal('show')
+                            setTimeout(function(){
+                                $('#favorModal').modal('hide');
+                            }, 1500);
                         }
 
                     }

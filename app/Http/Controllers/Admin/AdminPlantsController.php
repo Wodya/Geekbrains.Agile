@@ -155,4 +155,3 @@ class AdminPlantsController extends Controller
         return redirect()->route('admin::plants::plantList');
     }
 }
-

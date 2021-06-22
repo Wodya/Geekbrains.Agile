@@ -54,15 +54,17 @@
                         <div class="product-single-short-description">
                             <p>{{$onePlant->shortInfo}}</p>
                         </div>
+                        @auth
                         <div class="yith-wcwl-add-to-wishlist">
                             <div class="yith-wcwl-add-button show">
-                                <a href="{{route('addPlantToFavor', ['userId'=>1, 'plantId'=>$onePlant->id])}}"
+                                <a href="{{route('addPlantToFavor', ['userId'=>Auth::user()->id, 'plantId'=>$onePlant->id])}}"
                                     class="add_to_wishlist">
                                     <i class="fa fa-heart-o"></i>
                                     Добавить в избранное
                                 </a>
                             </div>
                         </div>
+                        @endauth
                         <div class="product_meta"><span class="product-stock-status-wrapper">
                             <span class="tagged_as">
                                 <label>Теги:</label>

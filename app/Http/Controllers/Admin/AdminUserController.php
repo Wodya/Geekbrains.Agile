@@ -5,26 +5,38 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\User;
+
 class AdminUserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+
+        $usersList = (new User())->getUsers();
+        return view('admin.users.index', [
+            'usersList' => $usersList
+        ]);
+
+//         return view('admin.users.index');
+
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        //
+        $user = (new User())->getUsers();
+        return view('admin.users.create', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -35,7 +47,11 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create($request->all());
+        return redirect('/admin/users');
+        // return User::create($request->all());
+
+        // return redirect('/admin/users');
     }
 
     /**
@@ -57,7 +73,10 @@ class AdminUserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = (new User())->getUser($id);
+        return view('admin.users.edit', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -69,7 +88,10 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->update($request->all());
+
+        return redirect('/admin/users');
     }
 
     /**
@@ -80,6 +102,8 @@ class AdminUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect('/admin/users');
     }
 }

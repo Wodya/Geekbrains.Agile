@@ -3,7 +3,7 @@
         <ul class="nav main-nav" id="main-menu">
             <li>
                 <a href="{{route('catalog')}}">
-                    <img src="{{ asset('Images/logo/logo-footer.png')}}" alt="logo"/> В каталог
+                    <img src="{{ asset('Images/logo/logo-footer.png')}}" alt="logo" /> В каталог
                 </a>
             </li>
             <li>
@@ -13,7 +13,7 @@
                 <a href="{{route('admin::plants::plantList')}}"><i class="fa fa-leaf"></i> Список растений</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-user"></i> Список пользователей</a>
+                <a href="{{route('admin.users.index')}}"><i class="fa fa-user"></i> Список пользователей</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-cogs"></i>Логи</a>
